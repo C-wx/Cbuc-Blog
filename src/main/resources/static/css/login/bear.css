@@ -31,7 +31,7 @@ body{
     -webkit-transition: all 0.5s;
 }
 .login-animate .body{
-    background-image: url(../img/body.png);
+    background-image: url(../../img/body.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -44,7 +44,7 @@ body{
 }
 .login-animate .head{
     position: relative;
-    background-image: url(../img/face.png);
+    background-image: url(../../img/face.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -56,7 +56,7 @@ body{
     z-index: 1;
 }
 .login-animate .left-ear{
-    background-image: url(../img/left-ear.png);
+    background-image: url(../../img/left-ear.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -67,7 +67,7 @@ body{
     left: calc(50% - 4em);
 }
 .login-animate .right-ear{
-    background-image: url(../img/right-ear.png);
+    background-image: url(../../img/right-ear.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -78,7 +78,7 @@ body{
     left: calc(50% + 2em);
 }
 .login-animate .left-eye{
-    background-image: url(../img/eye.png);
+    background-image: url(../../img/eye.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -89,7 +89,7 @@ body{
     left: calc(50% - 2.5em);
 }
 .login-animate .right-eye{
-    background-image: url(../img/eye.png);
+    background-image: url(../../img/eye.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -100,7 +100,7 @@ body{
     left: calc(50% + 1.5em);
 }
 .login-animate .face{
-    background-image: url(../img/muzzle.png);
+    background-image: url(../../img/muzzle.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -111,7 +111,7 @@ body{
     left: calc(50% - 2em);
 }
 .login-animate .nose{
-    background-image: url(../img/nose.png);
+    background-image: url(../../img/nose.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -122,7 +122,7 @@ body{
     left: calc(50% - 0.5em);
 }
 .login-animate .mouth{
-    background-image: url(../img/mouth-smile.png);
+    background-image: url(../../img/mouth-smile.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -133,7 +133,7 @@ body{
     left: calc(50% - 1em);
 }
 .login-animate .left-arm{
-    background-image: url(../img/left-arm.png);
+    background-image: url(../../img/left-arm.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -146,7 +146,7 @@ body{
     transition: bottom 0.5s;
 }
 .login-animate .right-arm{
-    background-image: url(../img/right-arm.png);
+    background-image: url(../../img/right-arm.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -161,7 +161,7 @@ body{
 .password-animate .mouth.show{
     width: 1em;
     left: calc(50% - 0.5em);
-    background-image: url(../img/mouth-circle.png);
+    background-image: url(../../img/mouth-circle.png);
 }
 .password-animate .left-arm.show,.password-animate .right-arm.show{
     bottom: -1.7em!important;
@@ -180,7 +180,7 @@ body{
     bottom: 3.5em;
 }
 .username-animate .left-eye.doe,.username-animate .right-eye.doe{
-    background-image: url(../img/eye-doe.png);
+    background-image: url(../../img/eye-doe.png);
 }
 
 .username-animate .right-eye {
@@ -196,10 +196,10 @@ body{
 }
 .username-animate .mouth {
     bottom: 0.75em;
-    background-image: url(../img/mouth-half.png);
+    background-image: url(../../img/mouth-half.png);
 }
 .username-animate .mouth.doe{
-    background-image: url(../img/mouth-open.png);
+    background-image: url(../../img/mouth-open.png);
     height: 2em;
     bottom: 0.5em;
 }

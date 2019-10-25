@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>登录页面</title>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bear.css">
+    <script type="text/javascript" src="js/login/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/login/bear.css">
 </head>
 <body>
 <div class="login-block">
