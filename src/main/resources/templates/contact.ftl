@@ -46,16 +46,16 @@
         </div>
         <div class="container">
             <div class="navbar-header d-flex align-items-center justify-content-between">
-                <a href="/" class="navbar-brand">Cbuc Blog</a>
+                <a href="index.ftl" class="navbar-brand">Cbuc Blog</a>
             </div>
             <!-- Navbar Menu -->
             <div id="navbarcollapse" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="/" class="nav-link active ">Home</a>
+                    <li class="nav-item"><a href="/" class="nav-link ">Home</a>
                     </li>
                     <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a>
                     </li>
-                    <li class="nav-item"><a href="/contact" class="nav-link ">Contact</a>
+                    <li class="nav-item"><a href="/contact" class="nav-link active">Contact</a>
                     </li>
                 </ul>
                 <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
@@ -63,26 +63,43 @@
         </div>
     </nav>
 </header>
-<!-- Hero Section-->
-<section style="background-size: cover; background: url(/img/index/hero.jpg) center center;" class="hero">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7">
-                <strong style="font-size: 90px;font-family: '楷体'">Cbuc博客主页</strong>
-                <p id="time" style="font-size: 30px"></p>
-                <div style="margin-top: 80px">
-                    <strong style="font-size: 25px">简介:</strong>
-                    <p style="font-size: 20px;padding-top: 30px">苦练七十二变，笑迎八十一难</p>
+<div id="contact" class="text-center" style="height: 795px">
+    <div class="container" id="contactContainer">
+        <div class="section-title center">
+            <h2>LEAVE A MESSAGE</h2>
+            <hr>
+        </div>
+        <div class="col-md-8" style="margin-left: 190px">
+            <form name="sentMessage" id="contactForm" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div id="success"></div>
+                <button type="submit" class="btn btn-default btn-lg">Submit</button>
+            </form>
         </div>
     </div>
-</section>
+</div>
 <!-- Page Footer-->
 <footer class="main-footer text-center">
-        <div class="container">
-            <p>Copyright &copy; 2019 Cbuc.Blog</p>
-        </div>
+    <div class="container">
+        <p>Copyright &copy; 2019 Cbuc.Blog</p>
+    </div>
 </footer>
 <!-- JavaScript files-->
 <script src="/vendor/jquery/jquery.min.js"></script>

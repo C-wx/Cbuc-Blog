@@ -22,4 +22,16 @@ public class IndexController {
     public String home() {
         return "index";
     }
+
+    @ApiOperation("跳转到博客页")
+    @RequestMapping("/blog")
+    public String blog() {
+        return "blog";
+    }
+
+    @ApiOperation("跳转到留言页")
+    @RequestMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
 }
