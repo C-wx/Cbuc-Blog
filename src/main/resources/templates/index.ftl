@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="/vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="/css/index/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="/css/index/custom.css">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -29,23 +27,8 @@
 <header class="header">
     <!-- Main Navbar-->
     <nav class="navbar navbar-expand-lg">
-        <div class="search-area">
-            <div class="search-area-inner d-flex align-items-center justify-content-center">
-                <div class="close-btn"><i class="icon-close"></i></div>
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-8">
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="search" name="search" id="search" placeholder="What are you looking for?">
-                                <button type="submit" class="submit"><i class="icon-search-1"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="container">
-            <div class="navbar-header d-flex align-items-center justify-content-between">
+            <div class="navbar-header">
                 <a href="/" class="navbar-brand">Cbuc Blog</a>
             </div>
             <!-- Navbar Menu -->
@@ -58,13 +41,12 @@
                     <li class="nav-item"><a href="/contact" class="nav-link ">Contact</a>
                     </li>
                 </ul>
-                <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
             </div>
         </div>
     </nav>
 </header>
 <!-- Hero Section-->
-<section style="background-size: cover; background: url(/img/index/hero.jpg) center center;" class="hero">
+<section style="background-size: cover; background: url(/img/1001150.jpg) center center;" class="hero">
     <div class="container">
         <div class="row">
             <div class="col-lg-7">

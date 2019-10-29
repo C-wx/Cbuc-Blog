@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cbuc.blog.mapper.LogMapper">
+  <resultMap id="BaseResultMap" type="cbuc.blog.bean.Log">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="LOGIN_IP" jdbcType="VARCHAR" property="loginIp" />
+    <result column="LOGIN_BROWSER" jdbcType="VARCHAR" property="loginBrowser" />
+    <result column="ACCESS_URL" jdbcType="VARCHAR" property="accessUrl" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="DEF1" jdbcType="VARCHAR" property="def1" />
+    <result column="DEF2" jdbcType="VARCHAR" property="def2" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, LOGIN_IP, LOGIN_BROWSER, ACCESS_URL, REMARK, CREATE_TIME, STATUS, DEF1, DEF2
+  </sql>
+  <select id="selectByExample" parameterType="cbuc.blog.bean.LogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bg_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_log
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bg_log
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cbuc.blog.bean.LogExample">
+    delete from bg_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Log" useGeneratedKeys="true">
+    insert into bg_log (LOGIN_IP, LOGIN_BROWSER, ACCESS_URL, 
+      REMARK, CREATE_TIME, STATUS, 
+      DEF1, DEF2)
+    values (#{loginIp,jdbcType=VARCHAR}, #{loginBrowser,jdbcType=VARCHAR}, #{accessUrl,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Log" useGeneratedKeys="true">
+    insert into bg_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginIp != null">
+        LOGIN_IP,
+      </if>
+      <if test="loginBrowser != null">
+        LOGIN_BROWSER,
+      </if>
+      <if test="accessUrl != null">
+        ACCESS_URL,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="def1 != null">
+        DEF1,
+      </if>
+      <if test="def2 != null">
+        DEF2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginBrowser != null">
+        #{loginBrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="accessUrl != null">
+        #{accessUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="def1 != null">
+        #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null">
+        #{def2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cbuc.blog.bean.LogExample" resultType="java.lang.Long">
+    select count(*) from bg_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bg_log
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.loginIp != null">
+        LOGIN_IP = #{record.loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginBrowser != null">
+        LOGIN_BROWSER = #{record.loginBrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessUrl != null">
+        ACCESS_URL = #{record.accessUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def1 != null">
+        DEF1 = #{record.def1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def2 != null">
+        DEF2 = #{record.def2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bg_log
+    set ID = #{record.id,jdbcType=BIGINT},
+      LOGIN_IP = #{record.loginIp,jdbcType=VARCHAR},
+      LOGIN_BROWSER = #{record.loginBrowser,jdbcType=VARCHAR},
+      ACCESS_URL = #{record.accessUrl,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      DEF1 = #{record.def1,jdbcType=VARCHAR},
+      DEF2 = #{record.def2,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cbuc.blog.bean.Log">
+    update bg_log
+    <set>
+      <if test="loginIp != null">
+        LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginBrowser != null">
+        LOGIN_BROWSER = #{loginBrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="accessUrl != null">
+        ACCESS_URL = #{accessUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="def1 != null">
+        DEF1 = #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null">
+        DEF2 = #{def2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cbuc.blog.bean.Log">
+    update bg_log
+    set LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      LOGIN_BROWSER = #{loginBrowser,jdbcType=VARCHAR},
+      ACCESS_URL = #{accessUrl,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DEF1 = #{def1,jdbcType=VARCHAR},
+      DEF2 = #{def2,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="/vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="/css/index/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="/css/index/custom.css">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -29,21 +27,6 @@
 <header class="header">
     <!-- Main Navbar-->
     <nav class="navbar navbar-expand-lg">
-        <div class="search-area">
-            <div class="search-area-inner d-flex align-items-center justify-content-center">
-                <div class="close-btn"><i class="icon-close"></i></div>
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-8">
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="search" name="search" id="search" placeholder="What are you looking for?">
-                                <button type="submit" class="submit"><i class="icon-search-1"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="navbar-header d-flex align-items-center justify-content-between">
                 <a href="index.ftl" class="navbar-brand">Cbuc Blog</a>
@@ -58,7 +41,6 @@
                     <li class="nav-item"><a href="/contact" class="nav-link ">Contact</a>
                     </li>
                 </ul>
-                <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
             </div>
         </div>
     </nav>
@@ -192,37 +174,41 @@
                 <header>
                     <h3 class="h6">Latest Posts</h3>
                 </header>
-                <div class="blog-posts"><a href="#">
-                    <div class="item d-flex align-items-center">
-                        <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
-                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                            <div class="d-flex align-items-center">
-                                <div class="views"><i class="icon-eye"></i> 500</div>
-                                <div class="comments"><i class="icon-comment"></i>12</div>
+                <div class="blog-posts">
+                    <a href="#">
+                        <div class="item d-flex align-items-center">
+                            <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
+                            <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+                                <div class="d-flex align-items-center">
+                                    <div class="views"><i class="icon-eye"></i> 500</div>
+                                    <div class="comments"><i class="icon-comment"></i>12</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a><a href="#">
-                    <div class="item d-flex align-items-center">
-                        <div class="image"><img src="img/small-thumbnail-2.jpg" alt="..." class="img-fluid"></div>
-                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                            <div class="d-flex align-items-center">
-                                <div class="views"><i class="icon-eye"></i> 500</div>
-                                <div class="comments"><i class="icon-comment"></i>12</div>
+                    </a>
+                    <a href="#">
+                        <div class="item d-flex align-items-center">
+                            <div class="image"><img src="img/small-thumbnail-2.jpg" alt="..." class="img-fluid"></div>
+                            <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+                                <div class="d-flex align-items-center">
+                                    <div class="views"><i class="icon-eye"></i> 500</div>
+                                    <div class="comments"><i class="icon-comment"></i>12</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a><a href="#">
-                    <div class="item d-flex align-items-center">
-                        <div class="image"><img src="img/small-thumbnail-3.jpg" alt="..." class="img-fluid"></div>
-                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                            <div class="d-flex align-items-center">
-                                <div class="views"><i class="icon-eye"></i> 500</div>
-                                <div class="comments"><i class="icon-comment"></i>12</div>
+                    </a>
+                    <a href="#">
+                        <div class="item d-flex align-items-center">
+                            <div class="image"><img src="img/small-thumbnail-3.jpg" alt="..." class="img-fluid"></div>
+                            <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+                                <div class="d-flex align-items-center">
+                                    <div class="views"><i class="icon-eye"></i> 500</div>
+                                    <div class="comments"><i class="icon-comment"></i>12</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a></div>
+                    </a>
+                </div>
             </div>
             <!-- Widget [Categories Widget]-->
             <div class="widget categories">
