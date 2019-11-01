@@ -25,13 +25,12 @@
 </head>
 <body>
 <header class="header">
-    <!-- Main Navbar-->
+    <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <div class="navbar-header">
-                <a href="/" class="navbar-brand">Cbuc Blog</a>
+                <a href="/" class="navbar-brand icons"><i class="fa fa-soundcloud"></i> Cbuc Blog</a>
             </div>
-            <!-- Navbar Menu -->
             <div id="navbarcollapse" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="/" class="nav-link active ">Home</a>
@@ -46,26 +45,16 @@
     </nav>
 </header>
 <!-- Hero Section-->
-<section style="background-size: cover; background: url(/img/1001150.jpg) center center;" class="hero">
+<section class="hero">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7">
-                <strong style="font-size: 90px;font-family: '楷体'">Cbuc博客主页</strong>
+            <div style="position: relative;left: 320px;top: -100px;">
+                <strong style="font-size: 90px;font-family: '楷体';">Cbuc博客主页</strong>
                 <p id="time" style="font-size: 30px"></p>
-                <div style="margin-top: 80px">
-                    <strong style="font-size: 25px">简介:</strong>
-                    <p style="font-size: 20px;padding-top: 30px">苦练七十二变，笑迎八十一难</p>
-                </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Page Footer-->
-<footer class="main-footer text-center">
-        <div class="container">
-            <p>Copyright &copy; 2019 Cbuc.Blog</p>
-        </div>
-</footer>
 <!-- JavaScript files-->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/popper.js/umd/popper.min.js"></script>

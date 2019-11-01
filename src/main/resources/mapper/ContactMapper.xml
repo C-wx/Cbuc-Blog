@@ -3,6 +3,7 @@
 <mapper namespace="cbuc.blog.mapper.ContactMapper">
   <resultMap id="BaseResultMap" type="cbuc.blog.bean.Contact">
     <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
     <result column="LOGIN_IP" jdbcType="VARCHAR" property="loginIp" />
     <result column="MESSAGE" jdbcType="VARCHAR" property="message" />
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, EMAIL, LOGIN_IP, MESSAGE, CREATE_TIME, STATUS, DEF1, DEF2, DEF3
+    ID, NAME, EMAIL, LOGIN_IP, MESSAGE, CREATE_TIME, STATUS, DEF1, DEF2, DEF3
   </sql>
   <select id="selectByExample" parameterType="cbuc.blog.bean.ContactExample" resultMap="BaseResultMap">
     select
@@ -105,16 +106,19 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Contact" useGeneratedKeys="true">
-    insert into bg_contact (EMAIL, LOGIN_IP, MESSAGE, 
-      CREATE_TIME, STATUS, DEF1, 
-      DEF2, DEF3)
-    values (#{email,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, 
-      #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
+    insert into bg_contact (NAME, EMAIL, LOGIN_IP, 
+      MESSAGE, CREATE_TIME, STATUS, 
+      DEF1, DEF2, DEF3)
+    values (#{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, 
+      #{message,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Contact" useGeneratedKeys="true">
     insert into bg_contact
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        NAME,
+      </if>
       <if test="email != null">
         EMAIL,
       </if>
@@ -141,6 +145,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
@@ -179,6 +186,9 @@
       <if test="record.id != null">
         ID = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
       <if test="record.email != null">
         EMAIL = #{record.email,jdbcType=VARCHAR},
       </if>
@@ -211,6 +221,7 @@
   <update id="updateByExample" parameterType="map">
     update bg_contact
     set ID = #{record.id,jdbcType=BIGINT},
+      NAME = #{record.name,jdbcType=VARCHAR},
       EMAIL = #{record.email,jdbcType=VARCHAR},
       LOGIN_IP = #{record.loginIp,jdbcType=VARCHAR},
       MESSAGE = #{record.message,jdbcType=VARCHAR},
@@ -226,6 +237,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="cbuc.blog.bean.Contact">
     update bg_contact
     <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="email != null">
         EMAIL = #{email,jdbcType=VARCHAR},
       </if>
@@ -255,7 +269,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cbuc.blog.bean.Contact">
     update bg_contact
-    set EMAIL = #{email,jdbcType=VARCHAR},
+    set NAME = #{name,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
       LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
       MESSAGE = #{message,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},

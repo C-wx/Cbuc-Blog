@@ -57,12 +57,13 @@
             enableSelectByExample:Select多条语句中加入where条件查询，默认为true开启
             selectByExampleQueryId:Select单个对象语句中加入where条件查询，默认为true开启
         -->
-        <table tableName="bg_article_category" domainObjectName="ArticleCategory" enableCountByExample="true"
+       <!--
+       <table tableName="bg_article_category" domainObjectName="ArticleCategory" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
-            <!-- 使用数据库中实际的字段名作为生成的实体类的属性 -->
+            &lt;!&ndash; 使用数据库中实际的字段名作为生成的实体类的属性 &ndash;&gt;
             <property name="useActualColumnNames" value="false"/>
-            <!-- 使用自增长键 -->
+            &lt;!&ndash; 使用自增长键 &ndash;&gt;
             <property name="my.isgen.usekeys" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
@@ -90,7 +91,7 @@
             <property name="my.isgen.usekeys" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
-
+-->
         <table tableName="bg_contact" domainObjectName="Contact" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
@@ -99,6 +100,7 @@
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
 
+        <!--
         <table tableName="bg_log" domainObjectName="Log" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
@@ -114,6 +116,7 @@
             <property name="my.isgen.usekeys" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
+        -->
 
     </context>
 </generatorConfiguration>

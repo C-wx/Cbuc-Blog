@@ -25,11 +25,11 @@
 </head>
 <body>
 <header class="header">
-    <!-- Main Navbar-->
+    <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <div class="navbar-header d-flex align-items-center justify-content-between">
-                <a href="index.ftl" class="navbar-brand">Cbuc Blog</a>
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand icons"><i class="fa fa-soundcloud"></i> Cbuc Blog</a>
             </div>
             <!-- Navbar Menu -->
             <div id="navbarcollapse" class="collapse navbar-collapse">

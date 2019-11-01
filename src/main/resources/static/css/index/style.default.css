@@ -439,7 +439,7 @@ div[class*="-btn"] {
 * ==========================================================
 */
 .navbar {
-  background: #eeeeee;
+  background: rgb(243, 255, 250);
   padding-top: 10px !important;
   padding-bottom: 10px !important;
   z-index: 9998;
@@ -619,8 +619,9 @@ div[class*="-btn"] {
 */
 section.hero {
   padding: 0;
-  color: #fff;
-  height: 795px;
+  height: 700px;
+  background: url(/img/1000273.jpg) no-repeat center;
+  background-size: 2113px;
 }
 
 section.hero .container {
@@ -1069,9 +1070,10 @@ footer.main-footer a {
 }
 
 footer.main-footer {
-  background: #090909;
+  background-color: rgba(255, 255, 250, 0.2);
   padding: 20px 0;
   font-size: 0.9em;
+  color: #0a001f;
 }
 
 footer.main-footer * {
@@ -1562,11 +1564,11 @@ STYLE SWITCHER FOR DEMO
 
 .navbar-brand {
   display: inline-block;
-  font-size: 25px;
-  letter-spacing: 10px;
-  font-family: 楷体;
-  color: #333;
-  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: .04em;
+  color: #3de3d0;
+  font-weight: lighter;
+  font-family: "Trebuchet MS" !important;
 }
 
 .navbar-toggler {
