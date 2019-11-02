@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cbuc个人博客</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!--jquery-->
@@ -22,12 +21,12 @@
 <body>
 <header class="header">
     <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" style="height: 64px">
         <div class="container">
             <div class="navbar-header ">
                 <a href="/" class="navbar-brand icons"><i class="fa fa-soundcloud"></i> Cbuc Blog</a>
             </div>
-            <div id="navbarcollapse" class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="/" class="nav-link ">Home</a>
                     </li>
@@ -78,13 +77,5 @@
         <p>Copyright &copy; 2019 Cbuc.Blog</p>
     </div>
 </footer>
-<!-- JavaScript files-->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/popper.js/umd/popper.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/vendor/jquery.cookie/jquery.cookie.js"></script>
-<script src="/vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
-<script src="/js/index/front.js"></script>
-<script src="/js/index/contact.js"></script>
 </body>
 </html>
