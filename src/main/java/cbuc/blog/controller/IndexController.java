@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Author: Cbuc
  * @Date: 2019/10/25
  */
-@Api(value = "主控制器", description = "页面跳转")
+@Api(value = "页面跳转控制器", description = "页面跳转")
 @Controller
 public class IndexController {
 

@@ -16,7 +16,7 @@ public class BrowserUtil {
      * @return
      */
     public static String getOsAndBrowserInfo(HttpServletRequest request) {
-        String browserDetails = request.getHeader("User-Agent");
+        String browserDetails = request.getHeader("LoginUser-Agent");
         String userAgent = browserDetails;
         String user = userAgent.toLowerCase();
 

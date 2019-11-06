@@ -1,7 +1,7 @@
 package cbuc.blog.controller;
 
+import cbuc.blog.base.Result;
 import cbuc.blog.bean.Contact;
-import cbuc.blog.evt.Result;
 import cbuc.blog.service.ContactService;
 import cbuc.blog.utils.IPutil;
 import io.swagger.annotations.Api;

@@ -1,0 +1,76 @@
+html {
+  font-size: 17px;
+}
+
+body {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  background-color: #000;
+}
+
+a {
+  color: #FFF;
+  transition: all 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #9CF;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+}
+
+#login {
+  background-image: url(../img/input-bg-06.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#login .container {
+  max-width: 1000px;
+  margin-top: 238px;
+  margin-left: 690px;
+}
+
+.tm-bg-black {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.input-field input{
+  color: #fff
+}
+
+.btn-large {
+  padding: 0 77px;
+  border-radius: 5px;
+  background-color: black;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+
+.btn-large:hover,
+.btn-large:focus {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.btn-large-white {
+  background-color: white;
+  color: black;
+  font-size: 1.1rem;
+}
+.btn-large-white:hover,
+.btn-large-white:focus {
+  background-color: #ccc;
+  color: black;
+}
+
+.tm-flex-lr {
+  margin-top: 20px;
+  margin-left: 75px;
+}
+
+
