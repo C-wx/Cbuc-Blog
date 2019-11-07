@@ -38,7 +38,7 @@ layui.use(['form', 'jquery'], function () {
             if (result.code == Base.status.success) {
                 layer.msg("登录成功");
                 setTimeout(()=>{
-                    console.log("...");
+                    location.href = "/admin/";
                 },1000);
             }else if (result.code == Base.status.error) {
                 layer.msg(result.msg);

@@ -36,7 +36,7 @@ public class LoginController {
     private static final String PASSWORD = "123456";
 
     @ApiOperation("跳转到登录页面")
-    @GetMapping("/login")
+    @GetMapping("/toLogin")
     public String toLogin() {
         return "admin/login";
     }
@@ -67,6 +67,8 @@ public class LoginController {
             return Result.error("用户名或密码错误,请重新输入");
         }
         request.getSession().removeAttribute(Constants.KAPTCHA_SESSION_KEY);
+        request.getSession().setAttribute("LOGIN_USER",user);
+        request.getSession().setMaxInactiveInterval(30 * 60);
         return Result.success();
     }
 }

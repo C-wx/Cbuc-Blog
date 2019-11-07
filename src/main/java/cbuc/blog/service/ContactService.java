@@ -1,6 +1,7 @@
 package cbuc.blog.service;
 
 import cbuc.blog.bean.Contact;
+import cbuc.blog.exception.MyException;
 import cbuc.blog.mapper.ContactMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,10 @@ public class ContactService {
     @Autowired
     private ContactMapper contactMapper;
 
-    public int doAdd(Contact contact) {
-        return contactMapper.insertSelective(contact);
+    public void doAdd(Contact contact) {
+        int result = contactMapper.insertSelective(contact);
+        if (result < 1) {
+            throw new MyException("新增留言异常");
+        }
     }
 }

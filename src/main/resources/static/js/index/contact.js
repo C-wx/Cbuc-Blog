@@ -21,25 +21,25 @@ $(function () {
         }
         if (!flag) {
             $.ajax({
-                url : "contact",
-                type : "POST",
-                data : $("#contactForm").serialize(),
-                success : function(result) {
-                    if (result.code == 100) {
-                        layer.load(2,{time: 1000});
+                url: "contact",
+                type: "POST",
+                data: $("#contactForm").serialize(),
+                success: function (result) {
+                    if (result.code == Base.status.success) {
+                        layer.load(2, {time: 1000});
                         setTimeout(function () {
                             layer.msg("留言成功");
                             $("#name").val("");
                             $("#email").val("");
                             $("#message").val("");
-                        },888);
+                        }, 888);
                         flag = true;
-                    }else{
+                    } else {
                         layer.msg("服务异常,请稍后重试");
                     }
                 }
             });
-        }else{
+        } else {
             layer.msg("留言已收到,请等待回复");
         }
 
@@ -57,12 +57,12 @@ $(function () {
         $("#Pmessage").text("");
     });
 });
-function verifyEmail() {
+verifyEmail = () => {
     var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-    if(!reg.test($("#email").val())) {
+    if (!reg.test($("#email").val())) {
         $("#email").addClass("border-warning");
         $("#Pemail").text("不是正确的邮箱地址");
-    }else{
+    } else {
         $("#email").removeClass("border-warning");
         $("#Pemail").text("");
     }

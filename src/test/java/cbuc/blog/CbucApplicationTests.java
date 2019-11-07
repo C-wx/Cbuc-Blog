@@ -1,7 +1,9 @@
 package cbuc.blog;
 
+import cbuc.blog.service.LogService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -11,8 +13,14 @@ public class CbucApplicationTests {
     public CbucApplicationTests() {
     }
 
+    @Autowired
+    LogService logService;
+
+    /**
+     * @Explain 测试清除日志
+     */
     @Test
-    public void test1(){
-        System.out.println("CBUC BLOG");
+    public void clearLog() {
+        logService.clean();
     }
 }
