@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,5 +72,12 @@ public class LoginController {
         request.getSession().setAttribute("LOGIN_USER",user);
         request.getSession().setMaxInactiveInterval(30 * 60);
         return Result.success();
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("LOGIN_USER");
+        request.getSession().invalidate();
+        return new ModelAndView(new RedirectView("/admin/toLogin"));
     }
 }

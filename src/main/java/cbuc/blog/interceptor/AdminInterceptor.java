@@ -21,15 +21,13 @@ import java.util.Objects;
 public class AdminInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        boolean flag = true;
         LoginUser user = (LoginUser) request.getSession().getAttribute("LOGIN_USER");
         if (Objects.isNull(user)) {
             log.warn("用户未登录,无法访问后台");
             request.getRequestDispatcher("/admin/toLogin").forward(request,response);
-//            response.sendRedirect("/admin/toLogin");
            return false;
         }
-        return flag;
+        return true;
     }
 
     @Override

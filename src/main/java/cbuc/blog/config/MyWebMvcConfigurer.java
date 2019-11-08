@@ -13,13 +13,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.nio.charset.Charset;
 
 /**
- * @Explain:  web配置类
+ * @Explain: web配置类
  * @Author: Cbuc
  * @Version: 1.0
  * @Date: 2019/11/6
  */
 @Configuration
-public class MyWebMvcConfigurer implements WebMvcConfigurer{
+public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     @Autowired
     private LogInterceptor logInterceptor;
@@ -35,7 +35,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer{
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(logInterceptor).addPathPatterns("/**").excludePathPatterns("/js/**", "/css/**", "/img/**","/plugins/**","/vendor/**","/error/**");
-        registry.addInterceptor(adminInterceptor).addPathPatterns("/admin/**").excludePathPatterns("/toLogin", "/admin/login");
+        registry.addInterceptor(logInterceptor).addPathPatterns("/**").excludePathPatterns("/static/**","/js/**", "/css/**", "/img/**", "/plugins/**", "/vendor/**", "/error/**","/image/**");
+        registry.addInterceptor(adminInterceptor).addPathPatterns("/admin/**").excludePathPatterns("/admin/toLogin", "/admin/login");
     }
 }

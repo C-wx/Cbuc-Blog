@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<#assign base=request.contextPath />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cbuc个人博客</title>
+
     <!--jquery-->
-    <script src="../js/jquery-1.11.2.min.js"></script>
-    <script src="../js/base.js"></script>
+    <script src="${base}/js/jquery-1.11.2.min.js"></script>
+    <script src="${base}/js/base.js"></script>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/materialize.min.css">
-    <link rel="stylesheet" href="../css/tooplate.css">
+    <link rel="stylesheet" href="${base}/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${base}/css/materialize.min.css">
+    <link rel="stylesheet" href="${base}/css/tooplate.css">
     <!-- layui -->
-    <script src="../plugins/layui/layui.all.js" type="application/javascript"></script>
-    <link rel="stylesheet" href="../plugins/layui/css/layui.css">
+    <script src="${base}/plugins/layui/layui.all.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="${base}/plugins/layui/css/layui.css">
     <!--login JS-->
-    <script src="../js/login.js"></script>
+    <script src="${base}/js/login.js"></script>
 </head>
 <body id="login">
 <div class="container">

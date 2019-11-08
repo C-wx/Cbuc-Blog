@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>后台管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- layui -->
     <script src="/plugins/layui/layui.all.js" type="application/javascript"></script>
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
@@ -39,30 +39,19 @@
             <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
 
                 <li class="layui-nav-item" lay-unselect>
-                    <a lay-href="/management/message" layadmin-event="message" lay-text="消息中心">
-                        <i class="layui-icon layui-icon-notice"></i>
-
-                        <!-- 如果有新消息，则显示小圆点 -->
-                        <span class="layui-badge-dot"></span>
-                    </a>
-                </li>
-
-                <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="fullscreen">
-                        <i class="layui-icon layui-icon-screen-full"></i>
+                    <a lay-href="/admin/contact" layadmin-event="message" lay-text="用户留言">
+                        <i class="fa fa-bell"></i>
+                        <span class="layui-badge-dot"></span>${contactNum}
                     </a>
                 </li>
                 <li class="layui-nav-item" lay-unselect style="margin-right: 20px;">
                     <a href="javascript:;">
-                        <cite th:text="${nbv5su.nickname}"></cite>
+                        <cite>${LOGIN_USER.username}</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/management/settings/profile">基本资料</a></dd>
-                        <hr>
-                        <dd><a href="/management/logout"><i class="fa fa-sign-out"></i> 退出</a></dd>
+                        <dd><a href="/admin/logout"><i class="fa fa-sign-out"></i> 退出</a></dd>
                     </dl>
                 </li>
-
                 <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
                     <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
                 </li>
@@ -72,16 +61,16 @@
         <!-- 侧边菜单 -->
         <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
-                <div class="layui-logo" lay-href="/management/dashboard">
-                    <cite><i class="fa fa-graduation-cap"></i><span>笔记博客</span> <span>后台管理</span></cite>
+                <div class="layui-logo">
+                    <cite><i class="fa fa-soundcloud"></i>CbucBlog</cite>
                 </div>
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu"
                     lay-filter="layadmin-system-side-menu">
-                    <li data-name="dashboard" class="layui-nav-item layui-this">
-                        <a href="javascript:;" lay-href="/management/dashboard" lay-tips="控制台" lay-direction="2">
-                            <i class="layui-icon layui-icon-console"></i>
-                            <cite>控制台</cite>
+                    <li data-name="dataStatistic" class="layui-nav-item layui-this" style="padding-top: 45px">
+                        <a href="javascript:;" lay-href="/admin/dataStatistic" lay-tips="数据统计" lay-direction="2">
+                            <i class="layui-icon layui-icon-tabs"></i>
+                            <cite>数据统计</cite>
                         </a>
                     </li>
                     <li data-name="content" class="layui-nav-item">
@@ -91,85 +80,58 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="article-post">
-                                <a lay-href="/management/article/add">新建文章</a>
+                                <a lay-href="/admin/modArticle">文章编辑</a>
                             </dd>
                             <dd data-name="note-post">
-                                <a lay-href="/management/note/add">新建笔记</a>
+                                <a lay-href="/admin/modTag">标签编辑</a>
                             </dd>
                         </dl>
                     </li>
                     <li data-name="contentManage" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="内容管理" lay-direction="2">
-                            <i class="layui-icon layui-icon-template-1"></i>
+                            <i class="layui-icon layui-icon-template"></i>
                             <cite>内容管理</cite>
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="article-manage">
-                                <a lay-href="/management/article/page">文章管理</a>
+                                <a lay-href="/admin/manaArticle">文章管理</a>
                             </dd>
                             <dd data-name="note-manage">
-                                <a lay-href="/management/note/page">笔记管理</a>
+                                <a lay-href="/admin/manaTag">标签管理</a>
                             </dd>
                         </dl>
                     </li>
                     <li data-name="dictionary" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="字典管理" lay-direction="2">
-                            <i class="layui-icon layui-icon-read"></i>
-                            <cite>字典管理</cite>
+                        <a href="javascript:;" lay-tips="评论/留言" lay-direction="2">
+                            <i class="layui-icon layui-icon-reply-fill"></i>
+                            <cite>评论/留言</cite>
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="catetag">
-                                <a lay-href="/management/dict/catetag">分类与标签</a>
+                                <a lay-href="/admin/dict/catetag">评论管理</a>
                             </dd>
                             <dd data-name="keyword">
-                                <a lay-href="/management/dict/keyword">敏感字词</a>
-                            </dd>
-                            <dd data-name="link">
-                                <a lay-href="/management/dict/link">友情链接</a>
+                                <a lay-href="/admin/dict/keyword">留言管理</a>
                             </dd>
                         </dl>
                     </li>
-                    <li data-name="settings" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="设置管理" lay-direction="2">
-                            <i class="layui-icon layui-icon-set"></i>
-                            <cite>偏好设置</cite>
+                    <li data-name="dashboard" class="layui-nav-item">
+                        <a href="javascript:;" lay-href="/admin/dashboard" lay-tips="公告管理" lay-direction="2">
+                            <i class="layui-icon layui-icon-tips"></i>
+                            <cite>公告管理</cite>
                         </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="profile">
-                                <a lay-href="/management/settings/profile">个人设置</a>
-                            </dd>
-                            <dd data-name="website">
-                                <a lay-href="/management/settings/website">网站设置</a>
-                            </dd>
-                        </dl>
                     </li>
-                    <li data-name="msg" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="消息管理" lay-direction="2">
-                            <i class="layui-icon layui-icon-dialogue"></i>
-                            <cite>消息管理</cite>
+                    <li data-name="dashboard" class="layui-nav-item">
+                        <a href="javascript:;" lay-href="/admin/dashboard" lay-tips="广告管理" lay-direction="2">
+                            <i class="layui-icon layui-icon-dollar"></i>
+                            <cite>广告管理</cite>
                         </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="message">
-                                <a lay-href="/management/message">用户留言</a>
-                            </dd>
-                            <dd data-name="comment">
-                                <a lay-href="/management/comment">用户评论</a>
-                            </dd>
-                        </dl>
                     </li>
-                    <li data-name="user" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="用户管理" lay-direction="2">
-                            <i class="layui-icon layui-icon-user"></i>
-                            <cite>其他管理</cite>
+                    <li data-name="dashboard" class="layui-nav-item">
+                        <a href="javascript:;" lay-href="/admin/dashboard" lay-tips="下载管理" lay-direction="2">
+                            <i class="layui-icon layui-icon-link"></i>
+                            <cite>下载管理</cite>
                         </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="user">
-                                <a lay-href="/management/user">用户管理</a>
-                            </dd>
-                            <dd data-name="cash">
-                                <a lay-href="/management/cash">点卡管理</a>
-                            </dd>
-                        </dl>
                     </li>
                 </ul>
             </div>
@@ -177,23 +139,9 @@
 
         <!-- 页面标签 -->
         <div class="layadmin-pagetabs" id="LAY_app_tabs">
-            <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
-            <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
-            <div class="layui-icon layadmin-tabs-control layui-icon-down">
-                <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
-                    <li class="layui-nav-item" lay-unselect>
-                        <a href="javascript:;"></a>
-                        <dl class="layui-nav-child layui-anim-fadein">
-                            <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
-                            <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
-                            <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
-                        </dl>
-                    </li>
-                </ul>
-            </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="/management/dashboard" lay-attr="/management/dashboard" class="layui-this"><i
+                    <li lay-id="/admin/dashboard" lay-attr="/admin/dashboard" class="layui-this"><i
                             class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
@@ -203,7 +151,7 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-                <iframe id="LAY_content_iframe" src="/management/dashboard" frameborder="0"
+                <iframe id="LAY_content_iframe" src="/admin/dashboard" frameborder="0"
                         class="layadmin-iframe"></iframe>
             </div>
         </div>
