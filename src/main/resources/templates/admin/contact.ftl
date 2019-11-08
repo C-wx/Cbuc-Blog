@@ -1,115 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='评论管理',active='comments'">
-<header th:replace="admin/header::headerFragment(${title},${active})"></header>
-<body class="fixed-left">
-<div id="wrapper">
-    <div th:replace="admin/header::header-body"></div>
-    <div class="content-page">
-        <div class="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4 class="page-title">评论管理</h4>
+<#assign base=request.contextPath />
+<head>
+    <meta charset="utf-8">
+    <title>后台管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--jquery-->
+    <script src="${base}/js/jquery-1.11.2.min.js"></script>
+    <script src="${base}/js/base.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="${base}/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- layui -->
+    <script src="${base}/plugins/layui/layui.all.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="${base}/plugins/layui/css/layui.css">
+    <!--css-->
+    <link rel="stylesheet" href="${base}/plugins/layuiadmin/style/admin.css" media="all">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="${base}/vendor/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+<div class="layui-fluid layui-anim layui-anim-upbit" id="LAY-message">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div id="search_area">
+                    搜索留言内容：
+                    <div class="layui-inline">
+                        <input class="layui-input" name="commentKeyWard" id="messageKeyword" autocomplete="off">
                     </div>
-                    <div class="col-md-12">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>评论内容</th>
-                                <th>评论人</th>
-                                <th>评论时间</th>
-                                <th>评论人邮箱</th>
-                                <th>评论人网址</th>
-                                <th>评论状态</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <th:block th:each="comment : ${comments.list}">
-                                <tr th:attr="cid=${comment.coid}">
-                                    <td>
-                                        <a th:href="@{${commons.site_url('/article/')}+${comment.cid}+'#comments'}"
-                                           target="_blank" th:utext="${commons.article(comment.content)}"></a>
-                                    </td>
-                                    <td th:text="${comment.author}"></td>
-                                    <td th:text="${commons.fmtdate(comment.created, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                                    <td th:text="${comment.mail}"></td>
-                                    <td><a th:href="@{${comment.url}}" target="_blank" th:text="${comment.url}"></a>
-                                    </td>
-                                    <td>
-                                        <th:block th:if="${comment.status == 'approved'}">
-                                            <span class="label label-success">审核通过</span>
-                                        </th:block>
-                                        <th:block th:if="${comment.status == 'not_audit'}">
-                                            <span class="label label-default">未审核</span>
-                                        </th:block>
-                                    </td>
-                                    <td>
-                                        <th:block th:if="${comment.status == 'not_audit'}">
-                                            <a href="javascript:void(0)"
-                                               th:onclick="'updateStatus('+${comment.coid}+');'"
-                                               class="btn btn-success btn-sm waves-effect waves-light m-b-5"><i
-                                                    class="fa fa-check-square-o"></i> <span>通过</span></a>
-                                        </th:block>
-                                        <a href="javascript:void(0)" th:onclick="'delComment('+${comment.coid}+');'"
-                                           class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
-                                                class="fa fa-trash-o"></i> <span>删除</span></a>
-                                    </td>
-                                </tr>
-                            </th:block>
-                            </tbody>
-                        </table>
-                        <div th:replace="comm/macros :: pageAdminNav(${comments})"></div>
+                    &nbsp;&nbsp;用户昵称：
+                    <div class="layui-inline">
+                        <input class="layui-input" name="nameKeyword" id="nameKeyword" autocomplete="off">
                     </div>
+                    <button class="layui-btn" data-type="reload">搜索</button>
+                    <button class="layui-btn layui-btn-primary" data-type="reload">重置</button>
                 </div>
-                <div th:replace="admin/footer :: footer-content"></div>
+            </div>
+            <div class="layui-card-body">
+                <table class="layui-hide" id="message-table" lay-filter="message"></table>
+                <script type="text/html" id="enableTpl">
+                    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="已读|未读" lay-filter="enable" {{ d.status == 'D' ? 'checked' : ''}}>
+                </script>
             </div>
         </div>
     </div>
 </div>
-<div th:replace="admin/footer :: footer"></div>
-<script type="text/javascript">
-    /*<![CDATA[*/
-    var tale = new $.tale();
-
-    function delComment(coid) {
-        tale.alertConfirm({
-            title: '确定删除该评论吗?',
-            then: function () {
-                tale.post({
-                    url: '/admin/comments/delete',
-                    data: {coid: coid},
-                    success: function (result) {
-                        if (result && result.success) {
-                            tale.alertOkAndReload('评论删除成功');
-                        } else {
-                            tale.alertError(result.msg || '评论删除失败');
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    function updateStatus(coid) {
-        tale.alertConfirm({
-            title: '确定审核通过吗?',
-            then: function () {
-                tale.post({
-                    url: '/admin/comments/status',
-                    data: {coid: coid, status: "approved"},
-                    success: function (result) {
-                        if (result && result.success) {
-                            tale.alertOkAndReload('评论状态设置成功');
-                        } else {
-                            tale.alertError(result.msg || '评论设置失败');
-                        }
-                    }
-                });
-            }
-        });
-    }
-    /*]]>*/
+<script>
+    layui.config({
+        base: '/static' //静态资源所在路径
+    }).use(["/js/admin/message"]);
 </script>
 </body>
 </html>

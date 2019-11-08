@@ -5,6 +5,7 @@ import cbuc.blog.bean.ContactExample;
 import cbuc.blog.exception.MyException;
 import cbuc.blog.mapper.ContactMapper;
 import cbuc.blog.utils.baseenum.StatusEnum;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +32,15 @@ public class ContactService {
         }
     }
 
-    public List<Contact> queryList() {
+    public List<Contact> queryList(String commentKeyWard, String nameKeyword) {
         ContactExample contactExample = new ContactExample();
-        contactExample.createCriteria().andStatusNotEqualTo(StatusEnum.D.getStatus());
+        ContactExample.Criteria contactExampleCriteria = contactExample.createCriteria();
+        if (StringUtils.isNotBlank(commentKeyWard)) {
+            contactExampleCriteria.andMessageLike("%"+commentKeyWard+"%");
+        }
+        if (StringUtils.isNotBlank(nameKeyword)) {
+            contactExampleCriteria.andNameLike("%"+nameKeyword+"%");
+        }
         return contactMapper.selectByExample(contactExample);
     }
 
@@ -41,5 +48,12 @@ public class ContactService {
         ContactExample contactExample = new ContactExample();
         contactExample.createCriteria().andStatusNotEqualTo(StatusEnum.D.getStatus());
         return contactMapper.countByExample(contactExample);
+    }
+
+    public int modStatus(Long id, String status) {
+        Contact contact = new Contact();
+        contact.setStatus(status);
+        contact.setId(id);
+        return contactMapper.updateByPrimaryKeySelective(contact);
     }
 }

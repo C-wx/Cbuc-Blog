@@ -41,12 +41,21 @@
                 <li class="layui-nav-item" lay-unselect>
                     <a lay-href="/admin/contact" layadmin-event="message" lay-text="用户留言">
                         <i class="fa fa-bell"></i>
-                        <span class="layui-badge-dot"></span>${contactNum}
+                        <#if (contactNum > 0)>
+                        <span class="layui-badge-dot"></span>
+                        </#if>
+                        <span id="msgNum" style="color: darkred;">
+                        <#if (contactNum > 0)>
+                        ${contactNum}
+                        </#if>
+                        </span>
                     </a>
                 </li>
-                <li class="layui-nav-item" lay-unselect style="margin-right: 20px;">
+                <li class="layui-nav-item" lay-unselect style="margin-right: 40px">
                     <a href="javascript:;">
-                        <cite>${LOGIN_USER.username}</cite>
+                        <cite style="font-size: 20px">
+                        ${LOGIN_USER.username}
+                        </cite>
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="/admin/logout"><i class="fa fa-sign-out"></i> 退出</a></dd>
@@ -111,7 +120,7 @@
                                 <a lay-href="/admin/dict/catetag">评论管理</a>
                             </dd>
                             <dd data-name="keyword">
-                                <a lay-href="/admin/dict/keyword">留言管理</a>
+                                <a lay-href="/admin/contact">留言管理</a>
                             </dd>
                         </dl>
                     </li>
