@@ -5460,7 +5460,7 @@
 
   // Start when DOM becomes ready
   $(function() {
-    // Check if user has disabled this module
+    // Check if user has disabled this modules
     if ($.fancybox.defaults.hash === false) {
       return;
     }

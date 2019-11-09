@@ -336,7 +336,7 @@
             'goto': 1,     // - create spaghetti code
             grep: 1,     // - locate elements in a list test true against a given criterion
             hex: 1,     // - convert a string to a hexadecimal number
-            'import': 1,     // - patch a module's namespace into your own
+            'import': 1,     // - patch a modules's namespace into your own
             index: 1,     // - find a substring within a string
             'int': 1,     // - get the integer portion of a number
             ioctl: 1,     // - system-dependent device control system call
@@ -364,7 +364,7 @@
             my: 2,    // - declare and assign a local variable (lexical scoping)
             'new': 1,     //
             next: 1,     // - iterate a block prematurely
-            no: 1,     // - unimport some module symbols or semantics at compile time
+            no: 1,     // - unimport some modules symbols or semantics at compile time
             oct: 1,     // - convert a string to an octal number
             open: 1,     // - open a file, pipe, or descriptor
             opendir: 1,     // - open a directory
@@ -465,7 +465,7 @@
             unpack: 1,     // - convert binary structure into normal perl variables
             unshift: 1,     // - prepend more elements to the beginning of a list
             untie: 1,     // - break a tie binding to a variable
-            use: 1,     // - load in a module at compile time
+            use: 1,     // - load in a modules at compile time
             utime: 1,     // - set a file's last access and modify times
             values: 1,     // - return a list of the values in a hash
             vec: 1,     // - test or set particular bits in a string

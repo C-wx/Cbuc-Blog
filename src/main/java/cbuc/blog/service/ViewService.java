@@ -27,4 +27,7 @@ public class ViewService {
         }
     }
 
+    public void clean() {
+        viewMapper.deleteByExample(null);
+    }
 }

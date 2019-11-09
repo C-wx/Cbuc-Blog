@@ -13,7 +13,7 @@
 
     var factory = function (exports) {
 
-        var $ = jQuery;           // if using module loader(Require.js/Sea.js).
+        var $ = jQuery;           // if using modules loader(Require.js/Sea.js).
 
         exports.testPlugin = function () {
             alert("testPlugin");

@@ -52,7 +52,7 @@ public class BaseController {
     public Object contactPage(@RequestParam(value = "current", defaultValue = "1") Integer pn,
                               @RequestParam(value = "size", defaultValue = "10") Integer size,
                               @RequestParam(value = "sort", defaultValue = "id") String sort,
-                              @RequestParam(value = "order", defaultValue = "asc") String order,
+                              @RequestParam(value = "order", defaultValue = "desc") String order,
                               String commentKeyWard,String nameKeyword) {
         try {
             //在查询之前开启，传入页码，以及每页的大小
@@ -88,6 +88,11 @@ public class BaseController {
             log.error("修改留言状态异常");
             return Result.error("修改留言状态异常");
         }
+    }
+
+    @GetMapping("/bulletin")
+    public String toBulletin(Model model) {
+        return "admin/bulletin";
     }
 
 }

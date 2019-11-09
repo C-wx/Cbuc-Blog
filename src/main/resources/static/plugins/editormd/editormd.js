@@ -96,10 +96,10 @@
         appendMarkdown: "",             // if in init textarea value not empty, append markdown to textarea
         width: "100%",
         height: "100%",
-        path: "./lib/",       // Dependents module file directory
+        path: "./lib/",       // Dependents modules file directory
         pluginPath: "",             // If this empty, default use settings.path + "../plugins/"
         delay: 300,            // Delay parse markdown to html, Uint : ms
-        autoLoadModules: true,           // Automatic load dependent module files
+        autoLoadModules: true,           // Automatic load dependent modules files
         watch: true,
         placeholder: "Enjoy Markdown! coding now...",
         gotoLine: true,
@@ -1706,7 +1706,7 @@
 
         /**
          * 加载队列完成之后的显示处理
-         * Display handle of the module queues loaded after.
+         * Display handle of the modules queues loaded after.
          *
          * @param   {Boolean}   recreate   是否为重建编辑器
          * @returns {editormd}             返回editormd的实例对象

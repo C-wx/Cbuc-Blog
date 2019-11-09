@@ -124,8 +124,8 @@
                             </dd>
                         </dl>
                     </li>
-                    <li data-name="dashboard" class="layui-nav-item">
-                        <a href="javascript:;" lay-href="/admin/dashboard" lay-tips="公告管理" lay-direction="2">
+                    <li data-name="bulletin" class="layui-nav-item">
+                        <a lay-href="/admin/bulletin" lay-tips="公告管理" lay-direction="2">
                             <i class="layui-icon layui-icon-tips"></i>
                             <cite>公告管理</cite>
                         </a>

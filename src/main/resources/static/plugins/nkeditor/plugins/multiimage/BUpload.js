@@ -660,7 +660,7 @@
 					builder.append('<img src="'+item.thumbURL+'" data-src="'+item.oriURL+'" border="0">');
 				}
 
-				builder.append('<span class="ic" data-module="'+module+'"><em class="img-size">'+imgSize+'</em></span></li>');
+				builder.append('<span class="ic" data-modules="'+module+'"><em class="img-size">'+imgSize+'</em></span></li>');
 				var $image = $(builder.toString());
 
 				//绑定选择图片事件
