@@ -2,7 +2,9 @@ package cbuc.blog.controller.admin;
 
 import cbuc.blog.base.LayuiTable;
 import cbuc.blog.base.Result;
+import cbuc.blog.bean.Bulletin;
 import cbuc.blog.bean.Contact;
+import cbuc.blog.service.BulletinService;
 import cbuc.blog.service.ContactService;
 import cbuc.blog.utils.baseenum.StatusEnum;
 import com.github.pagehelper.PageHelper;
@@ -29,6 +31,9 @@ public class BaseController {
 
     @Autowired
     private ContactService contactService;
+
+    @Autowired
+    private BulletinService bulletinService;
 
     @GetMapping("/")
     public String toIndex(HttpServletRequest request, Model model) {
@@ -93,6 +98,19 @@ public class BaseController {
     @GetMapping("/bulletin")
     public String toBulletin(Model model) {
         return "admin/bulletin";
+    }
+
+    @RequestMapping("/getHisBulletin")
+    @ResponseBody
+    public Object getHisBulletin() {
+        try {
+            List<Bulletin> bulletins = bulletinService.queryList();
+            return Result.success(bulletins);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取历史公告异常");
+            return Result.error("获取历史公告异常");
+        }
     }
 
 }

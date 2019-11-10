@@ -13,11 +13,11 @@ layui.define(['form', 'element'], function () {
     KindEditor.ready(function (K) {
         editor = K.create('#editor', {
             cssData: 'body {font-family: "Helvetica Neue", Helvetica, "PingFang SC", 微软雅黑, Tahoma, Arial, sans-serif; font-size: 16px}',
-            width: "700px",
-            height: "500px",
+            width: "780px",
+            height: "200px",
             items: [
                 'undo', 'redo', 'source', 'code', 'plainpaste', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist',
-                'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript', 'clearhtml', 'quickformat', 'selectall', '/',
+                'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript', 'clearhtml', 'quickformat', 'selectall',
                 'formatblock', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough',
                 'lineheight', 'removeformat', 'table', 'hr', 'emoticons', 'link', 'unlink', 'preview', 'fullscreen'
             ],
@@ -49,37 +49,39 @@ layui.define(['form', 'element'], function () {
         });
     });
 
-    var post = function (data, draft, msg) {
-        data.field.draft = draft;
-        data.field.cateIds = formSelects.value('cateId', 'val');
-        if (data.field.editor === 'html') {
-            data.field.mdContent = "";
-            data.field.content = editor.html();
-        }
-        if (data.field.editor === 'markdown') {
-            data.field.mdContent = editorMd.getMarkdown();
-            data.field.content = editorMd.getHTML();
-        }
-        data.field.cover = $("#coverImg").find("img").attr("src") || "";
-        var $tags = $("#tags>span");
-        var tns = [];
-        $tags.each(function (index, elem) {
-            tns.push($(elem).find("em").text())
-        });
-        data.field.tagNames = tns;
-        NBV5.post("/management/article/create", data.field);
-
-    };
-
     //监听提交9
     form.on('submit(postSubmit)', function (data) {
-        post(data, false, "发布博文成功！");
+        alert(editor.html());
         return false;
     });
 
-    form.on('submit(draftSubmit)', function (data) {
-        post(data, true, "保存草稿成功！");
-        return false;
-    });
+});
+$(function () {
+    Base.ajax("/admin/getHisBulletin",null,function (result) {
+        if (result.code == Base.status.success) {
+            result.data.forEach((data) => {
+                var $html =
+                    "<li class=\"layui-timeline-item\">\n" +
+                    "    <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i>\n" +
+                    "    <div class=\"layui-timeline-content layui-text\">\n" +
+                    "        <h3 class=\"layui-timeline-title\">"+Base.formatDate(data.createTime,"yyyy-MM-dd HH:mm")+"</h3>\n" +
+                    "        <p>\n" + data.content+
+                    "        <br><br></p>\n" +
+                    "    </div>\n" +
+                    "</li>";
+                $("#historyBulletin").append($html);
+            });
+            const $end =
+                "<li class=\"layui-timeline-item\">\n" +
+                "    <i class=\"layui-icon layui-timeline-axis\" style='color: red'>&#xe63f;</i>\n" +
+                "    <div class=\"layui-timeline-content layui-text\">\n" +
+                "        <div class=\"layui-timeline-title\">过去</div>\n" +
+                "    </div>\n" +
+                " </li>"
+            $("#historyBulletin").append($end);
+        }else{
+            layer.msg(result.msg);
+        }
 
+    });
 });

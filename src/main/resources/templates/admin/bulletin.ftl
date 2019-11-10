@@ -25,22 +25,31 @@
     <link rel="stylesheet" type="text/css" href="${base}/plugins/editormd/css/editormd.min.css">
 </head>
 <body>
-<div class="layui-fluid layui-anim layui-anim-upbit" id="LAY-message">
-    <div class="layui-col-md9">
-        <div class="layui-card">
-            <div class="layui-card-body">
-                <div class="layui-form layui-card-header layuiadmin-card-header-auto">
-                    <div>
-                        <h3>公告管理</h3>
-                    </div>
+<div class="layui-fluid layui-anim layui-anim-upbit" style="padding-bottom: 50px;">
+    <div class="layui-row layui-col-space20 layui-form">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">添加公告</strong>
                 </div>
-                <div class="layui-card">
-                    <div class="layui-card-header">内容编辑</div>
-                    <div class="layui-card-body">
-                        <div id="content-editor" style="max-width: 1366px;">
-                            <textarea id="editor" placeholder="输入内容" style="display: none;"></textarea>
-                        </div>
+                <div class="layui-card-body" style="padding-top: 25px;">
+                    <div id="content-editor" >
+                        <textarea id="editor" style="display: none;"></textarea>
                     </div>
+                    <br>
+                    <button type="button" class="layui-btn layui-btn-primary" lay-submit lay-filter="postSubmit" style="margin-left: 680px">
+                        发布公告
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">历史公告</strong>
+                </div>
+                <div class="layui-card-body" style="padding-top: 25px;">
+                    <ul class="layui-timeline" id="historyBulletin"> </ul>
                 </div>
             </div>
         </div>
