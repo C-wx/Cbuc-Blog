@@ -2196,3 +2196,21 @@ a.text-primary:focus, a.text-primary:hover {
   margin-left: auto;
 }
 
+#contactForm>.stereo-btn{
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  background-image: linear-gradient(#305381, #102347);
+  box-shadow: 0 6px 0 rgba(0, 4, 20, 0.52);
+  cursor: pointer;
+  text-shadow: 0 5px 5px #ccc;
+  font-size: 25px;
+  color: #fff;
+  transition: all 300ms;
+
+}
+#contactForm>.stereo-btn:active {
+    box-shadow: 0 3px 0 rgba(0, 4, 20, 0.54);
+    transform: translate3d(0, 5px, 0);
+  }

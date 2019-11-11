@@ -68,7 +68,7 @@
                     <p class="help-block text-danger" id="Pmessage"></p>
                 </div>
                 <div id="success"></div>
-                <button type="button" class="btn btn-default btn-lg" id="submit">Submit</button>
+                <button type="button" class="stereo-btn" id="submit">Submit</button>
             </form>
         </div>
     </div>

@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="tm-flex-lr">
-                    <button type="submit" class=" btn-large btn-large-white" lay-submit lay-filter="submit">
+                    <button type="submit" id="login_btn" lay-submit lay-filter="submit">
                         Login
                     </button>
                 </div>
