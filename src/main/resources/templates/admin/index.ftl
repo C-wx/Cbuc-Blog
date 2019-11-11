@@ -130,14 +130,14 @@
                             <cite>公告管理</cite>
                         </a>
                     </li>
-                    <li data-name="dashboard" class="layui-nav-item">
-                        <a href="javascript:;" lay-href="/admin/dashboard" lay-tips="广告管理" lay-direction="2">
+                    <li data-name="ad" class="layui-nav-item">
+                        <a onclick="layer.msg('暂未开放广告功能,敬请等待!')" href="javascript:;" lay-tips="广告管理" lay-direction="2">
                             <i class="layui-icon layui-icon-dollar"></i>
                             <cite>广告管理</cite>
                         </a>
                     </li>
-                    <li data-name="dashboard" class="layui-nav-item">
-                        <a href="javascript:;" lay-href="/admin/dashboard" lay-tips="下载管理" lay-direction="2">
+                    <li data-name="download" class="layui-nav-item">
+                        <a onclick="layer.msg('暂未开发下载功能,敬请等待!')" href="javascript:;" lay-tips="下载管理" lay-direction="2">
                             <i class="layui-icon layui-icon-link"></i>
                             <cite>下载管理</cite>
                         </a>

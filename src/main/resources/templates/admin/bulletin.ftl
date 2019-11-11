@@ -27,29 +27,57 @@
 <body>
 <div class="layui-fluid layui-anim layui-anim-upbit" style="padding-bottom: 50px;">
     <div class="layui-row layui-col-space20 layui-form">
-        <div class="layui-col-md6">
+        <div class="layui-col-md7">
             <div class="layui-card">
                 <div class="layui-card-header">
                     <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">添加公告</strong>
                 </div>
                 <div class="layui-card-body" style="padding-top: 25px;">
-                    <div id="content-editor" >
+                    <div id="dateSet" class="layui-col-md12" style="padding-bottom: 20px">
+                        <div class="layui-col-md5 layui-col-md-offset1">
+                            <div class="layui-col-md3" style="font-size: 14px; line-height: 38px">发布时间：</div>
+                            <div class="layui-col-md6">
+                                <input type="text" name="beginTime" id="beginTime" autocomplete="off" class="layui-input" style="width: 200px">
+                            </div>
+                        </div>
+                        <div class="layui-col-md5">
+                            <div class="layui-col-md3" style="font-size: 14px; line-height: 38px">失效时间：</div>
+                            <div class="layui-col-md6">
+                                <input type="text" name="endTime" id="endTime" autocomplete="off" class="layui-input" style="width: 200px">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content-editor" style="padding-top: 25px;">
                         <textarea id="editor" style="display: none;"></textarea>
                     </div>
                     <br>
-                    <button type="button" class="layui-btn layui-btn-primary" lay-submit lay-filter="postSubmit" style="margin-left: 680px">
+                    <button type="button" class="layui-btn layui-btn-primary" lay-submit lay-filter="postSubmit"
+                            style="margin-left: 800px;">
                         发布公告
                     </button>
                 </div>
+
+                <div class="layui-card-body">
+                    <div class="layui-card-header">
+                        <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">公告管理</strong>
+                    </div>
+                    <div class="layui-card-body" style="padding-top: 25px;">
+                        <table class="layui-hide" id="bulletinTable" lay-filter="bulletin"></table>
+                        <script type="text/html" id="enableTpl">
+                            <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="已读|未读" lay-filter="enable" {{ d.status == 'D' ? 'checked' : ''}}>
+                        </script>
+                    </div>
+                </div>
             </div>
+
         </div>
-        <div class="layui-col-md6">
+        <div class="layui-col-md4">
             <div class="layui-card">
                 <div class="layui-card-header">
                     <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">历史公告</strong>
                 </div>
                 <div class="layui-card-body" style="padding-top: 25px;">
-                    <ul class="layui-timeline" id="historyBulletin"> </ul>
+                    <ul class="layui-timeline" id="historyBulletin"></ul>
                 </div>
             </div>
         </div>

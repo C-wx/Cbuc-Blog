@@ -25,4 +25,14 @@ public class BulletinService {
         bulletinExample.setOrderByClause("CREATE_TIME desc");
         return bulletinMapper.selectByExampleWithBLOBs(bulletinExample);
     }
+
+    public int doAdd(Bulletin bulletin) {
+        return bulletinMapper.insertSelective(bulletin);
+    }
+
+    public int doDel(Bulletin bulletin) {
+        BulletinExample bulletinExample = new BulletinExample();
+        bulletinExample.createCriteria().andIdEqualTo(bulletin.getId());
+        return bulletinMapper.updateByExampleSelective(bulletin, bulletinExample);
+    }
 }

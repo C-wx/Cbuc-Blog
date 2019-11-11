@@ -23,8 +23,8 @@
 </head>
 <body id="login">
 <div class="container">
-    <div class="row tm-register-row tm-mb-35">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-l">
+    <div class="row">
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
             <form action="" method="post" class="tm-bg-black p-5 h-100 layui-form">
                 <div class="input-field layui-form-item">
                     <input placeholder="用户名" id="username" name="username" type="text" class="layui-input" lay-verify="required|username" autocomplete="off">

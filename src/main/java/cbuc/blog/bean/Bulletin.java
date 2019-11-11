@@ -9,6 +9,12 @@ public class Bulletin {
 
     private Date updateTime;
 
+    private String status;
+
+    private Date beginTime;
+
+    private Date endTime;
+
     private String def1;
 
     private String def2;
@@ -37,6 +43,30 @@ public class Bulletin {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    public Date getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public String getDef1() {

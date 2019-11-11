@@ -5,6 +5,9 @@
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="BEGIN_TIME" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
     <result column="DEF1" jdbcType="VARCHAR" property="def1" />
     <result column="DEF2" jdbcType="VARCHAR" property="def2" />
   </resultMap>
@@ -70,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, CREATE_TIME, UPDATE_TIME, DEF1, DEF2
+    ID, CREATE_TIME, UPDATE_TIME, STATUS, BEGIN_TIME, END_TIME, DEF1, DEF2
   </sql>
   <sql id="Blob_Column_List">
     CONTENT
@@ -126,9 +129,11 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Bulletin" useGeneratedKeys="true">
-    insert into bg_bulletin (CREATE_TIME, UPDATE_TIME, DEF1, 
+    insert into bg_bulletin (CREATE_TIME, UPDATE_TIME, STATUS, 
+      BEGIN_TIME, END_TIME, DEF1, 
       DEF2, CONTENT)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{def1,jdbcType=VARCHAR}, 
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{def1,jdbcType=VARCHAR}, 
       #{def2,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Bulletin" useGeneratedKeys="true">
@@ -139,6 +144,15 @@
       </if>
       <if test="updateTime != null">
         UPDATE_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
       </if>
       <if test="def1 != null">
         DEF1,
@@ -156,6 +170,15 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="def1 != null">
         #{def1,jdbcType=VARCHAR},
@@ -186,6 +209,15 @@
       <if test="record.updateTime != null">
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginTime != null">
+        BEGIN_TIME = #{record.beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.def1 != null">
         DEF1 = #{record.def1,jdbcType=VARCHAR},
       </if>
@@ -205,6 +237,9 @@
     set ID = #{record.id,jdbcType=BIGINT},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      BEGIN_TIME = #{record.beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
       DEF1 = #{record.def1,jdbcType=VARCHAR},
       DEF2 = #{record.def2,jdbcType=VARCHAR},
       CONTENT = #{record.content,jdbcType=LONGVARCHAR}
@@ -217,6 +252,9 @@
     set ID = #{record.id,jdbcType=BIGINT},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      BEGIN_TIME = #{record.beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
       DEF1 = #{record.def1,jdbcType=VARCHAR},
       DEF2 = #{record.def2,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -231,6 +269,15 @@
       </if>
       <if test="updateTime != null">
         UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="def1 != null">
         DEF1 = #{def1,jdbcType=VARCHAR},
@@ -248,6 +295,9 @@
     update bg_bulletin
     set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
       DEF1 = #{def1,jdbcType=VARCHAR},
       DEF2 = #{def2,jdbcType=VARCHAR},
       CONTENT = #{content,jdbcType=LONGVARCHAR}
@@ -257,6 +307,9 @@
     update bg_bulletin
     set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
       DEF1 = #{def1,jdbcType=VARCHAR},
       DEF2 = #{def2,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
