@@ -2,10 +2,9 @@ package cbuc.blog.controller.admin;
 
 import cbuc.blog.base.LayuiTable;
 import cbuc.blog.base.Result;
-import cbuc.blog.bean.Bulletin;
-import cbuc.blog.bean.Contact;
-import cbuc.blog.service.BulletinService;
-import cbuc.blog.service.ContactService;
+import cbuc.blog.bean.*;
+import cbuc.blog.evt.ArticleEvt;
+import cbuc.blog.service.*;
 import cbuc.blog.utils.baseenum.StatusEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -37,6 +36,15 @@ public class BaseController {
     @Autowired
     private BulletinService bulletinService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private ArticleContentService articleContentService;
+
+    @Autowired
+    private ArticleInfoService articleInfoService;
+
     @GetMapping("/")
     public String toIndex(HttpServletRequest request, Model model) {
         try {
@@ -50,8 +58,15 @@ public class BaseController {
     }
 
     @GetMapping("/contact")
-    public String toContactList(Model model) {
+    public String toContactList() {
         return "admin/contact";
+    }
+
+    @GetMapping("/articleAdd")
+    public String toArticleAdd(Model model) {
+        List<ArticleCategory> articleCategories = categoryService.queryList();
+        model.addAttribute("categories", articleCategories);
+        return "admin/articleAdd";
     }
 
     @GetMapping("/contactPage")
@@ -133,17 +148,17 @@ public class BaseController {
 
     @RequestMapping("/addBulletin")
     @ResponseBody
-    public Object addBulletin(String content,String beginTime,String endTime) {
+    public Object addBulletin(String content, String beginTime, String endTime) {
         try {
             Bulletin bulletin = new Bulletin();
             bulletin.setContent(content);
-            bulletin.setBeginTime(DateUtils.parseDate(beginTime,new String[]{"yyyy-MM-dd HH:mm:ss"}));
-            bulletin.setEndTime(DateUtils.parseDate(endTime,new String[]{"yyyy-MM-dd HH:mm:ss"}));
+            bulletin.setBeginTime(DateUtils.parseDate(beginTime, new String[]{"yyyy-MM-dd HH:mm:ss"}));
+            bulletin.setEndTime(DateUtils.parseDate(endTime, new String[]{"yyyy-MM-dd HH:mm:ss"}));
             bulletin.setCreateTime(new Date());
             int result = bulletinService.doAdd(bulletin);
             if (result > 0) {
                 return Result.success(bulletin);
-            }else {
+            } else {
                 return Result.error("添加公告异常！");
             }
         } catch (Exception e) {
@@ -161,15 +176,53 @@ public class BaseController {
             bulletin.setId(id);
             bulletin.setStatus(StatusEnum.D.getStatus());
             int result = bulletinService.doDel(bulletin);
-            if (result>0) {
+            if (result > 0) {
                 return Result.success();
-            }else {
+            } else {
                 return Result.error("删除公告异常!");
             }
         } catch (Exception e) {
             e.printStackTrace();
             log.error("删除公告异常");
             return Result.error("删除公告异常");
+        }
+    }
+
+    @RequestMapping("/addArticle")
+    @ResponseBody
+    public Object addArticle(ArticleEvt articleEvt) {
+        try {
+            ArticleContent articleContent = new ArticleContent();
+            ArticleInfo articleInfo = new ArticleInfo();
+            articleInfo.setAcId(articleContent.getId());
+            articleInfo.setTitle(articleEvt.getTitle());
+            articleInfo.setSummary(articleEvt.getSummary());
+            articleInfo.setEditor(articleEvt.getEditor());
+            articleInfo.setTag(articleEvt.getTagNames());
+            articleInfo.setCgId(articleEvt.getCateId());
+            int i = articleInfoService.doAdd(articleInfo);
+
+            articleContent.setAiId(articleInfo.getId());
+            if ("markdown".equals(articleEvt.getEditor())) {
+                articleContent.setContent(articleEvt.getMdContent());
+            } else if ("html".equals(articleEvt.getEditor())) {
+                articleContent.setContent(articleEvt.getContent());
+            }
+            articleContent.setImage(articleEvt.getCover());
+            int i1 = articleContentService.doAdd(articleContent);
+
+            articleInfo.setAcId(articleContent.getId());
+            int i2 = articleInfoService.doUpdate(articleInfo);
+
+            if (i > 0 && i1 > 0 && i2 > 0) {
+                return Result.success();
+            } else {
+                return Result.error("发布文章异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("发布文章异常");
+            return Result.error("发布文章异常");
         }
     }
 

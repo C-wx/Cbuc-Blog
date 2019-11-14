@@ -7,6 +7,8 @@ public class ArticleInfo {
 
     private Long acId;
 
+    private String cgId;
+
     private String title;
 
     private String summary;
@@ -14,6 +16,10 @@ public class ArticleInfo {
     private Boolean istop;
 
     private Integer accessCount;
+
+    private String editor;
+
+    private String tag;
 
     private Date createTime;
 
@@ -41,6 +47,14 @@ public class ArticleInfo {
 
     public void setAcId(Long acId) {
         this.acId = acId;
+    }
+
+    public String getCgId() {
+        return cgId;
+    }
+
+    public void setCgId(String cgId) {
+        this.cgId = cgId == null ? null : cgId.trim();
     }
 
     public String getTitle() {
@@ -73,6 +87,22 @@ public class ArticleInfo {
 
     public void setAccessCount(Integer accessCount) {
         this.accessCount = accessCount;
+    }
+
+    public String getEditor() {
+        return editor;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor == null ? null : editor.trim();
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag == null ? null : tag.trim();
     }
 
     public Date getCreateTime() {

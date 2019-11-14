@@ -17,12 +17,12 @@ em{
 }
 
 #tags span{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
     line-height: 16px;
     position: relative;
     display: inline-block;
-    height: 16px;
+    height: 23px;
     margin-right: 3px;
     margin-bottom: 3px;
     padding: 4px 22px 5px 9px;
@@ -31,7 +31,7 @@ em{
     vertical-align: baseline;
     white-space: nowrap;
     color: #fff;
-    background-color: #009688;
+    background-color: #00c1b2;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .15);
 }
 #tags .close{

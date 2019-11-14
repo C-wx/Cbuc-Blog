@@ -24,10 +24,15 @@
     <script src="${base}/plugins/nkeditor/NKeditor-all-min.js"></script>
     <link rel="stylesheet" type="text/css" href="${base}/plugins/editormd/css/editormd.min.css">
 </head>
+<style>
+    body{
+        background-color: rgba(194, 194, 194, 0.3);
+    }
+</style>
 <body>
 <div class="layui-fluid layui-anim layui-anim-upbit" style="padding-bottom: 50px;">
     <div class="layui-row layui-col-space20 layui-form">
-        <div class="layui-col-md7">
+        <div class="layui-col-md8">
             <div class="layui-card">
                 <div class="layui-card-header">
                     <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">添加公告</strong>
@@ -52,24 +57,24 @@
                     </div>
                     <br>
                     <button type="button" class="layui-btn layui-btn-primary" lay-submit lay-filter="postSubmit"
-                            style="margin-left: 800px;">
+                            style="margin-left: 950px;">
                         发布公告
                     </button>
                 </div>
-
-                <div class="layui-card-body">
-                    <div class="layui-card-header">
-                        <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">公告管理</strong>
-                    </div>
-                    <div class="layui-card-body" style="padding-top: 25px;">
-                        <table class="layui-hide" id="bulletinTable" lay-filter="bulletin"></table>
-                        <script type="text/html" id="enableTpl">
-                            <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="已读|未读" lay-filter="enable" {{ d.status == 'D' ? 'checked' : ''}}>
-                        </script>
-                    </div>
+            </div>
+            <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-card-header">
+                    <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">公告管理</strong>
+                </div>
+                <div class="layui-card-body" style="padding-top: 25px;">
+                    <table class="layui-hide" id="bulletinTable" lay-filter="bulletin"></table>
+                    <script type="text/html" id="enableTpl">
+                        <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="已读|未读" lay-filter="enable" {{ d.status == 'D' ? 'checked' : ''}}>
+                    </script>
                 </div>
             </div>
-
+            </div>
         </div>
         <div class="layui-col-md4">
             <div class="layui-card">

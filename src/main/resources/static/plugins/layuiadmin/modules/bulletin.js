@@ -107,7 +107,7 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
         , cols: [[
             {
                 field: 'content'
-                , width: 293
+                , width: 295
                 , title: '公告内容'
                 , event: 'detail'
             }
@@ -146,7 +146,7 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
                 , width: 110
                 , align: 'center'
                 , templet:(d) =>{
-                    if (Base.formatDate(d.endTime, 'yyyy-MM-dd HH:mm:ss') < Base.formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss') || d.status == 'D') {
+                    if (d.endTime < Base.formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss') || d.status == 'D') {
                         return "已失效";
                     }else{
                         return "展示中";

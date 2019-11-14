@@ -89,10 +89,10 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="article-post">
-                                <a lay-href="/admin/modArticle">文章编辑</a>
+                                <a lay-href="/admin/articleAdd">新建文章</a>
                             </dd>
                             <dd data-name="note-post">
-                                <a lay-href="/admin/modTag">标签编辑</a>
+                                <a lay-href="/admin/tagAdd">新建标签</a>
                             </dd>
                         </dl>
                     </li>

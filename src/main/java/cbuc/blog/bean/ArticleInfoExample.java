@@ -225,6 +225,76 @@ public class ArticleInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andCgIdIsNull() {
+            addCriterion("CG_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdIsNotNull() {
+            addCriterion("CG_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdEqualTo(String value) {
+            addCriterion("CG_ID =", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdNotEqualTo(String value) {
+            addCriterion("CG_ID <>", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdGreaterThan(String value) {
+            addCriterion("CG_ID >", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdGreaterThanOrEqualTo(String value) {
+            addCriterion("CG_ID >=", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdLessThan(String value) {
+            addCriterion("CG_ID <", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdLessThanOrEqualTo(String value) {
+            addCriterion("CG_ID <=", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdLike(String value) {
+            addCriterion("CG_ID like", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdNotLike(String value) {
+            addCriterion("CG_ID not like", value, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdIn(List<String> values) {
+            addCriterion("CG_ID in", values, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdNotIn(List<String> values) {
+            addCriterion("CG_ID not in", values, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdBetween(String value1, String value2) {
+            addCriterion("CG_ID between", value1, value2, "cgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCgIdNotBetween(String value1, String value2) {
+            addCriterion("CG_ID not between", value1, value2, "cgId");
+            return (Criteria) this;
+        }
+
         public Criteria andTitleIsNull() {
             addCriterion("TITLE is null");
             return (Criteria) this;
@@ -482,6 +552,146 @@ public class ArticleInfoExample {
 
         public Criteria andAccessCountNotBetween(Integer value1, Integer value2) {
             addCriterion("ACCESS_COUNT not between", value1, value2, "accessCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorIsNull() {
+            addCriterion("EDITOR is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorIsNotNull() {
+            addCriterion("EDITOR is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorEqualTo(String value) {
+            addCriterion("EDITOR =", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorNotEqualTo(String value) {
+            addCriterion("EDITOR <>", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorGreaterThan(String value) {
+            addCriterion("EDITOR >", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorGreaterThanOrEqualTo(String value) {
+            addCriterion("EDITOR >=", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorLessThan(String value) {
+            addCriterion("EDITOR <", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorLessThanOrEqualTo(String value) {
+            addCriterion("EDITOR <=", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorLike(String value) {
+            addCriterion("EDITOR like", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorNotLike(String value) {
+            addCriterion("EDITOR not like", value, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorIn(List<String> values) {
+            addCriterion("EDITOR in", values, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorNotIn(List<String> values) {
+            addCriterion("EDITOR not in", values, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorBetween(String value1, String value2) {
+            addCriterion("EDITOR between", value1, value2, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andEditorNotBetween(String value1, String value2) {
+            addCriterion("EDITOR not between", value1, value2, "editor");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagIsNull() {
+            addCriterion("TAG is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagIsNotNull() {
+            addCriterion("TAG is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagEqualTo(String value) {
+            addCriterion("TAG =", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotEqualTo(String value) {
+            addCriterion("TAG <>", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagGreaterThan(String value) {
+            addCriterion("TAG >", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagGreaterThanOrEqualTo(String value) {
+            addCriterion("TAG >=", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagLessThan(String value) {
+            addCriterion("TAG <", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagLessThanOrEqualTo(String value) {
+            addCriterion("TAG <=", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagLike(String value) {
+            addCriterion("TAG like", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotLike(String value) {
+            addCriterion("TAG not like", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagIn(List<String> values) {
+            addCriterion("TAG in", values, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotIn(List<String> values) {
+            addCriterion("TAG not in", values, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagBetween(String value1, String value2) {
+            addCriterion("TAG between", value1, value2, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotBetween(String value1, String value2) {
+            addCriterion("TAG not between", value1, value2, "tag");
             return (Criteria) this;
         }
 

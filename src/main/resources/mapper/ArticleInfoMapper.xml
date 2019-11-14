@@ -4,10 +4,13 @@
   <resultMap id="BaseResultMap" type="cbuc.blog.bean.ArticleInfo">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="AC_ID" jdbcType="BIGINT" property="acId" />
+    <result column="CG_ID" jdbcType="VARCHAR" property="cgId" />
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
     <result column="SUMMARY" jdbcType="VARCHAR" property="summary" />
     <result column="ISTOP" jdbcType="BIT" property="istop" />
     <result column="ACCESS_COUNT" jdbcType="INTEGER" property="accessCount" />
+    <result column="EDITOR" jdbcType="VARCHAR" property="editor" />
+    <result column="TAG" jdbcType="VARCHAR" property="tag" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="STATUS" jdbcType="VARCHAR" property="status" />
@@ -74,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AC_ID, TITLE, SUMMARY, ISTOP, ACCESS_COUNT, CREATE_TIME, UPDATE_TIME, STATUS, 
-    DEF1, DEF2, DEF3
+    ID, AC_ID, CG_ID, TITLE, SUMMARY, ISTOP, ACCESS_COUNT, EDITOR, TAG, CREATE_TIME, 
+    UPDATE_TIME, STATUS, DEF1, DEF2, DEF3
   </sql>
   <select id="selectByExample" parameterType="cbuc.blog.bean.ArticleInfoExample" resultMap="BaseResultMap">
     select
@@ -109,12 +112,14 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.ArticleInfo" useGeneratedKeys="true">
-    insert into bg_article_info (AC_ID, TITLE, SUMMARY, 
-      ISTOP, ACCESS_COUNT, CREATE_TIME, 
+    insert into bg_article_info (AC_ID, CG_ID, TITLE, 
+      SUMMARY, ISTOP, ACCESS_COUNT, 
+      EDITOR, TAG, CREATE_TIME, 
       UPDATE_TIME, STATUS, DEF1, 
       DEF2, DEF3)
-    values (#{acId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
-      #{istop,jdbcType=BIT}, #{accessCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{acId,jdbcType=BIGINT}, #{cgId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{summary,jdbcType=VARCHAR}, #{istop,jdbcType=BIT}, #{accessCount,jdbcType=INTEGER}, 
+      #{editor,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, 
       #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
   </insert>
@@ -123,6 +128,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="acId != null">
         AC_ID,
+      </if>
+      <if test="cgId != null">
+        CG_ID,
       </if>
       <if test="title != null">
         TITLE,
@@ -135,6 +143,12 @@
       </if>
       <if test="accessCount != null">
         ACCESS_COUNT,
+      </if>
+      <if test="editor != null">
+        EDITOR,
+      </if>
+      <if test="tag != null">
+        TAG,
       </if>
       <if test="createTime != null">
         CREATE_TIME,
@@ -159,6 +173,9 @@
       <if test="acId != null">
         #{acId,jdbcType=BIGINT},
       </if>
+      <if test="cgId != null">
+        #{cgId,jdbcType=VARCHAR},
+      </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
@@ -170,6 +187,12 @@
       </if>
       <if test="accessCount != null">
         #{accessCount,jdbcType=INTEGER},
+      </if>
+      <if test="editor != null">
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -206,6 +229,9 @@
       <if test="record.acId != null">
         AC_ID = #{record.acId,jdbcType=BIGINT},
       </if>
+      <if test="record.cgId != null">
+        CG_ID = #{record.cgId,jdbcType=VARCHAR},
+      </if>
       <if test="record.title != null">
         TITLE = #{record.title,jdbcType=VARCHAR},
       </if>
@@ -217,6 +243,12 @@
       </if>
       <if test="record.accessCount != null">
         ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.editor != null">
+        EDITOR = #{record.editor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tag != null">
+        TAG = #{record.tag,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -245,10 +277,13 @@
     update bg_article_info
     set ID = #{record.id,jdbcType=BIGINT},
       AC_ID = #{record.acId,jdbcType=BIGINT},
+      CG_ID = #{record.cgId,jdbcType=VARCHAR},
       TITLE = #{record.title,jdbcType=VARCHAR},
       SUMMARY = #{record.summary,jdbcType=VARCHAR},
       ISTOP = #{record.istop,jdbcType=BIT},
       ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
+      EDITOR = #{record.editor,jdbcType=VARCHAR},
+      TAG = #{record.tag,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       STATUS = #{record.status,jdbcType=VARCHAR},
@@ -265,6 +300,9 @@
       <if test="acId != null">
         AC_ID = #{acId,jdbcType=BIGINT},
       </if>
+      <if test="cgId != null">
+        CG_ID = #{cgId,jdbcType=VARCHAR},
+      </if>
       <if test="title != null">
         TITLE = #{title,jdbcType=VARCHAR},
       </if>
@@ -276,6 +314,12 @@
       </if>
       <if test="accessCount != null">
         ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
+      </if>
+      <if test="editor != null">
+        EDITOR = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        TAG = #{tag,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
@@ -301,10 +345,13 @@
   <update id="updateByPrimaryKey" parameterType="cbuc.blog.bean.ArticleInfo">
     update bg_article_info
     set AC_ID = #{acId,jdbcType=BIGINT},
+      CG_ID = #{cgId,jdbcType=VARCHAR},
       TITLE = #{title,jdbcType=VARCHAR},
       SUMMARY = #{summary,jdbcType=VARCHAR},
       ISTOP = #{istop,jdbcType=BIT},
       ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
+      EDITOR = #{editor,jdbcType=VARCHAR},
+      TAG = #{tag,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       STATUS = #{status,jdbcType=VARCHAR},
