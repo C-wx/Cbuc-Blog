@@ -190,7 +190,8 @@ public class BaseController {
 
     @RequestMapping("/addArticle")
     @ResponseBody
-    public Object addArticle(ArticleEvt articleEvt) {
+    public Object addArticle(ArticleEvt articleEvt,
+                             @RequestParam(value="isTop",defaultValue = "0") String isTop) {
         try {
             ArticleContent articleContent = new ArticleContent();
             ArticleInfo articleInfo = new ArticleInfo();
@@ -200,6 +201,7 @@ public class BaseController {
             articleInfo.setEditor(articleEvt.getEditor());
             articleInfo.setTag(articleEvt.getTagNames());
             articleInfo.setCgId(articleEvt.getCateId());
+            articleInfo.setIstop(isTop);
             int i = articleInfoService.doAdd(articleInfo);
 
             articleContent.setAiId(articleInfo.getId());

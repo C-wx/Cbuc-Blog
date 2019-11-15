@@ -26,8 +26,15 @@
     <link rel="stylesheet" href="${base}/plugins/layuiadmin/style/formSelects-v4.css" media="all">
 </head>
 <style>
-    body{
+    body {
         background-color: rgba(194, 194, 194, 0.3);
+    }
+    .layui-form-label {
+        width: 100px;
+    }
+    #submitDiv{
+        margin-top: -20px;
+        margin-left: 900px;
     }
 </style>
 <body>
@@ -50,8 +57,16 @@
                         <textarea id="editor" placeholder="输入内容" style="display: none;"></textarea>
                     </div>
                 </div>
-                <div class="layui-card-body">
-                    <button class="layui-btn" lay-submit lay-filter="postSubmit" style="margin-left: 1100px">立即发布</button>
+                <div class="layui-card-body" id="submitDiv">
+                    <div class="layui-inline" id="isTop">
+                        <label class="layui-form-label">是否置顶</label>
+                        <span class="layui-inline">
+                            <input type="checkbox" name="isTop" value="1" lay-skin="switch" lay-text="YES|NO">
+                        </span>
+                    </div>
+                    <button class="layui-btn" lay-submit lay-filter="postSubmit" id="submitBtn" style="margin-left: 20px">
+                        立即发布
+                    </button>
                 </div>
             </div>
         </div>
@@ -82,7 +97,7 @@
                         文章标题
                     </strong>
                 </div>
-                <div class="layui-card-body" >
+                <div class="layui-card-body">
                     <div class="layui-form-item">
                         <input type="text" name="title" required lay-verify="required" placeholder="请输入文章标题"
                                autocomplete="off" class="layui-input">

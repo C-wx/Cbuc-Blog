@@ -13,7 +13,7 @@ public class ArticleInfo {
 
     private String summary;
 
-    private Boolean istop;
+    private String istop;
 
     private Integer accessCount;
 
@@ -73,12 +73,12 @@ public class ArticleInfo {
         this.summary = summary == null ? null : summary.trim();
     }
 
-    public Boolean getIstop() {
+    public String getIstop() {
         return istop;
     }
 
-    public void setIstop(Boolean istop) {
-        this.istop = istop;
+    public void setIstop(String istop) {
+        this.istop = istop == null ? null : istop.trim();
     }
 
     public Integer getAccessCount() {

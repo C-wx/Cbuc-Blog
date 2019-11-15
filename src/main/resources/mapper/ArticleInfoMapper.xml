@@ -7,7 +7,7 @@
     <result column="CG_ID" jdbcType="VARCHAR" property="cgId" />
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
     <result column="SUMMARY" jdbcType="VARCHAR" property="summary" />
-    <result column="ISTOP" jdbcType="BIT" property="istop" />
+    <result column="ISTOP" jdbcType="VARCHAR" property="istop" />
     <result column="ACCESS_COUNT" jdbcType="INTEGER" property="accessCount" />
     <result column="EDITOR" jdbcType="VARCHAR" property="editor" />
     <result column="TAG" jdbcType="VARCHAR" property="tag" />
@@ -118,7 +118,7 @@
       UPDATE_TIME, STATUS, DEF1, 
       DEF2, DEF3)
     values (#{acId,jdbcType=BIGINT}, #{cgId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{summary,jdbcType=VARCHAR}, #{istop,jdbcType=BIT}, #{accessCount,jdbcType=INTEGER}, 
+      #{summary,jdbcType=VARCHAR}, #{istop,jdbcType=VARCHAR}, #{accessCount,jdbcType=INTEGER}, 
       #{editor,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, 
       #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
@@ -183,7 +183,7 @@
         #{summary,jdbcType=VARCHAR},
       </if>
       <if test="istop != null">
-        #{istop,jdbcType=BIT},
+        #{istop,jdbcType=VARCHAR},
       </if>
       <if test="accessCount != null">
         #{accessCount,jdbcType=INTEGER},
@@ -239,7 +239,7 @@
         SUMMARY = #{record.summary,jdbcType=VARCHAR},
       </if>
       <if test="record.istop != null">
-        ISTOP = #{record.istop,jdbcType=BIT},
+        ISTOP = #{record.istop,jdbcType=VARCHAR},
       </if>
       <if test="record.accessCount != null">
         ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
@@ -280,7 +280,7 @@
       CG_ID = #{record.cgId,jdbcType=VARCHAR},
       TITLE = #{record.title,jdbcType=VARCHAR},
       SUMMARY = #{record.summary,jdbcType=VARCHAR},
-      ISTOP = #{record.istop,jdbcType=BIT},
+      ISTOP = #{record.istop,jdbcType=VARCHAR},
       ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
       EDITOR = #{record.editor,jdbcType=VARCHAR},
       TAG = #{record.tag,jdbcType=VARCHAR},
@@ -310,7 +310,7 @@
         SUMMARY = #{summary,jdbcType=VARCHAR},
       </if>
       <if test="istop != null">
-        ISTOP = #{istop,jdbcType=BIT},
+        ISTOP = #{istop,jdbcType=VARCHAR},
       </if>
       <if test="accessCount != null">
         ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
@@ -348,7 +348,7 @@
       CG_ID = #{cgId,jdbcType=VARCHAR},
       TITLE = #{title,jdbcType=VARCHAR},
       SUMMARY = #{summary,jdbcType=VARCHAR},
-      ISTOP = #{istop,jdbcType=BIT},
+      ISTOP = #{istop,jdbcType=VARCHAR},
       ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
       EDITOR = #{editor,jdbcType=VARCHAR},
       TAG = #{tag,jdbcType=VARCHAR},

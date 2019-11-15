@@ -207,7 +207,6 @@ layui.define(['form', 'formSelects', 'upload', 'element', 'inputTags', 'admin'],
             time:800,//自动关闭的时间 也可以通过layer.closeAll();来关闭所有弹层
         });
         Base.ajax("/admin/addArticle", data.field, function (result) {
-            debugger
             if (result.code == Base.status.success) {
                 layer.msg(msg);
                 setTimeout(()=>{

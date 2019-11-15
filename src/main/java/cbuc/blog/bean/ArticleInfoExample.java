@@ -445,52 +445,62 @@ public class ArticleInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andIstopEqualTo(Boolean value) {
+        public Criteria andIstopEqualTo(String value) {
             addCriterion("ISTOP =", value, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopNotEqualTo(Boolean value) {
+        public Criteria andIstopNotEqualTo(String value) {
             addCriterion("ISTOP <>", value, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopGreaterThan(Boolean value) {
+        public Criteria andIstopGreaterThan(String value) {
             addCriterion("ISTOP >", value, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andIstopGreaterThanOrEqualTo(String value) {
             addCriterion("ISTOP >=", value, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopLessThan(Boolean value) {
+        public Criteria andIstopLessThan(String value) {
             addCriterion("ISTOP <", value, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopLessThanOrEqualTo(Boolean value) {
+        public Criteria andIstopLessThanOrEqualTo(String value) {
             addCriterion("ISTOP <=", value, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopIn(List<Boolean> values) {
+        public Criteria andIstopLike(String value) {
+            addCriterion("ISTOP like", value, "istop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIstopNotLike(String value) {
+            addCriterion("ISTOP not like", value, "istop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIstopIn(List<String> values) {
             addCriterion("ISTOP in", values, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopNotIn(List<Boolean> values) {
+        public Criteria andIstopNotIn(List<String> values) {
             addCriterion("ISTOP not in", values, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopBetween(Boolean value1, Boolean value2) {
+        public Criteria andIstopBetween(String value1, String value2) {
             addCriterion("ISTOP between", value1, value2, "istop");
             return (Criteria) this;
         }
 
-        public Criteria andIstopNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andIstopNotBetween(String value1, String value2) {
             addCriterion("ISTOP not between", value1, value2, "istop");
             return (Criteria) this;
         }
