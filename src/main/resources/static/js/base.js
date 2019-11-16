@@ -1,3 +1,6 @@
+/**
+ * Copyright:CBUC
+ */
 var Base = {
     status: {
         success: 200,
@@ -55,6 +58,15 @@ var Base = {
     }
     , formatDate: function (date, format) {
         return new Date(date).format(format);
+    }
+    , isEnable: function (data) {
+        if (data.status == 'D') {
+            return "(已删除)";
+        }else if (Base.formatDate(data.endTime, 'yyyy-MM-dd HH:mm:ss') < Base.formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss')){
+            return "(已失效)";
+        } else{
+            return "(生效中)";
+        }
     }
 };
 Date.prototype.format = function (format) {

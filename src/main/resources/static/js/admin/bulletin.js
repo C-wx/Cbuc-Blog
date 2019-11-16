@@ -76,7 +76,7 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
                         "<li class=\"layui-timeline-item\">\n" +
                         "    <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i>\n" +
                         "    <div class=\"layui-timeline-content layui-text\">\n" +
-                        "        <h3 class=\"layui-timeline-title\">" + Base.formatDate(result.data.createTime, "yyyy-MM-dd HH:mm") + "</h3>\n" +
+                        "        <h3 class=\"layui-timeline-title\">" + Base.formatDate(result.data.createTime, "yyyy-MM-dd HH:mm") +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(生效中)</h3>\n" +
                         "        <p>\n" + result.data.content +
                         "        <br><br></p>\n" +
                         "    </div>\n" +
@@ -107,7 +107,7 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
         , cols: [[
             {
                 field: 'content'
-                , width: 293
+                , width: 290
                 , title: '公告内容'
                 , event: 'detail'
             }
@@ -115,7 +115,7 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
                 field: 'createTime'
                 , title: '创建时间'
                 , sort: true
-                , width: 173
+                , width: 175
                 , minWidth: 100
                 , templet: (d) => {
                     return Base.formatDate(d.createTime, 'yy/MM/dd HH:mm:ss');
@@ -125,7 +125,7 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
                 field: 'createTime'
                 , title: '开始时间'
                 , sort: true
-                , width: 173
+                , width: 175
                 , minWidth: 100
                 , templet: (d) => {
                     return Base.formatDate(d.beginTime, 'yy/MM/dd HH:mm:ss');
@@ -146,10 +146,10 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
                 , width: 110
                 , align: 'center'
                 , templet:(d) =>{
-                    if (Base.formatDate(d.endTime, 'yyyy-MM-dd HH:mm:ss') < Base.formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss') || d.status == 'D') {
+                    if (Base.formatDate(d.endTime, 'yyyy-MM-dd HH:mm:ss') < Base.formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss')) {
                         return "已失效";
                     }else{
-                        return "展示中";
+                        return "生效中";
                     }
                 }
             }
@@ -189,7 +189,7 @@ $(function () {
                     "<li class=\"layui-timeline-item\">\n" +
                     "    <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i>\n" +
                     "    <div class=\"layui-timeline-content layui-text\">\n" +
-                    "        <h3 class=\"layui-timeline-title\">" + Base.formatDate(data.createTime, "yyyy-MM-dd HH:mm") + "</h3>\n" +
+                    "        <h3 class=\"layui-timeline-title\">" + Base.formatDate(data.createTime, "yyyy-MM-dd HH:mm") +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ Base.isEnable(data) + "</h3>\n" +
                     "        <p>\n" + data.content +
                     "        <br><br></p>\n" +
                     "    </div>\n" +
@@ -212,13 +212,21 @@ $(function () {
 
 });
 deleteBulletin = (d) => {
-    Base.ajax("deleteBulletin", {'id': $(d).attr("dataId")}, function (result) {
-        if (result.code == Base.status.success) {
-            layer.msg("删除成功!");
-            setTimeout(() => {
-                $(d).parents(".layui-timeline-item").hide();
-                bulletinTable.reload();
-            }, 500)
+    layer.msg("<strong style='display:block;text-align: center;font-size: 20px'>确认删除?</strong>",{
+        btn: ['取消','确定']
+        , skin:'layui-layer-lan'
+        ,yes:function () {
+            layer.closeAll();
         }
-    });
+        ,btn2:function () {
+            Base.ajax("deleteBulletin", {'id': $(d).attr("dataId")}, function (result) {
+                if (result.code == Base.status.success) {
+                    layer.msg("删除成功!");
+                    setTimeout(() => {
+                        bulletinTable.reload();
+                    }, 500)
+                }
+            });
+        }
+    })
 }

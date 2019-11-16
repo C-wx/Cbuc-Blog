@@ -12,10 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -44,30 +42,6 @@ public class BaseController {
 
     @Autowired
     private ArticleInfoService articleInfoService;
-
-    @GetMapping("/")
-    public String toIndex(HttpServletRequest request, Model model) {
-        try {
-            Long contactNum = contactService.queryCount();
-            model.addAttribute("contactNum", contactNum);
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error("查询跳转异常");
-        }
-        return "admin/index";
-    }
-
-    @GetMapping("/contact")
-    public String toContactList() {
-        return "admin/contact";
-    }
-
-    @GetMapping("/articleAdd")
-    public String toArticleAdd(Model model) {
-        List<ArticleCategory> articleCategories = categoryService.queryList();
-        model.addAttribute("categories", articleCategories);
-        return "admin/articleAdd";
-    }
 
     @GetMapping("/contactPage")
     @ResponseBody
@@ -112,11 +86,6 @@ public class BaseController {
         }
     }
 
-    @GetMapping("/bulletin")
-    public String toBulletin(Model model) {
-        return "admin/bulletin";
-    }
-
     @RequestMapping("/getHisBulletin")
     @ResponseBody
     public Object getHisBulletin() {
@@ -136,7 +105,7 @@ public class BaseController {
                                @RequestParam(value = "size", defaultValue = "10") Integer size) {
         try {
             PageHelper.startPage(pn, size);     //pn:页码  10：页大小
-            List<Bulletin> bulletins = bulletinService.queryList();
+            List<Bulletin> bulletins = bulletinService.queryTableList();
             PageInfo pageInfo = new PageInfo(bulletins, 5);
             return new LayuiTable<>(pageInfo.getTotal(), pageInfo.getList());
         } catch (Exception e) {
@@ -228,4 +197,92 @@ public class BaseController {
         }
     }
 
+    @RequestMapping("/tagPage")
+    @ResponseBody
+    public Object tagPage(@RequestParam(value = "current", defaultValue = "1") Integer pn,
+                               @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        try {
+            PageHelper.startPage(pn, size);     //pn:页码  10：页大小
+            List<ArticleCategory> categories = categoryService.queryTableList();
+            PageInfo pageInfo = new PageInfo(categories, 5);
+            return new LayuiTable<>(pageInfo.getTotal(), pageInfo.getList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("查询标签结果异常");
+            return Result.error("查询标签结果异常");
+        }
+    }
+
+    @RequestMapping("/getHisTag")
+    @ResponseBody
+    public Object getHisTag() {
+        try {
+            List<ArticleCategory> categories = categoryService.queryList();
+            return Result.success(categories);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取历史标签异常");
+            return Result.error("获取历史标签异常");
+        }
+    }
+
+    @RequestMapping("/addTag")
+    @ResponseBody
+    public Object addTag(String name) {
+        try {
+            ArticleCategory articleCategory = new ArticleCategory();
+            articleCategory.setName(name);
+            articleCategory.setCreateTime(new Date());
+            int result = categoryService.doAdd(articleCategory);
+            if (result > 0) {
+                return Result.success(articleCategory);
+            } else {
+                return Result.error("添加公告异常！");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("添加公告异常！");
+            return Result.error("添加公告异常！");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/deleteTag")
+    public Object deleteTag(Long id) {
+        try {
+            ArticleCategory articleCategory = new ArticleCategory();
+            articleCategory.setId(id);
+            articleCategory.setStatus(StatusEnum.D.getStatus());
+            int result = categoryService.doMod(articleCategory);
+            if (result > 0) {
+                return Result.success();
+            } else {
+                return Result.error("删除标签异常!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("删除标签异常!");
+            return Result.error("删除标签异常!");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/modTag")
+    public Object modTag(Long id,String name) {
+        try {
+            ArticleCategory articleCategory = new ArticleCategory();
+            articleCategory.setId(id);
+            articleCategory.setName(name);
+            int result = categoryService.doMod(articleCategory);
+            if (result > 0) {
+                return Result.success();
+            } else {
+                return Result.error("修改标签异常!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("修改标签异常!");
+            return Result.error("修改标签异常!");
+        }
+    }
 }

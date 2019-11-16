@@ -91,9 +91,6 @@
                             <dd data-name="article-post">
                                 <a lay-href="/admin/articleAdd">新建文章</a>
                             </dd>
-                            <dd data-name="note-post">
-                                <a lay-href="/admin/tagAdd">新建标签</a>
-                            </dd>
                         </dl>
                     </li>
                     <li data-name="contentManage" class="layui-nav-item">
@@ -150,17 +147,16 @@
         <div class="layadmin-pagetabs" id="LAY_app_tabs">
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="/admin/dashboard" lay-attr="/admin/dashboard" class="layui-this"><i
-                            class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="/admin/dashboard" lay-attr="/admin/dashboard" class="layui-this">
+                        <i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>
 
-
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-                <iframe id="LAY_content_iframe" src="/admin/dashboard" frameborder="0"
+                <iframe id="LAY_content_iframe" src="/admin/dataStatistic" frameborder="0"
                         class="layadmin-iframe"></iframe>
             </div>
         </div>
