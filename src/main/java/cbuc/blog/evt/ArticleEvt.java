@@ -10,6 +10,8 @@ import lombok.Data;
  */
 @Data
 public class ArticleEvt {
+    private Long aiId;
+    private Long acId;
     private String title;
     private String cover;
     private String editor;

@@ -20,4 +20,12 @@ public class ArticleContentService {
     public int doAdd(ArticleContent articleContent) {
         return articleContentMapper.insertSelective(articleContent);
     }
+
+    public ArticleContent queryDetail(Long acId) {
+        return articleContentMapper.selectByPrimaryKey(acId);
+    }
+
+    public int doMod(ArticleContent articleContent) {
+        return articleContentMapper.updateByPrimaryKeySelective(articleContent);
+    }
 }

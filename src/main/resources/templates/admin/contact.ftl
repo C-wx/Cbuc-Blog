@@ -23,10 +23,13 @@
 <body>
 <div class="layui-fluid layui-anim layui-anim-upbit" id="LAY-message">
     <div class="layui-card">
+        <div class="layui-card-header">
+            <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">留言管理</strong>
+        </div>
         <div class="layui-card-body">
             <div class="layui-form layui-card-header layuiadmin-card-header-auto">
                 <div id="search_area">
-                    搜索留言内容：
+                    留言内容：
                     <div class="layui-inline">
                         <input class="layui-input" name="commentKeyWard" id="messageKeyword" autocomplete="off">
                     </div>

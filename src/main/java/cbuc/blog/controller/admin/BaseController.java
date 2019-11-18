@@ -9,6 +9,7 @@ import cbuc.blog.utils.baseenum.StatusEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -160,7 +161,7 @@ public class BaseController {
     @RequestMapping("/addArticle")
     @ResponseBody
     public Object addArticle(ArticleEvt articleEvt,
-                             @RequestParam(value="isTop",defaultValue = "0") String isTop) {
+                             @RequestParam(value = "isTop", defaultValue = "0") String isTop) {
         try {
             ArticleContent articleContent = new ArticleContent();
             ArticleInfo articleInfo = new ArticleInfo();
@@ -200,7 +201,7 @@ public class BaseController {
     @RequestMapping("/tagPage")
     @ResponseBody
     public Object tagPage(@RequestParam(value = "current", defaultValue = "1") Integer pn,
-                               @RequestParam(value = "size", defaultValue = "10") Integer size) {
+                          @RequestParam(value = "size", defaultValue = "10") Integer size) {
         try {
             PageHelper.startPage(pn, size);     //pn:页码  10：页大小
             List<ArticleCategory> categories = categoryService.queryTableList();
@@ -268,7 +269,7 @@ public class BaseController {
 
     @ResponseBody
     @RequestMapping("/modTag")
-    public Object modTag(Long id,String name) {
+    public Object modTag(Long id, String name) {
         try {
             ArticleCategory articleCategory = new ArticleCategory();
             articleCategory.setId(id);
@@ -283,6 +284,88 @@ public class BaseController {
             e.printStackTrace();
             log.error("修改标签异常!");
             return Result.error("修改标签异常!");
+        }
+    }
+
+    @RequestMapping("/articlePage")
+    @ResponseBody
+    public Object articlePage(@RequestParam(value = "current", defaultValue = "1") Integer pn,
+                              @RequestParam(value = "size", defaultValue = "10") Integer size,
+                              String title) {
+        try {
+            PageHelper.startPage(pn, size);     //pn:页码  10：页大小
+            List<ArticleInfo> articleInfos = articleInfoService.queryList(title);
+            PageInfo pageInfo = new PageInfo(articleInfos, 5);
+            return new LayuiTable<>(pageInfo.getTotal(), pageInfo.getList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("查询公告结果异常");
+            return Result.error("查询公告结果异常");
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/modArticle")
+    public Object modArticle(@RequestParam(value = "status", required = false) String status,
+                             @RequestParam(value = "isTop", required = false) String isTop,
+                             Long id) {
+        try {
+            ArticleInfo articleInfo = new ArticleInfo();
+            articleInfo.setId(id);
+            if (StringUtils.isNotBlank(status)) {
+                articleInfo.setStatus(status);
+            }
+            if (StringUtils.isNotBlank(isTop)) {
+                articleInfo.setIstop(isTop);
+            }
+            int count = articleInfoService.doUpdate(articleInfo);
+            if (count>0) {
+                return Result.success();
+            }else{
+                return Result.error();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("修改文章信息异常");
+            return Result.error("修改文章信息异常");
+        }
+    }
+
+    @RequestMapping("/modArticle")
+    @ResponseBody
+    public Object modArticle(ArticleEvt articleEvt,
+                             @RequestParam(value = "isTop", defaultValue = "0") String isTop) {
+        try {
+            ArticleContent articleContent = new ArticleContent();
+            ArticleInfo articleInfo = new ArticleInfo();
+            articleInfo.setId(articleEvt.getAiId());
+            articleInfo.setTitle(articleEvt.getTitle());
+            articleInfo.setSummary(articleEvt.getSummary());
+            articleInfo.setEditor(articleEvt.getEditor());
+            articleInfo.setTag(articleEvt.getTagNames());
+            articleInfo.setCgId(articleEvt.getCateId());
+            articleInfo.setIstop(isTop);
+            int i = articleInfoService.doMod(articleInfo);
+
+            articleContent.setId(articleEvt.getAcId());
+            articleContent.setAiId(articleInfo.getId());
+            if ("markdown".equals(articleEvt.getEditor())) {
+                articleContent.setContent(articleEvt.getMdContent());
+            } else if ("html".equals(articleEvt.getEditor())) {
+                articleContent.setContent(articleEvt.getContent());
+            }
+            articleContent.setImage(articleEvt.getCover());
+            int i1 = articleContentService.doMod(articleContent);
+
+            if (i > 0 && i1 > 0) {
+                return Result.success();
+            } else {
+                return Result.error("更新文章异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("更新文章异常");
+            return Result.error("更新文章异常");
         }
     }
 }

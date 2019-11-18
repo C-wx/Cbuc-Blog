@@ -9,6 +9,7 @@
     <result column="SUMMARY" jdbcType="VARCHAR" property="summary" />
     <result column="ISTOP" jdbcType="VARCHAR" property="istop" />
     <result column="ACCESS_COUNT" jdbcType="INTEGER" property="accessCount" />
+    <result column="COMMENT_COUNT" jdbcType="INTEGER" property="commentCount" />
     <result column="EDITOR" jdbcType="VARCHAR" property="editor" />
     <result column="TAG" jdbcType="VARCHAR" property="tag" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
@@ -77,8 +78,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AC_ID, CG_ID, TITLE, SUMMARY, ISTOP, ACCESS_COUNT, EDITOR, TAG, CREATE_TIME, 
-    UPDATE_TIME, STATUS, DEF1, DEF2, DEF3
+    ID, AC_ID, CG_ID, TITLE, SUMMARY, ISTOP, ACCESS_COUNT, COMMENT_COUNT, EDITOR, TAG, 
+    CREATE_TIME, UPDATE_TIME, STATUS, DEF1, DEF2, DEF3
   </sql>
   <select id="selectByExample" parameterType="cbuc.blog.bean.ArticleInfoExample" resultMap="BaseResultMap">
     select
@@ -114,14 +115,14 @@
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.ArticleInfo" useGeneratedKeys="true">
     insert into bg_article_info (AC_ID, CG_ID, TITLE, 
       SUMMARY, ISTOP, ACCESS_COUNT, 
-      EDITOR, TAG, CREATE_TIME, 
-      UPDATE_TIME, STATUS, DEF1, 
-      DEF2, DEF3)
+      COMMENT_COUNT, EDITOR, TAG, 
+      CREATE_TIME, UPDATE_TIME, STATUS, 
+      DEF1, DEF2, DEF3)
     values (#{acId,jdbcType=BIGINT}, #{cgId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{summary,jdbcType=VARCHAR}, #{istop,jdbcType=VARCHAR}, #{accessCount,jdbcType=INTEGER}, 
-      #{editor,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, 
-      #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
+      #{commentCount,jdbcType=INTEGER}, #{editor,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.ArticleInfo" useGeneratedKeys="true">
     insert into bg_article_info
@@ -143,6 +144,9 @@
       </if>
       <if test="accessCount != null">
         ACCESS_COUNT,
+      </if>
+      <if test="commentCount != null">
+        COMMENT_COUNT,
       </if>
       <if test="editor != null">
         EDITOR,
@@ -187,6 +191,9 @@
       </if>
       <if test="accessCount != null">
         #{accessCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=INTEGER},
       </if>
       <if test="editor != null">
         #{editor,jdbcType=VARCHAR},
@@ -244,6 +251,9 @@
       <if test="record.accessCount != null">
         ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
       </if>
+      <if test="record.commentCount != null">
+        COMMENT_COUNT = #{record.commentCount,jdbcType=INTEGER},
+      </if>
       <if test="record.editor != null">
         EDITOR = #{record.editor,jdbcType=VARCHAR},
       </if>
@@ -282,6 +292,7 @@
       SUMMARY = #{record.summary,jdbcType=VARCHAR},
       ISTOP = #{record.istop,jdbcType=VARCHAR},
       ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
+      COMMENT_COUNT = #{record.commentCount,jdbcType=INTEGER},
       EDITOR = #{record.editor,jdbcType=VARCHAR},
       TAG = #{record.tag,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -314,6 +325,9 @@
       </if>
       <if test="accessCount != null">
         ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        COMMENT_COUNT = #{commentCount,jdbcType=INTEGER},
       </if>
       <if test="editor != null">
         EDITOR = #{editor,jdbcType=VARCHAR},
@@ -350,6 +364,7 @@
       SUMMARY = #{summary,jdbcType=VARCHAR},
       ISTOP = #{istop,jdbcType=VARCHAR},
       ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
+      COMMENT_COUNT = #{commentCount,jdbcType=INTEGER},
       EDITOR = #{editor,jdbcType=VARCHAR},
       TAG = #{tag,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},

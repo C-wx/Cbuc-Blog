@@ -17,6 +17,8 @@ public class ArticleInfo {
 
     private Integer accessCount;
 
+    private Integer commentCount;
+
     private String editor;
 
     private String tag;
@@ -87,6 +89,14 @@ public class ArticleInfo {
 
     public void setAccessCount(Integer accessCount) {
         this.accessCount = accessCount;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
     public String getEditor() {

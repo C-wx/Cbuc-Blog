@@ -44,4 +44,7 @@ public class CategoryService {
         return articleCategoryMapper.updateByExampleSelective(articleCategory, articleCategoryExample);
     }
 
+    public ArticleCategory queryDetail(String cgId) {
+        return articleCategoryMapper.selectByPrimaryKey(Long.valueOf(cgId));
+    }
 }

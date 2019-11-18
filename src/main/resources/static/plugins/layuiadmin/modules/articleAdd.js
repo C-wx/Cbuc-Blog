@@ -28,16 +28,6 @@ layui.define(['form', 'formSelects', 'upload', 'element', 'inputTags', 'admin'],
         }
     });
 
-    $("#refreshCate").click(function () {
-        $.get("/management/dict/cate/list", function (resp) {
-            if (resp.code === 200) {
-                formSelects.data('cateId', 'local', {
-                    arr: resp.data
-                })
-            }
-        });
-    });
-
     upload.render({
         url: '/upload?reqType=lay' //上传接口
         , elem: '#coverImg' //绑定元素

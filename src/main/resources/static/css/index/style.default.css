@@ -435,8 +435,9 @@ div[class*="-btn"] {
 section.hero {
   padding: 0;
   height: 873px;
-  background: url(/img/1000273.jpg) no-repeat center;
-  background-size: 2113px;
+  /*background: url(/img/1000273.jpg) no-repeat center;*/
+  /*background-size: 2113px;*/
+  background-color: #f3fffa;
 }
 
 section.hero .container {
