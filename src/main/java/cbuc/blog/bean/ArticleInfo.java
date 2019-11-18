@@ -15,6 +15,8 @@ public class ArticleInfo {
 
     private String istop;
 
+    private Integer likeCount;
+
     private Integer accessCount;
 
     private Integer commentCount;
@@ -81,6 +83,14 @@ public class ArticleInfo {
 
     public void setIstop(String istop) {
         this.istop = istop == null ? null : istop.trim();
+    }
+
+    public Integer getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
     }
 
     public Integer getAccessCount() {

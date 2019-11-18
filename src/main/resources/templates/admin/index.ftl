@@ -88,7 +88,7 @@
                             <cite>内容发布</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd data-name="article-post">
+                            <dd data-name="articleAdd">
                                 <a lay-href="/admin/articleAdd">新建文章</a>
                             </dd>
                         </dl>
@@ -99,11 +99,11 @@
                             <cite>内容管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd data-name="article-manage">
+                            <dd data-name="manaArticle">
                                 <a lay-href="/admin/manaArticle">文章管理</a>
                             </dd>
-                            <dd data-name="note-manage">
-                                <a lay-href="/admin/manaTag">标签管理</a>
+                            <dd data-name="manaTag">
+                                <a lay-href="/admin/manaTag">分类管理</a>
                             </dd>
                         </dl>
                     </li>
@@ -113,10 +113,10 @@
                             <cite>评论/留言</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd data-name="catetag">
-                                <a lay-href="/admin/dict/catetag">评论管理</a>
+                            <dd data-name="comment">
+                                <a lay-href="/admin/comment">评论管理</a>
                             </dd>
-                            <dd data-name="keyword">
+                            <dd data-name="contact">
                                 <a lay-href="/admin/contact">留言管理</a>
                             </dd>
                         </dl>

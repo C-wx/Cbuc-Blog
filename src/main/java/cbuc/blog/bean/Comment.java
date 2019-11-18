@@ -5,7 +5,9 @@ import java.util.Date;
 public class Comment {
     private Long id;
 
-    private Long aiId;
+    private Long parentId;
+
+    private String type;
 
     private String loginIp;
 
@@ -25,6 +27,10 @@ public class Comment {
 
     private String def3;
 
+    /**--------非表字段------------*/
+    private String detail;
+    /**---------------------------*/
+
     public Long getId() {
         return id;
     }
@@ -33,12 +39,20 @@ public class Comment {
         this.id = id;
     }
 
-    public Long getAiId() {
-        return aiId;
+    public Long getParentId() {
+        return parentId;
     }
 
-    public void setAiId(Long aiId) {
-        this.aiId = aiId;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     public String getLoginIp() {
@@ -111,5 +125,13 @@ public class Comment {
 
     public void setDef3(String def3) {
         this.def3 = def3 == null ? null : def3.trim();
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }

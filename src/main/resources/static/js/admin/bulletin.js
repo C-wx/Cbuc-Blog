@@ -122,21 +122,19 @@ layui.define(['form', 'element', 'laydate', 'table'], function () {
                 }
             }
             , {
-                field: 'createTime'
+                field: 'beginTime'
                 , title: '开始时间'
                 , sort: true
                 , width: 175
-                , minWidth: 100
                 , templet: (d) => {
                     return Base.formatDate(d.beginTime, 'yy/MM/dd HH:mm:ss');
                 }
             }
             , {
-                field: 'createTime'
+                field: 'endTime'
                 , title: '结束时间'
                 , sort: true
                 , width: 173
-                , minWidth: 100
                 , templet: (d) => {
                     return Base.formatDate(d.endTime, 'yy/MM/dd HH:mm:ss');
                 }

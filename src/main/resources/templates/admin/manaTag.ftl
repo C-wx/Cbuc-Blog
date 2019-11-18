@@ -44,7 +44,7 @@
             <div class="layui-card">
                 <div class="layui-card-body">
                     <div class="layui-card-header">
-                        <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">标签管理</strong>
+                        <strong style="font-size: 22px;font-family: 'kaiti';letter-spacing: 2px">分类管理</strong>
                         <span class="layui-btn layui-btn-radius" id="addTag" onclick="addTag()"
                               style="height:30px;line-height: 30px;font-size: 16px;margin:0px 0px 10px 755px;">添加</span>
                     </div>

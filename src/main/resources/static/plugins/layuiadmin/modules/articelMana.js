@@ -40,14 +40,21 @@ layui.define(["form", "table", "element"], function (exports) {
                 field: 'accessCount'
                 , title: '浏览数'
                 , align: 'center'
-                , width: 174
+                , width: 113
+                , sort: true,
+            }
+            , {
+                field: 'likeCount'
+                , title: '点赞数'
+                , align: 'center'
+                , width: 113
                 , sort: true,
             }
             , {
                 field: 'commentCount'
                 , title: '评论数'
                 , align: 'center'
-                , width: 165
+                , width: 113
                 , sort: true
             }
             , {
@@ -130,10 +137,22 @@ layui.define(["form", "table", "element"], function (exports) {
     });
 
     table.on('sort(article)', function (obj) {
+        var sort;
+        if (obj.field == "createTime") {
+            sort = "CREATE_TIME";
+        }else if (obj.field == "accessCount") {
+            sort = "ACCESS_COUNT";
+        } else if (obj.field == "likeCount") {
+            sort = "LIKE_COUNT";
+        } else if (obj.field == "commentCount") {
+            sort = "COMMENT_COUNT";
+        } else {
+            sort = obj.field;
+        }
         articleTable.reload({
             initSort: obj
             , where: {
-                sort: obj.field
+                sort: sort
                 , order: obj.type
             }
         });

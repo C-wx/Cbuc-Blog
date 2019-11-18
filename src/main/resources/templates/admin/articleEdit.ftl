@@ -77,7 +77,7 @@
                     </div>
                     <button class="layui-btn" lay-submit lay-filter="postSubmit" id="submitBtn"
                             style="margin-left: 20px">
-                        立即发布
+                        立即修改
                     </button>
                 </div>
             </div>

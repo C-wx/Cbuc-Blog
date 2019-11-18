@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -43,6 +44,9 @@ public class BaseController {
 
     @Autowired
     private ArticleInfoService articleInfoService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/contactPage")
     @ResponseBody
@@ -103,9 +107,11 @@ public class BaseController {
     @RequestMapping("/bulletinPage")
     @ResponseBody
     public Object bulletinPage(@RequestParam(value = "current", defaultValue = "1") Integer pn,
-                               @RequestParam(value = "size", defaultValue = "10") Integer size) {
+                               @RequestParam(value = "size", defaultValue = "10") Integer size,
+                               @RequestParam(value = "sort", defaultValue = "id") String sort,
+                               @RequestParam(value = "order", defaultValue = "desc") String order) {
         try {
-            PageHelper.startPage(pn, size);     //pn:页码  10：页大小
+            PageHelper.startPage(pn, size, sort + " " + order);     //pn:页码  10：页大小
             List<Bulletin> bulletins = bulletinService.queryTableList();
             PageInfo pageInfo = new PageInfo(bulletins, 5);
             return new LayuiTable<>(pageInfo.getTotal(), pageInfo.getList());
@@ -291,9 +297,11 @@ public class BaseController {
     @ResponseBody
     public Object articlePage(@RequestParam(value = "current", defaultValue = "1") Integer pn,
                               @RequestParam(value = "size", defaultValue = "10") Integer size,
+                              @RequestParam(value = "sort", defaultValue = "id") String sort,
+                              @RequestParam(value = "order", defaultValue = "desc") String order,
                               String title) {
         try {
-            PageHelper.startPage(pn, size);     //pn:页码  10：页大小
+            PageHelper.startPage(pn, size, sort + " " + order);     //pn:页码  10：页大小
             List<ArticleInfo> articleInfos = articleInfoService.queryList(title);
             PageInfo pageInfo = new PageInfo(articleInfos, 5);
             return new LayuiTable<>(pageInfo.getTotal(), pageInfo.getList());
@@ -319,9 +327,9 @@ public class BaseController {
                 articleInfo.setIstop(isTop);
             }
             int count = articleInfoService.doUpdate(articleInfo);
-            if (count>0) {
+            if (count > 0) {
                 return Result.success();
-            }else{
+            } else {
                 return Result.error();
             }
         } catch (Exception e) {
@@ -331,7 +339,7 @@ public class BaseController {
         }
     }
 
-    @RequestMapping("/modArticle")
+    @RequestMapping("/editArticle")
     @ResponseBody
     public Object modArticle(ArticleEvt articleEvt,
                              @RequestParam(value = "isTop", defaultValue = "0") String isTop) {
@@ -366,6 +374,57 @@ public class BaseController {
             e.printStackTrace();
             log.error("更新文章异常");
             return Result.error("更新文章异常");
+        }
+    }
+
+    @GetMapping("/commentPage")
+    @ResponseBody
+    public Object commentPage(@RequestParam(value = "current", defaultValue = "1") Integer pn,
+                              @RequestParam(value = "size", defaultValue = "10") Integer size,
+                              @RequestParam(value = "sort", defaultValue = "id") String sort,
+                              @RequestParam(value = "order", defaultValue = "desc") String order,
+                              String contentKeyWard, String nameKeyword) {
+        try {
+            PageHelper.startPage(pn, size, sort + " " + order);     //pn:页码  10：页大小
+            List<Comment> comments = commentService.queryList(contentKeyWard, nameKeyword);
+            Iterator<Comment> iterator = comments.iterator();
+            Comment comment;
+            while (iterator.hasNext()) {
+                comment = iterator.next();
+                if ("2".equals(comment.getType())) {
+                    Comment comment1 = commentService.queryDetail(comment.getParentId());
+                    comment.setDetail(comment1.getContent());
+                } else if ("1".equals(comment.getType())) {
+                    ArticleInfo articleInfo = articleInfoService.queryDeteil(comment.getParentId());
+                    comment.setDetail(articleInfo.getTitle());
+                }
+            }
+            PageInfo pageInfo = new PageInfo(comments, 5);
+            return new LayuiTable<>(pageInfo.getTotal(), pageInfo.getList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("查询评论结果异常");
+            return Result.error("查询评论结果异常");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/modComment")
+    public Object modComment(Long id) {
+        try {
+            Comment comment = new Comment();
+            comment.setId(id);
+            comment.setStatus(StatusEnum.D.getStatus());
+            int result = commentService.doMod(comment);
+            if (result > 0) {
+                return Result.success();
+            } else {
+                return Result.error("修改评论异常!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("修改评论异常!");
+            return Result.error("修改评论异常!");
         }
     }
 }

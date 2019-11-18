@@ -102,4 +102,9 @@ public class PageController {
         model.addAttribute("tags",articleInfo.getTag());
         return "admin/articleEdit";
     }
+
+    @GetMapping("/comment")
+    public String toComment() {
+        return "admin/comment";
+    }
 }

@@ -3,7 +3,8 @@
 <mapper namespace="cbuc.blog.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="cbuc.blog.bean.Comment">
     <id column="ID" jdbcType="BIGINT" property="id" />
-    <result column="AI_ID" jdbcType="BIGINT" property="aiId" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
     <result column="LOGIN_IP" jdbcType="VARCHAR" property="loginIp" />
     <result column="CONTENT" jdbcType="VARCHAR" property="content" />
     <result column="LIKE_COUNT" jdbcType="INTEGER" property="likeCount" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AI_ID, LOGIN_IP, CONTENT, LIKE_COUNT, COMMENT_COUNT, CREATE_TIME, STATUS, DEF1, 
-    DEF2, DEF3
+    ID, PARENT_ID, TYPE, LOGIN_IP, CONTENT, LIKE_COUNT, COMMENT_COUNT, CREATE_TIME, STATUS, 
+    DEF1, DEF2, DEF3
   </sql>
   <select id="selectByExample" parameterType="cbuc.blog.bean.CommentExample" resultMap="BaseResultMap">
     select
@@ -108,20 +109,23 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Comment" useGeneratedKeys="true">
-    insert into bg_comment (AI_ID, LOGIN_IP, CONTENT, 
-      LIKE_COUNT, COMMENT_COUNT, CREATE_TIME, 
-      STATUS, DEF1, DEF2, 
-      DEF3)
-    values (#{aiId,jdbcType=BIGINT}, #{loginIp,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{likeCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, 
-      #{def3,jdbcType=VARCHAR})
+    insert into bg_comment (PARENT_ID, TYPE, LOGIN_IP, 
+      CONTENT, LIKE_COUNT, COMMENT_COUNT, 
+      CREATE_TIME, STATUS, DEF1, 
+      DEF2, DEF3)
+    values (#{parentId,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{likeCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, 
+      #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.Comment" useGeneratedKeys="true">
     insert into bg_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="aiId != null">
-        AI_ID,
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="type != null">
+        TYPE,
       </if>
       <if test="loginIp != null">
         LOGIN_IP,
@@ -152,8 +156,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="aiId != null">
-        #{aiId,jdbcType=BIGINT},
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
       </if>
       <if test="loginIp != null">
         #{loginIp,jdbcType=VARCHAR},
@@ -196,8 +203,11 @@
       <if test="record.id != null">
         ID = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.aiId != null">
-        AI_ID = #{record.aiId,jdbcType=BIGINT},
+      <if test="record.parentId != null">
+        PARENT_ID = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null">
+        TYPE = #{record.type,jdbcType=VARCHAR},
       </if>
       <if test="record.loginIp != null">
         LOGIN_IP = #{record.loginIp,jdbcType=VARCHAR},
@@ -234,7 +244,8 @@
   <update id="updateByExample" parameterType="map">
     update bg_comment
     set ID = #{record.id,jdbcType=BIGINT},
-      AI_ID = #{record.aiId,jdbcType=BIGINT},
+      PARENT_ID = #{record.parentId,jdbcType=BIGINT},
+      TYPE = #{record.type,jdbcType=VARCHAR},
       LOGIN_IP = #{record.loginIp,jdbcType=VARCHAR},
       CONTENT = #{record.content,jdbcType=VARCHAR},
       LIKE_COUNT = #{record.likeCount,jdbcType=INTEGER},
@@ -251,8 +262,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="cbuc.blog.bean.Comment">
     update bg_comment
     <set>
-      <if test="aiId != null">
-        AI_ID = #{aiId,jdbcType=BIGINT},
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
       </if>
       <if test="loginIp != null">
         LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
@@ -286,7 +300,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cbuc.blog.bean.Comment">
     update bg_comment
-    set AI_ID = #{aiId,jdbcType=BIGINT},
+    set PARENT_ID = #{parentId,jdbcType=BIGINT},
+      TYPE = #{type,jdbcType=VARCHAR},
       LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
       CONTENT = #{content,jdbcType=VARCHAR},
       LIKE_COUNT = #{likeCount,jdbcType=INTEGER},

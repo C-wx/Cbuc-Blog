@@ -165,13 +165,15 @@ layui.define(['form', 'formSelects', 'upload', 'element', 'inputTags', 'admin'],
             shade: 0.01,
             time:800,//自动关闭的时间 也可以通过layer.closeAll();来关闭所有弹层
         });
-        console.log(data.field);
-        Base.ajax("/admin/addArticle", data.field, function (result) {
+        Base.ajax("/admin/editArticle", data.field, function (result) {
             if (result.code == Base.status.success) {
-                layer.msg(msg);
+                layer.load(2, {time: 1000});
+                setTimeout(()=>{
+                    layer.msg(msg,{time:1000});
+                },1000);
                 setTimeout(()=>{
                     location.reload();
-                },800)
+                },1000)
             }else{
                 layer.msg(result.msg);
             }
@@ -180,7 +182,7 @@ layui.define(['form', 'formSelects', 'upload', 'element', 'inputTags', 'admin'],
 
     //监听提交9
     form.on('submit(postSubmit)', function (data) {
-        post(data, "发布博文成功！");
+        post(data, "更新博文成功！");
         return false;
     });
 

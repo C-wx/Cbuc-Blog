@@ -30,7 +30,6 @@ public class BulletinService {
     public List<Bulletin> queryTableList() {
         BulletinExample bulletinExample = new BulletinExample();
         bulletinExample.createCriteria().andStatusNotEqualTo(StatusEnum.D.getStatus());
-        bulletinExample.setOrderByClause("CREATE_TIME desc");
         return bulletinMapper.selectByExampleWithBLOBs(bulletinExample);
     }
 

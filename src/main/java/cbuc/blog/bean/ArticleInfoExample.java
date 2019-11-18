@@ -505,6 +505,66 @@ public class ArticleInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andLikeCountIsNull() {
+            addCriterion("Like_COUNT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountIsNotNull() {
+            addCriterion("Like_COUNT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountEqualTo(Integer value) {
+            addCriterion("Like_COUNT =", value, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountNotEqualTo(Integer value) {
+            addCriterion("Like_COUNT <>", value, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountGreaterThan(Integer value) {
+            addCriterion("Like_COUNT >", value, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Like_COUNT >=", value, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountLessThan(Integer value) {
+            addCriterion("Like_COUNT <", value, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountLessThanOrEqualTo(Integer value) {
+            addCriterion("Like_COUNT <=", value, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountIn(List<Integer> values) {
+            addCriterion("Like_COUNT in", values, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountNotIn(List<Integer> values) {
+            addCriterion("Like_COUNT not in", values, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountBetween(Integer value1, Integer value2) {
+            addCriterion("Like_COUNT between", value1, value2, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikeCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("Like_COUNT not between", value1, value2, "likeCount");
+            return (Criteria) this;
+        }
+
         public Criteria andAccessCountIsNull() {
             addCriterion("ACCESS_COUNT is null");
             return (Criteria) this;

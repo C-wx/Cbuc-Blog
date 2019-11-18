@@ -8,6 +8,7 @@
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
     <result column="SUMMARY" jdbcType="VARCHAR" property="summary" />
     <result column="ISTOP" jdbcType="VARCHAR" property="istop" />
+    <result column="Like_COUNT" jdbcType="INTEGER" property="likeCount" />
     <result column="ACCESS_COUNT" jdbcType="INTEGER" property="accessCount" />
     <result column="COMMENT_COUNT" jdbcType="INTEGER" property="commentCount" />
     <result column="EDITOR" jdbcType="VARCHAR" property="editor" />
@@ -78,8 +79,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AC_ID, CG_ID, TITLE, SUMMARY, ISTOP, ACCESS_COUNT, COMMENT_COUNT, EDITOR, TAG, 
-    CREATE_TIME, UPDATE_TIME, STATUS, DEF1, DEF2, DEF3
+    ID, AC_ID, CG_ID, TITLE, SUMMARY, ISTOP, Like_COUNT, ACCESS_COUNT, COMMENT_COUNT, 
+    EDITOR, TAG, CREATE_TIME, UPDATE_TIME, STATUS, DEF1, DEF2, DEF3
   </sql>
   <select id="selectByExample" parameterType="cbuc.blog.bean.ArticleInfoExample" resultMap="BaseResultMap">
     select
@@ -114,15 +115,17 @@
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.ArticleInfo" useGeneratedKeys="true">
     insert into bg_article_info (AC_ID, CG_ID, TITLE, 
-      SUMMARY, ISTOP, ACCESS_COUNT, 
-      COMMENT_COUNT, EDITOR, TAG, 
-      CREATE_TIME, UPDATE_TIME, STATUS, 
-      DEF1, DEF2, DEF3)
+      SUMMARY, ISTOP, Like_COUNT, 
+      ACCESS_COUNT, COMMENT_COUNT, EDITOR, 
+      TAG, CREATE_TIME, UPDATE_TIME, 
+      STATUS, DEF1, DEF2, 
+      DEF3)
     values (#{acId,jdbcType=BIGINT}, #{cgId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{summary,jdbcType=VARCHAR}, #{istop,jdbcType=VARCHAR}, #{accessCount,jdbcType=INTEGER}, 
-      #{commentCount,jdbcType=INTEGER}, #{editor,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
-      #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
+      #{summary,jdbcType=VARCHAR}, #{istop,jdbcType=VARCHAR}, #{likeCount,jdbcType=INTEGER}, 
+      #{accessCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, #{editor,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, 
+      #{def3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.ArticleInfo" useGeneratedKeys="true">
     insert into bg_article_info
@@ -141,6 +144,9 @@
       </if>
       <if test="istop != null">
         ISTOP,
+      </if>
+      <if test="likeCount != null">
+        Like_COUNT,
       </if>
       <if test="accessCount != null">
         ACCESS_COUNT,
@@ -188,6 +194,9 @@
       </if>
       <if test="istop != null">
         #{istop,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null">
+        #{likeCount,jdbcType=INTEGER},
       </if>
       <if test="accessCount != null">
         #{accessCount,jdbcType=INTEGER},
@@ -248,6 +257,9 @@
       <if test="record.istop != null">
         ISTOP = #{record.istop,jdbcType=VARCHAR},
       </if>
+      <if test="record.likeCount != null">
+        Like_COUNT = #{record.likeCount,jdbcType=INTEGER},
+      </if>
       <if test="record.accessCount != null">
         ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
       </if>
@@ -291,6 +303,7 @@
       TITLE = #{record.title,jdbcType=VARCHAR},
       SUMMARY = #{record.summary,jdbcType=VARCHAR},
       ISTOP = #{record.istop,jdbcType=VARCHAR},
+      Like_COUNT = #{record.likeCount,jdbcType=INTEGER},
       ACCESS_COUNT = #{record.accessCount,jdbcType=INTEGER},
       COMMENT_COUNT = #{record.commentCount,jdbcType=INTEGER},
       EDITOR = #{record.editor,jdbcType=VARCHAR},
@@ -322,6 +335,9 @@
       </if>
       <if test="istop != null">
         ISTOP = #{istop,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null">
+        Like_COUNT = #{likeCount,jdbcType=INTEGER},
       </if>
       <if test="accessCount != null">
         ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
@@ -363,6 +379,7 @@
       TITLE = #{title,jdbcType=VARCHAR},
       SUMMARY = #{summary,jdbcType=VARCHAR},
       ISTOP = #{istop,jdbcType=VARCHAR},
+      Like_COUNT = #{likeCount,jdbcType=INTEGER},
       ACCESS_COUNT = #{accessCount,jdbcType=INTEGER},
       COMMENT_COUNT = #{commentCount,jdbcType=INTEGER},
       EDITOR = #{editor,jdbcType=VARCHAR},
