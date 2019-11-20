@@ -3,10 +3,7 @@ package cbuc.blog.controller.admin;
 import cbuc.blog.bean.ArticleCategory;
 import cbuc.blog.bean.ArticleContent;
 import cbuc.blog.bean.ArticleInfo;
-import cbuc.blog.service.ArticleContentService;
-import cbuc.blog.service.ArticleInfoService;
-import cbuc.blog.service.CategoryService;
-import cbuc.blog.service.ContactService;
+import cbuc.blog.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Explain:
@@ -39,6 +37,9 @@ public class PageController {
     @Autowired
     private ArticleContentService articleContentService;
 
+    @Autowired
+    private DataService dataService;
+
     @GetMapping("/")
     public String toIndex(Model model) {
         try {
@@ -52,7 +53,16 @@ public class PageController {
     }
 
     @GetMapping("dataStatistic")
-    public String toDataStatistic() {
+    public String toDataStatistic(Model model) {
+        try {
+            Map<String,Object> lastData = dataService.getLastData();
+            Map<String,Object> dataMap = dataService.getData();
+            model.addAttribute("lastData",lastData);
+            model.addAttribute("dataMap",dataMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取数据异常");
+        }
         return "admin/dataStatistic";
     }
 
@@ -63,8 +73,13 @@ public class PageController {
 
     @GetMapping("/articleAdd")
     public String toArticleAdd(Model model) {
-        List<ArticleCategory> articleCategories = categoryService.queryTableList();
-        model.addAttribute("categories", articleCategories);
+        try {
+            List<ArticleCategory> articleCategories = categoryService.queryTableList();
+            model.addAttribute("categories", articleCategories);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取分类信息异常");
+        }
         return "admin/articleAdd";
     }
 
@@ -85,21 +100,26 @@ public class PageController {
 
     @GetMapping("/editArticle")
     public String toArticleEdit(Long id,Model model) {
-        List<ArticleCategory> articleCategories = categoryService.queryTableList();
-        ArticleInfo articleInfo = articleInfoService.queryDeteil(id);
-        ArticleContent articleContent = articleContentService.queryDetail(articleInfo.getAcId());
-        String[] cgIds = articleInfo.getCgId().split(",");
-        List<ArticleCategory> categories = new ArrayList<>();
-        ArticleCategory articleCategory;
-        for (int i = 0; i < cgIds.length; i++) {
-            articleCategory = categoryService.queryDetail(cgIds[i]);
-            categories.add(articleCategory);
+        try {
+            List<ArticleCategory> articleCategories = categoryService.queryTableList();
+            ArticleInfo articleInfo = articleInfoService.queryDeteil(id);
+            ArticleContent articleContent = articleContentService.queryDetail(articleInfo.getAcId());
+            String[] cgIds = articleInfo.getCgId().split(",");
+            List<ArticleCategory> categories = new ArrayList<>();
+            ArticleCategory articleCategory;
+            for (int i = 0; i < cgIds.length; i++) {
+                articleCategory = categoryService.queryDetail(cgIds[i]);
+                categories.add(articleCategory);
+            }
+            model.addAttribute("articleInfo",articleInfo);
+            model.addAttribute("articleContent",articleContent);
+            model.addAttribute("categories", articleCategories);
+            model.addAttribute("cates",categories);
+            model.addAttribute("tags",articleInfo.getTag());
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取文章信息异常");
         }
-        model.addAttribute("articleInfo",articleInfo);
-        model.addAttribute("articleContent",articleContent);
-        model.addAttribute("categories", articleCategories);
-        model.addAttribute("cates",categories);
-        model.addAttribute("tags",articleInfo.getTag());
         return "admin/articleEdit";
     }
 

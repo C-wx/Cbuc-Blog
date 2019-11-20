@@ -19,38 +19,177 @@
     <link rel="stylesheet" href="${base}/plugins/layuiadmin/style/admin.css" media="all">
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="${base}/vendor/font-awesome/css/font-awesome.min.css">
+    <!--echart-->
+    <script src="${base}/plugins/layuiadmin/lib/extend/echarts.js"></script>
 </head>
+<style>
+    body {
+        background-color: rgba(194, 194, 194, 0.3);
+    }
+</style>
 <body>
-<div class="layui-fluid layui-anim layui-anim-upbit" id="LAY-message">
-    <div class="layui-card">
-        <div class="layui-card-body">
-            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
-                <div id="search_area">
-                    搜索留言内容：
-                    <div class="layui-inline">
-                        <input class="layui-input" name="commentKeyWard" id="messageKeyword" autocomplete="off">
+<div class="layui-fluid layui-anim layui-anim-upbit">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <strong style="font-size: 20px;font-family: 'kaiti';letter-spacing: 2px">数据总计</strong>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <ul class="layui-row layui-col-space10">
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>评论总计</h3>
+                                            <p><cite>${dataMap.commentTotal}</cite></p>
+                                        </div>
+                                    </li>
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>留言总计</h3>
+                                            <p><cite>${dataMap.contactTotal}</cite></p>
+                                        </div>
+                                    </li>
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>用户总计</h3>
+                                            <p><cite>1</cite></p>
+                                        </div>
+                                    </li>
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>访问总计</h3>
+                                            <p><cite>${dataMap.viewTotal}</cite></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    &nbsp;&nbsp;用户昵称：
-                    <div class="layui-inline">
-                        <input class="layui-input" name="nameKeyword" id="nameKeyword" autocomplete="off">
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <strong style="font-size: 20px;font-family: 'kaiti';letter-spacing: 2px">当日数据</strong>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <ul class="layui-row layui-col-space10">
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>今日评论</h3>
+                                            <p><cite>${dataMap.commentNowday}</cite></p>
+                                        </div>
+                                    </li>
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>今日留言</h3>
+                                            <p><cite>${dataMap.contactNowday}</cite></p>
+                                        </div>
+                                    </li>
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>今日新增用户</h3>
+                                            <p><cite>999</cite></p>
+                                        </div>
+                                    </li>
+                                    <li class="layui-col-xs6">
+                                        <div class="layadmin-backlog-body">
+                                            <h3>今日访问</h3>
+                                            <p><cite>${dataMap.viewNowday}</cite></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <button class="layui-btn" data-type="reload">搜索</button>
-                    <button class="layui-btn layui-btn-primary" data-type="reload">重置</button>
+                </div>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <strong style="font-size: 20px;font-family: 'kaiti';letter-spacing: 2px">博文发布统计</strong>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-input-inline">
+                                <span style="position: relative;left: 10px;top: 12px;">统计周期:</span>
+                                <input type="text" name="date" id="date" class="layui-input" style="position: relative;left: 100px;top: -20px;">
+                            </div>
+                            <div id="main" style="width: 1000px;height:400px;position: relative;top: -20px;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="layui-card-body">
-                <table class="layui-hide" id="message-table" lay-filter="message"></table>
-                <script type="text/html" id="enableTpl">
-                    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="已读|未读" lay-filter="enable" {{ d.status == 'D' ? 'checked' : ''}}>
-                </script>
+        </div>
+
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <strong style="font-size: 20px;font-family: 'kaiti';letter-spacing: 2px">最新评论</strong>
+                </div>
+                <div class="layui-card-body layadmin-takerates">
+                    <p>
+                        <span class="layui-word-aux">文章：</span>
+                        <span>${lastData.comment.detail}</span>
+                    </p>
+                    <hr>
+                    <p>
+                        <span class="layui-word-aux">用户：</span>
+                        <span>${lastData.comment.loginIp}</span>
+                    </p>
+                    <hr>
+                    <p style="word-break: break-all;">
+                        <span class="layui-word-aux">评论：</span>
+                        <span>${lastData.comment.content}</span>
+                    </p>
+                    <hr>
+                    <p th:inline="text">
+                        <span class="layui-word-aux">时间：</span>
+                        <span>${lastData.comment.createTime?string('yyyy-MM-dd hh:mm:ss')}</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <strong style="font-size: 20px;font-family: 'kaiti';letter-spacing: 2px">最新留言</strong>
+                </div>
+                <div class="layui-card-body layadmin-takerates">
+                    <p>
+                        <span class="layui-word-aux">用户：</span>
+                        <span>${lastData.contact.email}</span>
+                    </p>
+                    <hr>
+                    <p style="word-break: break-all;">
+                        <span class="layui-word-aux">留言：</span>
+                        <span>${lastData.contact.message}</span>
+                    </p>
+                    <hr>
+                    <p th:inline="text">
+                        <span class="layui-word-aux">时间：</span>
+                        <span>${lastData.contact.createTime?string('yyyy-MM-dd hh:mm:ss')}</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="layui-card" style="height: 390px;">
+                <div class="layui-card-header">
+                    <strong style="font-size: 20px;font-family: 'kaiti';letter-spacing: 2px">操作日志</strong>
+                </div>
+                <div class="layui-card-body" style="padding-top: 25px;">
+                    <ul class="layui-timeline" id="accessLog"></ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script>
     layui.config({
-        base: '/static' //静态资源所在路径
-    }).use(["/js/admin/message"]);
+        base: '/static/plugins/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'dataStatistic']);
 </script>
 </body>
 </html>

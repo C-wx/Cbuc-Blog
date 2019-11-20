@@ -4,6 +4,7 @@ import cbuc.blog.base.LayuiTable;
 import cbuc.blog.base.Result;
 import cbuc.blog.bean.*;
 import cbuc.blog.evt.ArticleEvt;
+import cbuc.blog.evt.LogEvt;
 import cbuc.blog.service.*;
 import cbuc.blog.utils.baseenum.StatusEnum;
 import com.github.pagehelper.PageHelper;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Explain: 管理后台控制器
@@ -47,6 +49,9 @@ public class BaseController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private LogEvt logEvt;
 
     @GetMapping("/contactPage")
     @ResponseBody
@@ -425,6 +430,26 @@ public class BaseController {
             e.printStackTrace();
             log.error("修改评论异常!");
             return Result.error("修改评论异常!");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/getBlogData")
+    public Object getBlogData(String beginTime) {
+        List<Map<String,Object>> data =  articleInfoService.queryBlogData(beginTime);
+        return Result.success(data);
+    }
+
+    @RequestMapping("/getLog")
+    @ResponseBody
+    public Object getLog() {
+        try {
+            Map<String,Object> map = logEvt.getLogMap();
+            return Result.success(map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取操作日志异常");
+            return Result.error("获取操作日志异常");
         }
     }
 }

@@ -2,8 +2,9 @@ package cbuc.blog.mapper;
 
 import cbuc.blog.bean.View;
 import cbuc.blog.bean.ViewExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ViewMapper {
     long countByExample(ViewExample example);
@@ -27,4 +28,8 @@ public interface ViewMapper {
     int updateByPrimaryKeySelective(View record);
 
     int updateByPrimaryKey(View record);
+
+    Integer queryNowday();
+
+    Integer queryTotal();
 }

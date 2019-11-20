@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * @Explain:    操作日志拦截器
+ * @Explain: 操作日志拦截器
  * @Author: Cbuc
  * @Version: 1.0
  * @Date: 2019/11/6
@@ -45,14 +45,12 @@ public class LogInterceptor implements HandlerInterceptor {
         //访问地址
         String url = request.getRequestURL().toString();
 
-        log.setAccessUrl(StringUtils.isBlank(url)?"URL获取失败":url);
-        log.setLoginBrowser(StringUtils.isBlank(browser)?"获取浏览器失败":browser);
-        log.setLoginIp(StringUtils.isBlank(ipAddr)?"获取访问IP地址失败":request.getRemoteAddr());
 
-        if (!url.contains("admin")) {
-            view.setLoginIp(log.getLoginIp());
-            viewService.addView(view);
-        }
+        log.setAccessUrl(StringUtils.isBlank(url) ? "URL获取失败" : url);
+        log.setLoginBrowser(StringUtils.isBlank(browser) ? "获取浏览器失败" : browser);
+        log.setLoginIp(StringUtils.isBlank(ipAddr) ? "获取访问IP地址失败" : request.getRemoteAddr());
+        view.setLoginIp(log.getLoginIp());
+        viewService.addView(view);
         return true;
     }
 
@@ -61,6 +59,7 @@ public class LogInterceptor implements HandlerInterceptor {
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
+            String url = request.getRequestURL().toString();
             // 保存日志信息
             log.setRemark(method.getName());
             logService.addLog(log);

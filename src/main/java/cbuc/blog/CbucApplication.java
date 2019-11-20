@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement  // 启注解事务管理，等同于xml配置方式的 <tx:annotation-driven />
 @SpringBootApplication
-@EnableScheduling
+@EnableScheduling           //启动定时任务
 @MapperScan("cbuc.blog.mapper")
 public class CbucApplication {
 

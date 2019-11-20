@@ -30,4 +30,12 @@ public class ViewService {
     public void clean() {
         viewMapper.deleteByExample(null);
     }
+
+    public Integer queryNowday() {
+        return viewMapper.queryNowday();
+    }
+
+    public Integer queryTotal() {
+        return viewMapper.queryTotal();
+    }
 }

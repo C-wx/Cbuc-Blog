@@ -56,4 +56,16 @@ public class ContactService {
         contact.setId(id);
         return contactMapper.updateByPrimaryKeySelective(contact);
     }
+
+    public Contact queryLast() {
+        return contactMapper.queryLast();
+    }
+
+    public Integer queryNowday() {
+        return contactMapper.queryNowday();
+    }
+
+    public Integer queryTotal() {
+        return contactMapper.queryTotal();
+    }
 }

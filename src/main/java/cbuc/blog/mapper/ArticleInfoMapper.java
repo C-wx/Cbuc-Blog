@@ -2,8 +2,10 @@ package cbuc.blog.mapper;
 
 import cbuc.blog.bean.ArticleInfo;
 import cbuc.blog.bean.ArticleInfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 public interface ArticleInfoMapper {
     long countByExample(ArticleInfoExample example);
@@ -27,4 +29,6 @@ public interface ArticleInfoMapper {
     int updateByPrimaryKeySelective(ArticleInfo record);
 
     int updateByPrimaryKey(ArticleInfo record);
+
+    List<Map<String, Object>> queryBlogData(@Param("beginTime") String beginTime,@Param("endTime") String endTime);
 }

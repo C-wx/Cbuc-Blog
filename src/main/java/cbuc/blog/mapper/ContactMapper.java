@@ -2,8 +2,9 @@ package cbuc.blog.mapper;
 
 import cbuc.blog.bean.Contact;
 import cbuc.blog.bean.ContactExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ContactMapper {
     long countByExample(ContactExample example);
@@ -27,4 +28,10 @@ public interface ContactMapper {
     int updateByPrimaryKeySelective(Contact record);
 
     int updateByPrimaryKey(Contact record);
+
+    Contact queryLast();
+
+    Integer queryNowday();
+
+    Integer queryTotal();
 }

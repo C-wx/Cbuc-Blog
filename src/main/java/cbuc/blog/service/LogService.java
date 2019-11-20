@@ -6,6 +6,8 @@ import cbuc.blog.mapper.LogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Explain:  操作日志处理器
  * @Author: Cbuc
@@ -33,4 +35,9 @@ public class LogService {
             throw new MyException("清除日志异常");
         }
     }
+
+    public List<Log> getLog() {
+        return logMapper.queryLog();
+    }
+
 }

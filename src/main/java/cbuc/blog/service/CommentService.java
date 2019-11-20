@@ -1,5 +1,6 @@
 package cbuc.blog.service;
 
+import cbuc.blog.bean.ArticleInfo;
 import cbuc.blog.bean.Comment;
 import cbuc.blog.bean.CommentExample;
 import cbuc.blog.mapper.CommentMapper;
@@ -22,6 +23,9 @@ public class CommentService {
     @Autowired
     private CommentMapper commentMapper;
 
+    @Autowired
+    private ArticleInfoService articleInfoService;
+
     public List<Comment> queryList(String contentKeyWard, String nameKeyword) {
         CommentExample commentExample = new CommentExample();
         CommentExample.Criteria commmentExampleCriteria = commentExample.createCriteria();
@@ -41,5 +45,20 @@ public class CommentService {
 
     public int doMod(Comment comment) {
         return commentMapper.updateByPrimaryKeySelective(comment);
+    }
+
+    public Comment queryLast() {
+        Comment comment = commentMapper.queryLast();
+        ArticleInfo articleInfo = articleInfoService.queryDeteil(comment.getParentId());
+        comment.setDetail(articleInfo.getTitle());
+        return comment;
+    }
+
+    public Integer queryNowday() {
+        return commentMapper.queryNowday();
+    }
+
+    public Integer queryTotal() {
+        return commentMapper.queryTotal();
     }
 }

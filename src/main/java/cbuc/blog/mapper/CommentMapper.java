@@ -2,8 +2,9 @@ package cbuc.blog.mapper;
 
 import cbuc.blog.bean.Comment;
 import cbuc.blog.bean.CommentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommentMapper {
     long countByExample(CommentExample example);
@@ -27,4 +28,10 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    Comment queryLast();
+
+    Integer queryNowday();
+
+    Integer queryTotal();
 }

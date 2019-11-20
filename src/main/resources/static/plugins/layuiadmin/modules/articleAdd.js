@@ -194,14 +194,12 @@ layui.define(['form', 'formSelects', 'upload', 'element', 'inputTags', 'admin'],
         layer.msg('提交中，请稍等', {
             icon: 16,//信息框和加载层的私有参数
             shade: 0.01,
-            time:800,//自动关闭的时间 也可以通过layer.closeAll();来关闭所有弹层
+            time:2000,//自动关闭的时间 也可以通过layer.closeAll();来关闭所有弹层
         });
         Base.ajax("/admin/addArticle", data.field, function (result) {
             if (result.code == Base.status.success) {
-                layer.load(2, {time: 2000});
-                setTimeout(()=>{
-                    layer.msg(msg,{time:1000});
-                },2000);
+                debugger
+                layer.msg(msg);
                 setTimeout(()=>{
                     location.reload();
                 },1000)

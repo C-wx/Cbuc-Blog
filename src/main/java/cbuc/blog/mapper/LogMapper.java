@@ -2,8 +2,9 @@ package cbuc.blog.mapper;
 
 import cbuc.blog.bean.Log;
 import cbuc.blog.bean.LogExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LogMapper {
     long countByExample(LogExample example);
@@ -27,4 +28,6 @@ public interface LogMapper {
     int updateByPrimaryKeySelective(Log record);
 
     int updateByPrimaryKey(Log record);
+
+    List<Log> queryLog();
 }

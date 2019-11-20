@@ -236,7 +236,21 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <select id="queryBlogData" resultType="java.util.Map">
+      SELECT
+      DATE_FORMAT(t1.create_time, '%m-%d') AS name,
+      count(DISTINCT(t1.ID)) AS value
+      FROM
+      bg_article_info t1
+      WHERE
+      (
+      t1.CREATE_TIME <![CDATA[>=]]> #{beginTime}
+      AND t1.CREATE_TIME <![CDATA[<=]]> #{endTime}
+      )
+      GROUP BY
+      DATE_FORMAT(t1.create_time, '%Y-%m-%d')
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
     update bg_article_info
     <set>
       <if test="record.id != null">
