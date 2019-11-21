@@ -20,7 +20,7 @@ public class IndexController {
     @ApiOperation("跳转到主页")
     @GetMapping("/")
     public String home() {
-        return "index";
+        return "fore/index";
     }
 
     @ApiOperation("跳转到博客页")
@@ -32,6 +32,11 @@ public class IndexController {
     @ApiOperation("跳转到留言页")
     @GetMapping("/contact")
     public String contact() {
-        return "contact";
+        return "fore/contact";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 }

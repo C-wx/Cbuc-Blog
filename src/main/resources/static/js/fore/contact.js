@@ -26,7 +26,7 @@ $(function () {
                 data: $("#contactForm").serialize(),
                 success: function (result) {
                     if (result.code == Base.status.success) {
-                        layer.load(2, {time: 1000});
+                        layer.load(2, {time: 888});
                         setTimeout(function () {
                             layer.msg("留言成功");
                             $("#name").val("");
@@ -40,7 +40,7 @@ $(function () {
                 }
             });
         } else {
-            layer.msg("留言已收到,请等待回复");
+            layer.msg("留言已收到,请勿重复提交!");
         }
 
     });
