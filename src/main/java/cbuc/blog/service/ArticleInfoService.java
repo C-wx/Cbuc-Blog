@@ -100,4 +100,10 @@ public class ArticleInfoService {
         }
         return datas;
     }
+
+    public long queryTotal() {
+        ArticleInfoExample articleInfoExample = new ArticleInfoExample();
+        articleInfoExample.createCriteria().andStatusNotEqualTo(StatusEnum.D.getStatus());
+        return articleInfoMapper.countByExample(articleInfoExample);
+    }
 }

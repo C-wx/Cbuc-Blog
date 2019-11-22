@@ -15,5 +15,6 @@ import java.util.Map;
 @Component
 @Data
 public class LogEvt {
-    Map<String,Object> logMap = new HashMap<>();
+    volatile Map<String,Object> logMap = new HashMap<>();
+    volatile Map<String,Object> coutMap = new HashMap<>();
 }

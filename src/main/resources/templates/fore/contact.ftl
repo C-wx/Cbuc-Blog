@@ -7,6 +7,7 @@
     <!--jquery-->
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/base.js"></script>
+    <script src="js/fore/contact.js"></script>
     <!-- layui -->
     <script src="/plugins/layui/layui.all.js" type="application/javascript"></script>
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
@@ -34,20 +35,20 @@
     </h1>
     <div class="nav">
         <a href="/">文章</a>
-        <a href="whisper.ftl">博客</a>
+        <a href="/blog">博客</a>
         <a href="/contact" class="active">留言</a>
-        <a href="album.ftl">相册</a>
+        <a href="whisper.ftl">Blink</a>
         <a href="about.ftl">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
-        <li class="layui-nav-item"><a href="index.html">文章</a></li>
-        <li class="layui-nav-item"><a href="whisper.ftl">微语</a></li>
-        <li class="layui-nav-item"><a href="contact.ftl" class="active">留言</a></li>
-        <li class="layui-nav-item"><a href="album.ftl">相册</a></li>
+        <li class="layui-nav-item"><a href="/">文章</a></li>
+        <li class="layui-nav-item"><a href="/blog">博客</a></li>
+        <li class="layui-nav-item"><a href="/contact" class="active">留言</a></li>
+        <li class="layui-nav-item"><a href="whisper.ftl">Blink</a></li>
         <li class="layui-nav-item"><a href="about.ftl">关于</a></li>
     </ul>
-    <p class="access-count"><span class="text">访问量:</span><span class="count">1000</span></p>
-    <p class="blog-count"><span class="text">博文量:</span><span class="count">1000</span></p>
+    <p class="access-count"><span class="text">访问量:</span><span class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
+    <p class="blog-count"><span class="text">博文量:</span><span class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
     <p class="welcome-text"></p>
 </div>
 
@@ -60,17 +61,14 @@
                 <div class="form-group">
                     <input type="text" name="name" id="name" class="form-control "
                            placeholder="Name" ">
-                    <p class="help-block text-danger" id="Pname"></p>
                 </div>
                 <div class="form-group">
                     <input type="email" name="email" id="email" class="form-control"
-                           placeholder="Email" required="required" onkeyup="verifyEmail()">
-                    <p class="help-block text-danger" id="Pemail"></p>
+                           placeholder="Email" requiredPemail"required" onkeyup="verifyEmail()">
                 </div>
                 <div class="form-group">
                                     <textarea name="message" id="message" class="form-control" rows="4"
                                               placeholder="Message" required ></textarea>
-                    <p class="help-block text-danger" id="Pmessage"></p>
                 </div>
                 <button type="button" class="stereo-btn" id="submit">Submit</button>
             </form>
@@ -78,64 +76,15 @@
         <img src="/img/slider-image-1.png">
     </div>
 </div>
-<#--<div class="content whisper-content leacots-content ">
-    <div class="cont w1000">
-        <div class="item-box">
-            <div class="review-version">
-                <div id="contact" class="text-center" style="height: 600px">
-                    <div class="container" id="contactContainer">
-                        <div class="section-title center">
-                            <h1>LEAVE A MESSAGE</h1>
-                            <hr>
-                        </div>
-                        <div id="contactDiv">
-                            <form name="sentMessage" id="contactForm" novalidate>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" name="name" id="name" class="form-control "
-                                                   placeholder="Name" ">
-                                            <p class="help-block text-danger" id="Pname"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="email" name="email" id="email" class="form-control"
-                                                   placeholder="Email" required="required" onkeyup="verifyEmail()">
-                                            <p class="help-block text-danger" id="Pemail"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <textarea name="message" id="message" class="form-control" rows="4"
-                                              placeholder="Message" required style="width: 660px;"></textarea>
-                                    <p class="help-block text-danger" id="Pmessage"></p>
-                                </div>
-                                <div id="success"></div>
-                                <button type="button" class="stereo-btn" id="submit">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img src="/img/slider-image-1.png">
-    </div>
-</div>-->
 <div class="footer-wrap">
     <#include "../footer.ftl">
 </div>
 <script type="text/javascript">
     layui.config({
         base: '/static/js/fore/'
-    }).use(['element', 'laypage', 'form', 'menu', 'contact'], function () {
-        element = layui.element, laypage = layui.laypage, form = layui.form, menu = layui.menu;
-        laypage.render({
-            elem: 'demo'
-            , count: 70 //数据总数，从服务端得到
-        });
+    }).use(['element', 'laypage', 'jquery', 'menu', 'mm'], function () {
+        menu = layui.menu;
         menu.init();
-        menu.submit()
     })
 </script>
 </body>

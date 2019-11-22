@@ -2,7 +2,9 @@ package cbuc.blog.utils.schedule;
 
 import cbuc.blog.bean.Log;
 import cbuc.blog.evt.LogEvt;
+import cbuc.blog.service.ArticleInfoService;
 import cbuc.blog.service.LogService;
+import cbuc.blog.service.ViewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,19 +23,45 @@ import java.util.List;
 public class LogSchedule {
 
     @Autowired
+    private ArticleInfoService articleInfoService;
+
+    @Autowired
+    private ViewService viewService;
+
+    @Autowired
     private LogEvt logEvt;
 
     @Autowired
     private LogService logService;
 
-    @Scheduled(cron = "*/10 * * * * ?")
+    @Scheduled(cron = "* */20 * * * ?")
     public void getLog() {
-        List<Log> logger = logService.getLog();
-        if (!logEvt.getLogMap().isEmpty()) {
-            logEvt.getLogMap().clear();
+        try {
+            List<Log> logger = logService.getLog();
+            if (!logEvt.getLogMap().isEmpty()) {
+                logEvt.getLogMap().clear();
+            }
+            logEvt.getLogMap().put("log",logger);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取日志异常");
         }
-        logEvt.getLogMap().put("log",logger);
-        log.info("{}",logEvt.getLogMap());
+    }
+
+    @Scheduled(cron = "* */20 * * * ?")
+    public void getCount() {
+        try {
+            Integer accessCount = viewService.queryTotal();
+            long blogCount = articleInfoService.queryTotal();
+            if (!logEvt.getCoutMap().isEmpty()) {
+                logEvt.getCoutMap().clear();
+            }
+            logEvt.getCoutMap().put("accessCount",accessCount);
+            logEvt.getCoutMap().put("blogCount",blogCount);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取主页数据异常");
+        }
     }
 
 }

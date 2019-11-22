@@ -22,7 +22,7 @@ layui.use(['laydate'], function () {
 $(function () {
     blogData();
     getLog();
-    setInterval('getLog()',10000);
+    setInterval('getLog()',1000 * 60 * 10);
 });
 
 function getBlogData(dataName, dataNum, Time) {

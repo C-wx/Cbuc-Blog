@@ -6,17 +6,17 @@ $(function () {
         var message = $("#message").val();
         if (!name) {
             $("#name").addClass("border-warning");
-            $("#Pname").text("名称不能为空");
+            openError("名称不能为空","#name");
             return
         }
         if (!email) {
             $("#email").addClass("border-warning");
-            $("#Pemail").text("邮箱不能为空");
+            openError("邮箱不能为空","#email");
             return
         }
         if (!message) {
             $("#message").addClass("border-warning");
-            $("#Pmessage").text("内容不能为空");
+            openError("内容不能为空","#message");
             return
         }
         if (!flag) {
@@ -46,24 +46,30 @@ $(function () {
     });
     $("#name").click(function () {
         $("#name").removeClass("border-warning");
-        $("#Pname").text("");
+        layer.close(errorPrompt);
     });
     $("#email").click(function () {
         $("#email").removeClass("border-warning");
-        $("#Pemail").text("");
+        layer.close(errorPrompt);
     });
     $("#message").click(function () {
         $("#message").removeClass("border-warning");
-        $("#Pmessage").text("");
+        layer.close(errorPrompt);
     });
 });
 verifyEmail = () => {
     var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
     if (!reg.test($("#email").val())) {
         $("#email").addClass("border-warning");
-        $("#Pemail").text("不是正确的邮箱地址");
+        openError("不是正确的邮箱地址","#email");
     } else {
         $("#email").removeClass("border-warning");
-        $("#Pemail").text("");
+        layer.close(errorPrompt);
     }
-}
+};
+openError = (msg, target) => {
+    errorPrompt = layer.tips('<span style="font-size: 14px">' + msg + '</span>', target, {
+        tips: [1, '#ffb3a6'],
+        time: 30000
+    });
+};

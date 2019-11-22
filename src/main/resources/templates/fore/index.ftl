@@ -33,20 +33,20 @@
     </h1>
     <div class="nav">
         <a href="/" class="active">文章</a>
-        <a href="whisper.ftl">博客</a>
+        <a href="/blog">博客</a>
         <a href="/contact">留言</a>
-        <a href="album.ftl">相册</a>
-        <a href="about.ftl">关于</a>
+        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
-        <li class="layui-nav-item"><a href="index.html" class="active">文章</a></li>
-        <li class="layui-nav-item"><a href="whisper.ftl">微语</a></li>
-        <li class="layui-nav-item"><a href="contact.ftl">留言</a></li>
-        <li class="layui-nav-item"><a href="album.ftl">相册</a></li>
+        <li class="layui-nav-item"><a href="/" class="active">文章</a></li>
+        <li class="layui-nav-item"><a href="whisper.ftl">博客</a></li>
+        <li class="layui-nav-item"><a href="/contact">留言</a></li>
+        <li class="layui-nav-item"><a href="album.ftl">Blink</a></li>
         <li class="layui-nav-item"><a href="about.ftl">关于</a></li>
     </ul>
-    <p class="access-count"><span class="text">访问量:</span><span class="count">1000</span></p>
-    <p class="blog-count"><span class="text">博文量:</span><span class="count">1000</span></p>
+    <p class="access-count"><span class="text">访问量:</span><span class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
+    <p class="blog-count"><span class="text">博文量:</span><span class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
     <p class="welcome-text"></p>
 </div>
 
@@ -71,11 +71,7 @@
     layui.config({
         base: '/static/js/fore/'
     }).use(['element', 'laypage', 'jquery', 'menu', 'mm'], function () {
-        element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu;
-        laypage.render({
-            elem: 'demo'
-            , count: 70 //数据总数，从服务端得到
-        });
+       menu = layui.menu;
         menu.init();
     })
 </script>

@@ -2,6 +2,7 @@ package cbuc.blog.interceptor;
 
 import cbuc.blog.bean.Log;
 import cbuc.blog.bean.View;
+import cbuc.blog.evt.LogEvt;
 import cbuc.blog.service.LogService;
 import cbuc.blog.service.ViewService;
 import cbuc.blog.utils.BrowserUtil;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
 
 /**
@@ -32,11 +34,19 @@ public class LogInterceptor implements HandlerInterceptor {
     @Autowired
     private LogService logService;
 
+    @Autowired
+    private LogEvt logEvt;
+
     private Log log = new Log();
     private View view = new View();
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        /** 存放博文量/访问量 数据 */
+        HttpSession session = request.getSession();
+        session.setAttribute("accessCount",logEvt.getCoutMap().get("accessCount"));
+        session.setAttribute("blogCount",logEvt.getCoutMap().get("blogCount"));
 
         //访问者IP
         String ipAddr = IPutil.getIpAddress(request);

@@ -26,7 +26,7 @@ public class IndexController {
     @ApiOperation("跳转到博客页")
     @GetMapping("/blog")
     public String blog() {
-        return "blog";
+        return "fore/blog";
     }
 
     @ApiOperation("跳转到留言页")
@@ -38,5 +38,10 @@ public class IndexController {
     @GetMapping("/index")
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/toblog")
+    public String toblog() {
+        return "blog";
     }
 }
