@@ -7,6 +7,8 @@
     <title>Document</title>
     <!--jquery-->
     <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/js/fore/blog.js"></script>
     <!-- layui -->
     <script src="/plugins/layui/layui.all.js" type="application/javascript"></script>
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
@@ -35,92 +37,28 @@
     </h1>
     <div class="nav">
         <a href="/">文章</a>
-        <a href="/blog"  class="active">博客</a>
+        <a href="/blog" class="active">博客</a>
         <a href="/contact">留言</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
         <li class="layui-nav-item"><a href="/">文章</a></li>
-        <li class="layui-nav-item"><a href="/blog"  class="active">博客</a></li>
+        <li class="layui-nav-item"><a href="/blog" class="active">博客</a></li>
         <li class="layui-nav-item"><a href="/contact">留言</a></li>
         <li class="layui-nav-item"><a href="album.ftl">Blink</a></li>
         <li class="layui-nav-item"><a href="about.ftl">关于</a></li>
     </ul>
-    <p class="access-count"><span class="text">访问量:&nbsp;</span><span class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
-    <p class="blog-count"><span class="text">博文量:&nbsp;</span><span class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
+    <p class="access-count"><span class="text">访问量:&nbsp;</span><span
+            class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
+    <p class="blog-count"><span class="text">博文量:&nbsp;</span><span
+            class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
     <p class="welcome-text"></p>
 </div>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <!-- Latest Posts -->
-        <main class="posts-listing col-lg-8">
-            <div class="container">
-                <div class="row">
-                    <!-- post -->
-                    <div class="post col-xl-6">
-                        <div class="post-thumbnail">
-                            <a href="post.ftl">
-                                <img src="img/user.svg" alt="题图" >
-                            </a>
-                        </div>
-                        <div class="post-details">
-                            <a href="post.ftl">
-                                <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3></a>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore.</p>
-                            <footer class="post-footer d-flex align-items-center">
-                                <a href="#" class="d-flex align-items-center flex-wrap">
-                                    <div class="title">
-                                        <i class="fa fa-user"></i>
-                                        John Doe
-                                    </div>
-                                </a>
-                                <div class="date"><i class="fa fa-calendar"></i>20 May | 2016</div>
-                                <div class="comments meta-last"><i class="fa fa-comments-o"></i>12</div>
-                            </footer>
-                        </div>
-                    </div>
-                    <!-- post -->
-                    <div class="post col-xl-6">
-                        <div class="post-thumbnail">
-                            <a href="post.ftl">
-                                <img src="img/user.svg" alt="题图" >
-                            </a>
-                        </div>
-                        <div class="post-details">
-                            <a href="post.ftl">
-                                <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3>
-                            </a>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore.</p>
-                            <div class="post-footer d-flex align-items-center">
-                                <a href="#" class="d-flex align-items-center flex-wrap">
-                                    <div class="title">
-                                        <i class="fa fa-user"></i>
-                                        John Doe
-                                    </div>
-                                </a>
-                                <div class="date"><i class="fa fa-calendar"></i>20 May | 2016</div>
-                                <div class="comments meta-last"><i class="fa fa-comments-o"></i>6</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 翻页 -->
-                    <nav aria-label="Page navigation example" style="position: relative; left: 250px">
-                        <ul class="pagination pagination-template d-flex justify-content-center">
-                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a>
-                            </li>
-                            <li class="page-item"><a href="#" class="page-link active">1</a></li>
-                            <li class="page-item"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-        </main>
-        <aside class="col-lg-4">
+        <div class="col-lg-1"></div>
+        <aside class="col-lg-3">
             <!-- 搜索栏-->
             <div class="widget search">
                 <header>
@@ -181,13 +119,108 @@
                 <header>
                     <h3 class="h6">Categories</h3>
                 </header>
-                <div class="item d-flex justify-content-between"><a href="#">Growth</a><span>12</span></div>
-                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
-                <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
-                <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
-                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
             </div>
         </aside>
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-7">
+            <div class="content" style="padding: 0px">
+                <div class="cont w1000">
+                    <div class="list-item">
+                        <div class="item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class=" col-lg-5">
+                                        <div class="img"><img src="/img/sy_img1.jpg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="item-cont">
+                                            <h3>空间立体效果图，完美呈现最终效果
+                                                <button class="layui-btn layui-btn-danger new-icon">new</button>
+                                            </h3>
+                                            <h5>设计文章</h5>
+                                            <p>
+                                                室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
+                                            <a href="details.html" class="go-icon"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <div class="item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class=" col-lg-5">
+                                        <div class="img"><img src="/img/sy_img1.jpg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="item-cont">
+                                            <h3>空间立体效果图，完美呈现最终效果
+                                                <button class="layui-btn layui-btn-danger new-icon">new</button>
+                                            </h3>
+                                            <h5>设计文章</h5>
+                                            <p>
+                                                室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
+                                            <a href="details.html" class="go-icon"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class=" col-lg-5">
+                                        <div class="img"><img src="/img/sy_img1.jpg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="item-cont">
+                                            <h3>空间立体效果图，完美呈现最终效果
+                                                <button class="layui-btn layui-btn-danger new-icon">new</button>
+                                            </h3>
+                                            <h5>设计文章</h5>
+                                            <p>
+                                                室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
+                                            <a href="details.html" class="go-icon"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class=" col-lg-5">
+                                        <div class="img"><img src="/img/sy_img1.jpg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="item-cont">
+                                            <h3>空间立体效果图，完美呈现最终效果
+                                                <button class="layui-btn layui-btn-danger new-icon">new</button>
+                                            </h3>
+                                            <h5>设计文章</h5>
+                                            <p>
+                                                室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
+                                            <a href="details.html" class="go-icon"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav aria-label="Page navigation example" style="position: relative; left: 250px">
+                        <ul class="pagination pagination-template d-flex justify-content-center">
+                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a>
+                            </li>
+                            <li class="page-item"><a href="#" class="page-link active">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </main>
     </div>
 </div>
 <div class="footer-wrap">

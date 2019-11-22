@@ -37,6 +37,10 @@ public class ArticleInfo {
 
     private String def3;
 
+    /**---------非表字段---------*/
+    private ArticleContent articleContent;
+    /**------------------------*/
+
     public Long getId() {
         return id;
     }
@@ -171,5 +175,13 @@ public class ArticleInfo {
 
     public void setDef3(String def3) {
         this.def3 = def3 == null ? null : def3.trim();
+    }
+
+    public ArticleContent getArticleContent() {
+        return articleContent;
+    }
+
+    public void setArticleContent(ArticleContent articleContent) {
+        this.articleContent = articleContent;
     }
 }

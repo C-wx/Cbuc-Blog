@@ -31,4 +31,6 @@ public interface ArticleInfoMapper {
     int updateByPrimaryKey(ArticleInfo record);
 
     List<Map<String, Object>> queryBlogData(@Param("beginTime") String beginTime,@Param("endTime") String endTime);
+
+    Integer queryArticleNum(String key);
 }

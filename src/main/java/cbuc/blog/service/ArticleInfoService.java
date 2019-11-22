@@ -106,4 +106,9 @@ public class ArticleInfoService {
         articleInfoExample.createCriteria().andStatusNotEqualTo(StatusEnum.D.getStatus());
         return articleInfoMapper.countByExample(articleInfoExample);
     }
+
+    public Integer queryArticleNum(Long id) {
+        String key = "%" + id + "%";
+        return articleInfoMapper.queryArticleNum(key);
+    }
 }

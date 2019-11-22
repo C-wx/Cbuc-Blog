@@ -19,6 +19,10 @@ public class ArticleCategory {
 
     private String def3;
 
+    /**---------非表字段---------*/
+    private Integer articleNum;
+    /**------------------------*/
+
     public Long getId() {
         return id;
     }
@@ -81,5 +85,13 @@ public class ArticleCategory {
 
     public void setDef3(String def3) {
         this.def3 = def3 == null ? null : def3.trim();
+    }
+
+    public Integer getArticleNum() {
+        return articleNum;
+    }
+
+    public void setArticleNum(Integer articleNum) {
+        this.articleNum = articleNum;
     }
 }

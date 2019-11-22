@@ -209,6 +209,24 @@ main.posts-listing .post-footer {
   margin-bottom: 20px;
 }
 
+.post-details h3{
+  width: 350px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.post-details .text-muted{
+  height: 49px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .widget.latest-posts strong {
   font-size: 0.95em;
   display: block;
