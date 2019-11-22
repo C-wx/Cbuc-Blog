@@ -21,29 +21,30 @@ function getBlogs() {
             result.data.list.forEach((data)=>{
                 var img = data.articleContent.image==null?'/img/wy_img5.jpg':data.articleContent.image;
                 var html =
-                    "<div class=\"post col-xl-6\">\n" +
-                    "     <div class=\"post-thumbnail\">\n" +
-                    "         <a href=\"post.ftl\">\n" +
-                    "             <img src='"+img+"' alt='题图' >" +
-                    "         </a>\n" +
-                    "     </div>\n" +
-                    "     <div class=\"post-details\">\n" +
-                    "         <a href=\"post.ftl\">\n" +
-                    "             <h3 class=\"h4\" title='"+data.title+"'>"+data.title+"</h3></a>\n" +
-                    "         <p class=\"text-muted\">"+data.summary+"</p>\n" +
-                    "         <footer class=\"post-footer d-flex align-items-center\">\n" +
-                    "             <a href=\"#\" class=\"d-flex align-items-center flex-wrap\">\n" +
-                    "                 <div class=\"title\">\n" +
-                    "                     <i class=\"fa fa-user\"></i>\n" +
-                    "                     Cbuc\n" +
+                    "<div class=\"item\">\n" +
+                    "     <div class=\"container-fluid\">\n" +
+                    "         <div class=\"row\">\n" +
+                    "             <div class=\" col-lg-5\">\n" +
+                    "                 <div class=\"img\"><img src='"+img+"' alt=\"\"></div>\n" +
+                    "             </div>\n" +
+                    "             <div class=\"col-lg-7\">\n" +
+                    "                 <div class=\"item-cont\">\n" +
+                    "                     <h3>"+data.title+"" +
+                    "                         <#if "+Base.formatDate(data.createTime,'yyyy-MM-dd'+")><button class=\"layui-btn layui-btn-danger new-icon\">new</button>\n" +
+                    "                     </h3>\n" +
+                    "                     <h5>" +
+                    "             <i class=\"fa fa-calendar\">&nbsp;&nbsp;&nbsp;</i>"+Base.formatDate(data.createTime,"yyyy-MM-dd")+" &nbsp;&nbsp;|&nbsp;&nbsp; \n" +
+                    "             <i class=\"fa fa-comments-o\">&nbsp;&nbsp;&nbsp;</i>"+data.commentCount+"\n" +
+                    "</h5>\n" +
+                    "                     <p>\n" +
+                    "                         "+data.summary+"</p>\n" +
+                    "                     <a href=\"details.html\" class=\"go-icon\"></a>\n" +
                     "                 </div>\n" +
-                    "             </a>\n" +
-                    "             <div class=\"date\"><i class=\"fa fa-calendar\"></i>"+Base.formatDate(data.createTime,"yyyy-MM-dd")+"</div>\n" +
-                    "             <div class=\"comments meta-last\"><i class=\"fa fa-comments-o\"></i>"+data.commentCount+"</div>\n" +
-                    "         </footer>\n" +
+                    "             </div>\n" +
+                    "         </div>\n" +
                     "     </div>\n" +
                     " </div>";
-                $("#blogs").append(html);
+                $(".list-item").append(html);
             });
         }else{
             layer.msg(result.msg);

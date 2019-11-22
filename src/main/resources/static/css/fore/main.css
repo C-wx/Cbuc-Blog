@@ -29,6 +29,8 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .banner .text::before { position: absolute; right: -5px; content: '\FF1A';}
 .banner img{left: 600px;top:80px}
 
+
+/**blog*/
 .content{padding:100px 0 160px 0;}
 .content .cont .title{margin-bottom: 60px;}
 .content .cont .title a{font-size: 16px; color: #000!important;}
@@ -37,20 +39,12 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .content .cont .list-item .layui-fluid{padding:0;}
 .content .cont .list-item .item{margin-bottom: 80px; overflow: hidden;}
 .content .cont .list-item .item .img img{width: 100%;}
-.content .cont .list-item .item .item-cont{padding-left: 100px;}
+.content .cont .list-item .item .item-cont{padding-left: 40px;}
 .content .cont .list-item .item .item-cont .go-icon{width: 33px; height: 11px; background: url(/img/jiantou.png) center center no-repeat; display: block; padding:10px 0; margin-top: 16px;}
 .content .cont .list-item .item .item-cont h3{font-size: 24px; margin:20px 0;}
 .content .cont .list-item .item .item-cont h3 .new-icon{width: 36px; height: 18px; line-height: 18px; text-align: center; padding:0; margin: -3px 0 0 10px;}
 .content .cont .list-item .item .item-cont h5{font-size: 12px; color: #ff7f21; margin-bottom: 32px;}
-.content .cont .list-item .item .item-cont p{line-height: 37px;
-   display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  /* autoprefixer: off */
-  -webkit-box-orient: vertical;
-  /* autoprefixer: on */
-}
+.content .cont .list-item .item .item-cont p{line-height: 37px;display: -webkit-box;-webkit-box-orient: vertical; -webkit-line-clamp: 2;overflow: hidden; -webkit-box-orient: vertical;}
 .content .review-version{padding:20px; border-top: 1px dashed #dddddd;}
 .content .review-version img{float: left;}
 .content .review-version .form{margin-bottom: 16px;}
