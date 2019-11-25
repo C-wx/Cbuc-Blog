@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class OperatController {
         } catch (Exception e) {
             String msg = "新增留言异常";
             if (e instanceof MyException) {
-                log.error(e.getMessage() == null?msg:e.getMessage(),e);
+                log.error(e.getMessage() == null ? msg : e.getMessage(), e);
             }
             return Result.error();
         }
@@ -76,7 +78,7 @@ public class OperatController {
             List<ArticleCategory> articleCategoryList = foreService.getCategory();
             if (!articleCategoryList.isEmpty()) {
                 return Result.success(articleCategoryList);
-            }else{
+            } else {
                 return Result.error("获取分类信息异常");
             }
         } catch (Exception e) {
@@ -89,17 +91,25 @@ public class OperatController {
     @ResponseBody
     @RequestMapping("/getBlogs")
     public Object getBlogs(@RequestParam(value = "current", defaultValue = "1") Integer pn,
-                           @RequestParam(value = "size", defaultValue = "6") Integer size,
-                           @RequestParam(value = "sort", defaultValue = "id") String sort,
-                           @RequestParam(value = "order", defaultValue = "desc") String order) {
+                           @RequestParam(value = "size", defaultValue = "5") Integer size) {
         try {
             //在查询之前开启，传入页码，以及每页的大小
-            PageHelper.startPage(pn, size, sort + " " + order);     //pn:页码  10：页大小
+            PageHelper.startPage(pn, size);     //pn:页码  10：页大小
             //startPage后面紧跟的这个查询就是一个分页查询
             List<ArticleInfo> articleInfoList = articleInfoService.queryList(null);
             for (ArticleInfo articleInfo : articleInfoList) {
                 ArticleContent articleContent = articleContentService.queryDetail(articleInfo.getAcId());
                 articleInfo.setArticleContent(articleContent);
+                String nowTime = LocalDate.now().toString();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String createTime = df.format(articleInfo.getCreateTime());
+                if (createTime.split("-")[0].equals(nowTime.split("-")[0])
+                        && createTime.split("-")[1].equals(nowTime.split("-")[1])
+                        && (Integer.parseInt(createTime.split("-")[2]) + 2) >= Integer.parseInt(nowTime.split("-")[2])) {
+                    articleInfo.setIsNew(true);
+                }else {
+                    articleInfo.setIsNew(false);
+                }
             }
             //使用pageInfo包装查询后的结果，只需要将pageInfo交给页面就行了。
             //封装了详细的分页信息，包括有我们查询出来的数据，传入分页插件中要显示的页的数目 1 2 3 4 5

@@ -41,6 +41,7 @@ public class ArticleInfoService {
         if (StringUtils.isNotBlank(title)) {
             criteria.andTitleLike("%" + title + "%");
         }
+        example.setOrderByClause("isTop desc, id desc");
         return articleInfoMapper.selectByExample(example);
     }
 
