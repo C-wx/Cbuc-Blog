@@ -126,6 +126,19 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .details-content .article-cont .btn-box{text-align: center; margin-top: 50px;}
 /*end-details*/
 
+/*leacots*/
+.leacots-content .review-version{padding:0; border-top: 0;}
+.leacots-content .review-version .form .layui-form-item{clear: both;}
+.leacots-content .item-box{background: transparent;}
+.leacots-content .review-version .form{margin: 70px 0;}
+.leacots-content .review-version .form textarea{border-color: #402760;}
+.leacots-content .review-version .form .layui-input-block{margin-left: 0;}
+.leacots-content .review-version .banner-img{float: none;  width: 100%;}
+.leacots-content .review-version .volume{color: #3f2469;}
+.leacots-content .review-version .volume span{padding-left: 30px; color: #f37d25;}
+.leacots-content .review-version .list-cont .cont{max-width: 100%;}
+/*end-leacots*/
+
 
 /*album*/
 .album-content .img-info{margin-top: 66px; overflow: hidden; font-size: 16px; margin-bottom: 126px;}

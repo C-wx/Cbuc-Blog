@@ -1,56 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<#assign base=request.contextPath />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Document</title>
+    <title>${articleInfo.title}</title>
     <!--jquery-->
-    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="${base}/js/jquery-1.11.2.min.js"></script>
+    <script src="${base}/js/base.js"></script>
+    <script src="${base}/js/fore/blogDetail.js"></script>
+    <script src="${base}/plugins/editormd/editormd.js"></script>
+    <script src="${base}/plugins/editormd/lib/marked.min.js"></script>
+    <script src="${base}/plugins/editormd/lib/prettify.min.js"></script>
     <!-- layui -->
-    <script src="/plugins/layui/layui.all.js" type="application/javascript"></script>
-    <link rel="stylesheet" href="/plugins/layui/css/layui.css">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <script src="${base}/plugins/layui/layui.all.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="${base}/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="${base}/vendor/font-awesome/css/font-awesome.min.css">
     <!--主css-->
-    <link rel="stylesheet" type="text/css" href="/css/fore/main.css">
+    <link rel="stylesheet" type="text/css" href="${base}/css/fore/main.css">
+    <link rel="stylesheet" type="text/css" href="${base}/plugins/editormd/css/editormd.min.css">
+    <link rel="stylesheet" type="text/css" href="${base}/plugins/editormd/css/editormd.preview.css">
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .pop-modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+        }
+        .pop-img {
+            position: fixed;
+            display: flex;
+            top: 1%;
+            left: 23%;
+            width: 50%;
+            height: 100%;
+            z-index: 1000;
+        }
+        .pop-img .pop-img-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 35%;
+            height: 60%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        .pop-img .pop-img-box img {
+            display: block;
+            width: 400px;
+            height: 600px;
+        }
+    </style>
 </head>
 <body>
 <div class="header">
     <div class="menu-btn">
         <div class="menu"></div>
     </div>
-    <h1 class="logo">
-        <a href="index.html">
+    <h1 class="logo" style="font-size: 4.5rem;">
+        <a href="/">
             <span>MYBLOG</span>
-            <img src="../res/img/logo.png">
+            <img src="/img/logo.png">
         </a>
     </h1>
     <div class="nav">
-        <a href="index.html">文章</a>
-        <a href="whisper.ftl">微语</a>
-        <a href="contact.ftl">留言</a>
-        <a href="album.ftl">相册</a>
-        <a href="about.ftl" class="active">关于</a>
+        <a href="/">首页</a>
+        <a href="/blog" class="active">博客</a>
+        <a href="/contact">留言</a>
+        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
-        <li class="layui-nav-item"><a href="index.html" class="active">文章</a></li>
-        <li class="layui-nav-item"><a href="whisper.ftl">微语</a></li>
-        <li class="layui-nav-item"><a href="contact.ftl">留言</a></li>
-        <li class="layui-nav-item"><a href="album.ftl">相册</a></li>
-        <li class="layui-nav-item"><a href="about.ftl" class="active">关于</a></li>
+        <li class="layui-nav-item"><a href="/">首页</a></li>
+        <li class="layui-nav-item"><a href="/blog" class="active">博客</a></li>
+        <li class="layui-nav-item"><a href="/contact">留言</a></li>
+        <li class="layui-nav-item"><a href="album.ftl">Blink</a></li>
+        <li class="layui-nav-item"><a href="about.ftl">关于</a></li>
     </ul>
-    <p class="welcome-text">
-        欢迎来到<span class="name">小明</span>的博客~
-    </p>
+    <p class="access-count"><span class="text">访问量:&nbsp;</span><span
+            class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
+    <p class="blog-count"><span class="text">博文量:&nbsp;</span><span
+            class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
+    <p class="welcome-text"></p>
 </div>
-
-
 <div class="content whisper-content leacots-content details-content">
     <div class="cont w1000">
         <div class="whisper-list">
@@ -58,23 +95,49 @@
                 <div class="review-version">
                     <div class="form-box">
                         <div class="article-cont">
+                            <a href="/blog" style="position: relative;top: 30px;"><i class="fa fa-arrow-left" style="font-size: 30px;"></i></a>
+                            <!--头部-->
                             <div class="title">
-                                <h3>爷爷买街边小吃已经30多年</h3>
-                                <p class="cont-info"><span class="data">2018/08/08</span><span class="types">散文札记</span>
+                                <h3>${articleInfo.title}</h3>
+                                <p class="cont-info">
+                                    <span class="data types"><i
+                                            class="fa fa-calendar"></i>&nbsp;&nbsp;${articleInfo.createTime?string('yyyy/MM/dd')}</span>
+                                    <#list tags as tag>
+                                         <span class="layui-badge layui-bg-cyan">${tag}&nbsp;&nbsp;
+                                             <i class="fa fa-pencil" style="font-size:16px;color: #bcb69e;"></i></span>
+                                    </#list>
                                 </p>
                             </div>
-                            <p>
-                                爷每天5点起床，去鸡行里选鸡，选的是大小均匀的老母鸡，送到家里从杀鸡放血开始，鸡血要留着，倒在有盐水的碗里，烧好开水拔了毛连鸡嘴巴鼻子里的粘液都要挤出来。鸡洗干净六只鸡放到一个锅里炖，要炖一个上午，要注意火候鸡皮不能裂。</p>
-                            <img src="../res/img/wz_img1.jpg">
-                            <p>
-                                炖好的鸡挂在架子上晾干，再一片片剁开，每只鸡剁的块数都是一样，然后把鸡肉放到提前调好的水中腌两个小时，水里面的调料也是爷爷自己去市场买来磨成粉的。锅里还有剩的鸡汤，用鸡汤煮好面叶上面漂着一层绿油油的葱花。</p>
-                            <p>
-                                以前爷爷都是用扁担一头面叶一头板鸡挑到街上摊位上卖，现在爷爷年纪大了，只能用三轮车推着。摊位摆好奶奶就会慢悠悠的拎着一个保温桶和一个小红桶过来，保温桶里装的是卤鸡蛋，小红桶留着装别人吃剩的骨头喂狗。他们只有晚上出摊，收完摊已经要9点钟了，回去还要洗一天用的抹布和衣服，爷爷奶奶都非常爱干净，摊上的所有抹布纱布都是白色的每天洗的一个油点都看不到。9年前奶奶去世了，爷爷奶奶青梅竹马感情非常好，奶奶去世的时候爷爷甚至还要求过把奶奶埋在院子里。现在爷爷有时候会偷偷跟我说，你奶奶昨天回来看我了，她还给我掖被子，我知道是她，我跟她说你别挂念我，我好的很
-                                跑题了。</p>
-                            <p>昨天我给爷爷打电话，他跟我说他卖板鸡有人给他拍照，他问别人你拍我干嘛，那个人回答他说我给你照片放到网上，你生意会更好，我爷爷说你不用放网上我都不够卖的。</p>
+                            <br>
+                            <br>
+                            <!--内容-->
+                            <#if articleInfo.editor == 'markdown'>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="blog-view">
+                                    <textarea style="display:none;">${articleContent.content}</textarea>
+                                </div>
+                            </#if>
+                            <#if articleInfo.editor == 'html'>${articleContent.content}</#if>
+                            <script type="text/javascript">
+                                $(function () {
+                                    editormd.markdownToHTML("blog-view", {
+                                        htmlDecode: "style,script,iframe", //可以过滤标签解码
+                                        emoji: true,
+                                        taskList: true
+                                    })
+                                });
+                            </script>
+                            <!-- 图片弹窗 -->
+                            <div id="pop_img" class="pop-modal">
+                                <div class="pop-img">
+                                    <div class="pop-img-box">
+                                        <img src="/static/img/alipay2wei.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--翻篇-->
                             <div class="btn-box">
-                                <button class="layui-btn layui-btn-primary">上一篇</button>
-                                <button class="layui-btn layui-btn-primary">下一篇</button>
+                                <button onclick="showPay()" class="layui-btn layui-btn-danger"><i class="fa fa-jpy"></i>&nbsp;&nbsp;打赏</button>
+                                <a href="/gotoArticle/${articleInfo.id+1}" class="layui-btn layui-btn-primary">下一篇</a>
                             </div>
                         </div>
                         <div class="form">
@@ -99,7 +162,7 @@
 
                         <div class="cont">
                             <div class="img">
-                                <img src="../res/img/header.png" alt="">
+                                <img src=" /img/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -109,7 +172,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="../res/img/header.png" alt="">
+                                <img src=" /img/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -119,7 +182,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="../res/img/header.png" alt="">
+                                <img src=" /img/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -129,7 +192,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="../res/img/header.png" alt="">
+                                <img src=" /img/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -139,7 +202,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="../res/img/header.png" alt="">
+                                <img src=" /img/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -154,49 +217,12 @@
         <div id="demo" style="text-align: center;"></div>
     </div>
 </div>
-<script type="text/html" id="laytplCont">
-    <div class="cont">
-        <div class="img">
-            {{# if(d.avatar){ }}
-            <img src="{{d.avatar}}" alt="">
-            {{# } else { }}
-            <img src="../res/img/header.png" alt="">
-            {{# } }}
-        </div>
-        <div class="text">
-            <p class="tit"><span class="name">{{d.name}}</span><span class="data">2018/06/06</span></p>
-            <p class="ct">{{d.cont}}</p>
-        </div>
-    </div>
-</script>
-<div class="footer-wrap">
-    <div class="footer w1000">
-        <div class="qrcode">
-            <img src="../res/img/erweima.jpg">
-        </div>
-        <div class="practice-mode">
-            <img src="../res/img/down_img.jpg">
-            <div class="text">
-                <h4 class="title">我的联系方式</h4>
-                <p>微信<span class="WeChat">1234567890</span></p>
-                <p>手机<span class="iphone">1234567890</span></p>
-                <p>邮箱<span class="email">1234567890@qq.com</span></p>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript" src="../res/layui/layui.js"></script>
 <script type="text/javascript">
     layui.config({
-        base: '../res/js/util/'
-    }).use(['element', 'laypage', 'form', 'menu'], function () {
-        element = layui.element, laypage = layui.laypage, form = layui.form, menu = layui.menu;
-        laypage.render({
-            elem: 'demo'
-            , count: 70 //数据总数，从服务端得到
-        });
+        base: '/static/js/fore/'
+    }).use(['element', 'laypage', 'jquery', 'menu', 'mm'], function () {
+        menu = layui.menu;
         menu.init();
-        menu.submit();
     })
 </script>
 </body>

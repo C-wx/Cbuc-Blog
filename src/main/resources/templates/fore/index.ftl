@@ -32,14 +32,14 @@
         </a>
     </h1>
     <div class="nav">
-        <a href="/" class="active">文章</a>
+        <a href="/" class="active">首页</a>
         <a href="/blog">博客</a>
         <a href="/contact">留言</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
-        <li class="layui-nav-item"><a href="/" class="active">文章</a></li>
+        <li class="layui-nav-item"><a href="/" class="active">首页</a></li>
         <li class="layui-nav-item"><a href="whisper.ftl">博客</a></li>
         <li class="layui-nav-item"><a href="/contact">留言</a></li>
         <li class="layui-nav-item"><a href="album.ftl">Blink</a></li>

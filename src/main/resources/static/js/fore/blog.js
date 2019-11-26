@@ -26,7 +26,7 @@ function getBlogs(pn) {
                 var prePage = result.data.pageNum-1;
                 $(".pagination-template").prepend("<li class=\"page-item\"><a onclick='getBlogs("+prePage+")' class=\"page-link\"> <i class=\"fa fa-angle-left\"></i></a></li>");
             }
-            if (result.data.pageNum >= 4) {
+            if (result.data.pageNum >= 4 && result.data.pages > 5) {
                 $(".pagination-template").append("<li class=\"page-item\"><a onclick='getBlogs(1)' class=\"page-link\"> <i class=\"fa fa-angle-left\"></i><i class=\"fa fa-angle-left\"></i></a></li>");
             }
             result.data.list.forEach((data) => {
@@ -49,7 +49,7 @@ function getBlogs(pn) {
                     "</h5>\n" +
                     "                     <p>\n" +
                     "                         " + data.summary + "</p>\n" +
-                    "                     <a href=\"details.html\" class=\"go-icon\"></a>\n" +
+                    "                     <a href='/gotoArticle/"+data.id+"' class=\"go-icon\"></a>\n" +
                     "                 </div>\n" +
                     "             </div>\n" +
                     "         </div>\n" +
@@ -72,7 +72,7 @@ function getBlogs(pn) {
                     $(".page-item[page=" + data + "]").addClass("active");
                 }
             });
-            if (result.data.pageNum <= result.data.pages-3) {
+            if (result.data.pageNum <= result.data.pages-3 && result.data.pages > 5) {
                 $(".pagination-template").append("<li class=\"page-item\"><a onclick='getBlogs("+result.data.pages+")' class=\"page-link\"> <i class=\"fa fa-angle-right\"></i><i class=\"fa fa-angle-right\"></i></a></li>");
             }
             if (result.data.hasNextPage) {

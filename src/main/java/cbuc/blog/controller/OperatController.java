@@ -18,10 +18,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -91,11 +89,9 @@ public class OperatController {
     @ResponseBody
     @RequestMapping("/getBlogs")
     public Object getBlogs(@RequestParam(value = "current", defaultValue = "1") Integer pn,
-                           @RequestParam(value = "size", defaultValue = "5") Integer size) {
+                           @RequestParam(value = "size", defaultValue = "4") Integer size) {
         try {
-            //在查询之前开启，传入页码，以及每页的大小
-            PageHelper.startPage(pn, size);     //pn:页码  10：页大小
-            //startPage后面紧跟的这个查询就是一个分页查询
+            PageHelper.startPage(pn, size);
             List<ArticleInfo> articleInfoList = articleInfoService.queryList(null);
             for (ArticleInfo articleInfo : articleInfoList) {
                 ArticleContent articleContent = articleContentService.queryDetail(articleInfo.getAcId());
@@ -111,8 +107,6 @@ public class OperatController {
                     articleInfo.setIsNew(false);
                 }
             }
-            //使用pageInfo包装查询后的结果，只需要将pageInfo交给页面就行了。
-            //封装了详细的分页信息，包括有我们查询出来的数据，传入分页插件中要显示的页的数目 1 2 3 4 5
             PageInfo pageInfo = new PageInfo(articleInfoList, 5);
             return Result.success(pageInfo);
         } catch (Exception e) {
@@ -120,5 +114,16 @@ public class OperatController {
             log.error("查询博文异常");
             return Result.error("查询博文异常");
         }
+    }
+
+    @RequestMapping("/gotoArticle/{id}")
+    public String gotoArticle(@PathVariable(value = "id") Long id, Model model) {//todo 自定义异常页面, 抛出异常
+        ArticleInfo articleInfo = articleInfoService.queryDeteil(id);
+        String[] tags = articleInfo.getTag().split(",");
+        ArticleContent articleContent = articleContentService.queryDetail(id);
+        model.addAttribute("articleInfo",articleInfo);
+        model.addAttribute("articleContent",articleContent);
+        model.addAttribute("tags",tags);
+        return "fore/details";
     }
 }

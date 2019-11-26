@@ -34,14 +34,14 @@
         </a>
     </h1>
     <div class="nav">
-        <a href="/">文章</a>
+        <a href="/">首页</a>
         <a href="/blog">博客</a>
         <a href="/contact" class="active">留言</a>
         <a href="whisper.ftl">Blink</a>
         <a href="about.ftl">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
-        <li class="layui-nav-item"><a href="/">文章</a></li>
+        <li class="layui-nav-item"><a href="/">首页</a></li>
         <li class="layui-nav-item"><a href="/blog">博客</a></li>
         <li class="layui-nav-item"><a href="/contact" class="active">留言</a></li>
         <li class="layui-nav-item"><a href="whisper.ftl">Blink</a></li>
