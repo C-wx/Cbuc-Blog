@@ -112,4 +112,12 @@ public class ArticleInfoService {
         String key = "%" + id + "%";
         return articleInfoMapper.queryArticleNum(key);
     }
+
+    public int doLike(Integer count, String aiId) {
+        return articleInfoMapper.doLike(count,aiId);
+    }
+
+    public int addAccessCount(Long id) {
+        return articleInfoMapper.addAccessCount(id);
+    }
 }

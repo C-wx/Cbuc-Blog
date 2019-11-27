@@ -61,4 +61,19 @@ public class CommentService {
     public Integer queryTotal() {
         return commentMapper.queryTotal();
     }
+
+    public List<Comment> queryDetailList(Long id) {
+        CommentExample commentExample = new CommentExample();
+        commentExample.createCriteria().andParentIdEqualTo(id);
+        commentExample.setOrderByClause("create_time desc");
+        return commentMapper.selectByExample(commentExample);
+    }
+
+    public int doAdd(Comment comment) {
+        return commentMapper.insertSelective(comment);
+    }
+
+    public int doLike(Integer count, String id) {
+        return 0;
+    }
 }

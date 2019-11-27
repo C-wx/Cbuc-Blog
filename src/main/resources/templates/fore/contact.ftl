@@ -64,7 +64,7 @@
                 </div>
                 <div class="form-group">
                     <input type="email" name="email" id="email" class="form-control"
-                           placeholder="Email" requiredPemail"required" onkeyup="verifyEmail()">
+                           placeholder="Email" requiredPemail"required" onkeyup="Base.verifyEmail()">
                 </div>
                 <div class="form-group">
                                     <textarea name="message" id="message" class="form-control" rows="4"

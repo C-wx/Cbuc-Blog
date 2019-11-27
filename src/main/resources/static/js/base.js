@@ -68,6 +68,23 @@ var Base = {
             return "(生效中)";
         }
     }
+    , openError: function (msg, target) {
+        errorPrompt = layer.tips('<span style="font-size: 14px">' + msg + '</span>', target, {
+            tips: [1, '#ffb3a6'],
+            time: 30000
+        });
+    }
+    ,verifyEmail: function () {
+        var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        if (!reg.test($("#email").val())) {
+            $("#email").addClass("border-warning");
+            Base.openError("不是正确的邮箱地址","#email");
+        } else {
+            $("#email").removeClass("border-warning");
+            layer.close(errorPrompt);
+        }
+    }
+
 };
 Date.prototype.format = function (format) {
     var date = {

@@ -1,15 +1,9 @@
 package cbuc.blog.controller;
 
 import cbuc.blog.base.Result;
-import cbuc.blog.bean.ArticleCategory;
-import cbuc.blog.bean.ArticleContent;
-import cbuc.blog.bean.ArticleInfo;
-import cbuc.blog.bean.Contact;
+import cbuc.blog.bean.*;
 import cbuc.blog.exception.MyException;
-import cbuc.blog.service.ArticleContentService;
-import cbuc.blog.service.ArticleInfoService;
-import cbuc.blog.service.ContactService;
-import cbuc.blog.service.ForeService;
+import cbuc.blog.service.*;
 import cbuc.blog.utils.IPutil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -22,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -49,6 +44,9 @@ public class OperatController {
 
     @Autowired
     private ForeService foreService;
+
+    @Autowired
+    private CommentService commentService;
 
     @ApiOperation("留言")
     @ResponseBody
@@ -117,13 +115,63 @@ public class OperatController {
     }
 
     @RequestMapping("/gotoArticle/{id}")
-    public String gotoArticle(@PathVariable(value = "id") Long id, Model model) {//todo 自定义异常页面, 抛出异常
+    public String gotoArticle(@PathVariable(value = "id") Long id, HttpSession session) {//todo 自定义异常页面, 抛出异常
+        int res = articleInfoService.addAccessCount(id);
+        return "redirect:/details?id="+id;
+    }
+
+    @RequestMapping("/details")
+    public String toDetail(HttpSession session,Model model,Long id) {
         ArticleInfo articleInfo = articleInfoService.queryDeteil(id);
         String[] tags = articleInfo.getTag().split(",");
         ArticleContent articleContent = articleContentService.queryDetail(id);
+        List<Comment> comments = commentService.queryDetailList(articleInfo.getId());
+        articleInfo.setComments(comments);
         model.addAttribute("articleInfo",articleInfo);
         model.addAttribute("articleContent",articleContent);
         model.addAttribute("tags",tags);
+        model.addAttribute("commentNum",comments.size());
         return "fore/details";
+    }
+
+    @ResponseBody
+    @RequestMapping("/doLike")
+    public Object doLike(String type, Integer count,String id) {
+        try {
+            int res = 0;
+            if ("1".equals(type)) {
+                res = articleInfoService.doLike(count,id);
+            } else if ("2".equals(type)) {
+                res = commentService.doLike(count,id);
+            }
+            if (res>0) {
+                return Result.success();
+            }else {
+                return Result.error("点赞功能异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("点赞功能异常");
+            return Result.error("点赞功能异常");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/addComment")
+    public Object addComment(Long aiId,String content,HttpServletRequest request) {
+        try {
+            String loginIp = IPutil.getIpAddress(request);
+            Comment comment = Comment.builder().loginIp(loginIp).parentId(aiId).content(content).type("1").createTime(new Date()).build();
+            int res = commentService.doAdd(comment);
+            if (res>0) {
+                return Result.success(comment);
+            }else {
+                return Result.error("发布评论异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("发布评论异常");
+            return Result.error("发布评论异常");
+        }
     }
 }

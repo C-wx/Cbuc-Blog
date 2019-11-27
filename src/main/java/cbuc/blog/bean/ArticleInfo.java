@@ -3,6 +3,7 @@ package cbuc.blog.bean;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class ArticleInfo {
@@ -44,5 +45,7 @@ public class ArticleInfo {
     private ArticleContent articleContent;
 
     private Boolean isNew;
+
+    private List<Comment> comments;
     /**------------------------*/
 }

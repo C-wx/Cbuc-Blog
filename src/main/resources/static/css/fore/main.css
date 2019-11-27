@@ -54,7 +54,7 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .content .review-version .list-cont .cont{padding:40px 0 30px 0; border-bottom: 1px solid #e5e5e5;}
 .content .review-version .list-cont .cont:last-child{border-bottom: 0;}
 .content .review-version .list-cont .cont .text{padding-left: 70px; line-height: 22px; color: #333; }
-.content .review-version .list-cont .cont .text .tit{margin-bottom: 18px;}
+.content .review-version .list-cont .cont .text .tit{margin-bottom: 10px;}
 .content .review-version .list-cont .cont .text .data{float: right;}
 
 /*footer*/
@@ -139,6 +139,23 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .leacots-content .review-version .list-cont .cont{max-width: 100%;}
 /*end-leacots*/
 
+/**like*/
+/*文章点赞*/
+.heart {background: url(/img/web_heart_animation.png);background-position: left;background-repeat: no-repeat;height: 100px;width: 100px;cursor: pointer;position: absolute;left:524px;top:-32px;background-size:2900%;}
+.heart:hover, .heart:focus{background-position: right;}
+@-webkit-keyframes heartBlast { 0% {background-position: left;} 100% {background-position: right;} }
+@keyframes heartBlast { 0% {background-position: left;} 100% {background-position: right;} }
+.heartAnimation {display: inline-block;-webkit-animation-name: heartBlast;animation-name: heartBlast;-webkit-animation-duration: .8s;animation-duration: .8s;-webkit-animation-iteration-count: 1;animation-iteration-count: 1;-webkit-animation-timing-function: steps(28);animation-timing-function: steps(28);background-position: right;}
+.feed{clear: both; margin-bottom: 20px; height: 20px;width: 100px; position: relative;}
+.likeCount{font-family: 'Georgia', Times, Times New Roman, serif; margin-top: -37px;margin-left: 600px;font-size: 25px;color: #999999}
+/**endLike*/
+
+/**图片弹窗*/
+.pop-modal {display: none;position: fixed;z-index: 999;}
+.pop-img {position: fixed;display: flex;top: 1%;left: 23%;width: 50%;height: 100%;z-index: 1000;}
+.pop-img .pop-img-box {position: absolute;top: 50%;left: 50%;width: 35%;height: 60%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+.pop-img .pop-img-box img {display: block;width: 370px;height: 600px;}
+/**end*/
 
 /*album*/
 .album-content .img-info{margin-top: 66px; overflow: hidden; font-size: 16px; margin-bottom: 126px;}
@@ -218,6 +235,7 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
   .content .review-version .list-cont .cont .text .tit{line-height: 50px; margin-bottom: 0;}
   .content .review-version .list-cont .cont .text .tit .name{margin-left: 20px;}
   .content .review-version .list-cont .cont .text .ct{margin-top: 20px;}
+  .content .review-version .list-cont .cont .text .flag{font-size: 20px;!important;}
   .leacots-content .review-version .form{margin:40px 0;}
   .album-content .img-list .space>*{padding:10px;}
   .album-content .img-list .layui-laypage{margin: 50px 0 0 0;}

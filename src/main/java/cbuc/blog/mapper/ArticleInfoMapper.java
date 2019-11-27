@@ -33,4 +33,8 @@ public interface ArticleInfoMapper {
     List<Map<String, Object>> queryBlogData(@Param("beginTime") String beginTime,@Param("endTime") String endTime);
 
     Integer queryArticleNum(String key);
+
+    int doLike(Integer count, String aiId);
+
+    int addAccessCount(Long id);
 }

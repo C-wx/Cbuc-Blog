@@ -6,17 +6,17 @@ $(function () {
         var message = $("#message").val();
         if (!name) {
             $("#name").addClass("border-warning");
-            openError("名称不能为空","#name");
+            Base.openError("名称不能为空","#name");
             return
         }
         if (!email) {
             $("#email").addClass("border-warning");
-            openError("邮箱不能为空","#email");
+            Base.openError("邮箱不能为空","#email");
             return
         }
         if (!message) {
             $("#message").addClass("border-warning");
-            openError("内容不能为空","#message");
+            Base.openError("内容不能为空","#message");
             return
         }
         if (!flag) {
@@ -57,19 +57,3 @@ $(function () {
         layer.close(errorPrompt);
     });
 });
-verifyEmail = () => {
-    var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-    if (!reg.test($("#email").val())) {
-        $("#email").addClass("border-warning");
-        openError("不是正确的邮箱地址","#email");
-    } else {
-        $("#email").removeClass("border-warning");
-        layer.close(errorPrompt);
-    }
-};
-openError = (msg, target) => {
-    errorPrompt = layer.tips('<span style="font-size: 14px">' + msg + '</span>', target, {
-        tips: [1, '#ffb3a6'],
-        time: 30000
-    });
-};

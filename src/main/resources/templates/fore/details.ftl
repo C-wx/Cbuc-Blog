@@ -26,36 +26,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .pop-modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-        }
-        .pop-img {
-            position: fixed;
-            display: flex;
-            top: 1%;
-            left: 23%;
-            width: 50%;
-            height: 100%;
-            z-index: 1000;
-        }
-        .pop-img .pop-img-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 35%;
-            height: 60%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
-        .pop-img .pop-img-box img {
-            display: block;
-            width: 400px;
-            height: 600px;
-        }
-    </style>
 </head>
 <body>
 <div class="header">
@@ -95,17 +65,22 @@
                 <div class="review-version">
                     <div class="form-box">
                         <div class="article-cont">
-                            <a href="/blog" style="position: relative;top: 30px;"><i class="fa fa-arrow-left" style="font-size: 30px;"></i></a>
+                            <a href="/blog" style="position: relative;top: 30px;"><i class="fa fa-arrow-left"
+                                                                                     style="font-size: 30px;"></i></a>
                             <!--头部-->
                             <div class="title">
                                 <h3>${articleInfo.title}</h3>
                                 <p class="cont-info">
+                                    <span class="data types"><i class="fa fa-user"></i>&nbsp;&nbsp;Cbuc</span>
                                     <span class="data types"><i
                                             class="fa fa-calendar"></i>&nbsp;&nbsp;${articleInfo.createTime?string('yyyy/MM/dd')}</span>
+                                    <span class="data types"><i
+                                            class="fa fa-eye"></i>&nbsp;&nbsp;${articleInfo.accessCount}</span>
                                     <#list tags as tag>
                                          <span class="layui-badge layui-bg-cyan">${tag}&nbsp;&nbsp;
                                              <i class="fa fa-pencil" style="font-size:16px;color: #bcb69e;"></i></span>
                                     </#list>
+
                                 </p>
                             </div>
                             <br>
@@ -134,82 +109,56 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--翻篇-->
+                            <!--底部-->
                             <div class="btn-box">
-                                <button onclick="showPay()" class="layui-btn layui-btn-danger"><i class="fa fa-jpy"></i>&nbsp;&nbsp;打赏</button>
-                                <a href="/gotoArticle/${articleInfo.id+1}" class="layui-btn layui-btn-primary">下一篇</a>
+                                <i onclick="showPay()" class="fa fa-money"
+                                   style="font-size: 40px;cursor: pointer;color: #ffe184;"></i>
+                                </button>
+                                <div class="feed" id="feed1">
+                                    <div class="heart " id="like" rel="like" aiId="${articleInfo.id}"></div>
+                                    <div class="likeCount" id="likeCount">${articleInfo.likeCount}</div>
+                                </div>
                             </div>
                         </div>
                         <div class="form">
-                            <form class="layui-form" action="">
-                                <div class="layui-form-item layui-form-text">
-                                    <div class="layui-input-block">
-                                        <textarea name="desc" placeholder="既然来了，就说几句" class="layui-textarea"></textarea>
-                                    </div>
+                            <div class="layui-form-item layui-form-text">
+                                <div class="layui-input-block">
+                                    <textarea id="desc" placeholder="既然来了，就说几句" class="layui-textarea"></textarea>
                                 </div>
-                                <div class="layui-form-item">
-                                    <div class="layui-input-block" style="text-align: right;">
-                                        <button class="layui-btn definite">確定</button>
-                                    </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block" style="text-align: right;">
+                                    <button class="layui-btn commentBtn" aiId="${articleInfo.id}">评论</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                     <div class="volume">
-                        全部留言 <span>10</span>
+                        全部留言 <span id="commentNum">${commentNum}</span>
                     </div>
                     <div class="list-cont">
-
-                        <div class="cont">
-                            <div class="img">
-                                <img src=" /img/header.png" alt="">
+                        <#if commentNum == 0>
+                            <div style="text-align: center" id="noneCom">
+                                暂无留言！
                             </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！</p>
+                        </#if>
+                        <#list articleInfo.comments as comment>
+                            <div class="cont">
+                                <div class="img">
+                                    <img src=" /img/header.png" alt="">
+                                </div>
+                                <div class="text">
+                                    <p class="tit"><span class="name">${comment.loginIp}</span><span
+                                            class="data">${comment.createTime?string('yyyy/MM/dd')}</span></p>
+                                    <p class="ct">${comment.content}</p>
+                                    <div style="font-size: 23px;margin: 5px 0px 0px 865px">
+                                        <i class="fa fa-thumbs-o-up flag" style="margin-right: 10px;cursor: pointer"
+                                           onclick="addLike(${comment.id})" ></i>
+                                        <i class="fa fa-comment-o flag" style="cursor: pointer;"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src=" /img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！</p>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src=" /img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！</p>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src=" /img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！</p>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src=" /img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！</p>
-                            </div>
-                        </div>
+                        </#list>
                     </div>
                 </div>
             </div>
