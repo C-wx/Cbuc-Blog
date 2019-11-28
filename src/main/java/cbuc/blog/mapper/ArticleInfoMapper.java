@@ -37,4 +37,6 @@ public interface ArticleInfoMapper {
     int doLike(Integer count, String aiId);
 
     int addAccessCount(Long id);
+
+    List<ArticleInfo> getHotBlogs();
 }

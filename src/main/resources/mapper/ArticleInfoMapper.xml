@@ -253,7 +253,16 @@
     <select id="queryArticleNum" resultType="java.lang.Integer">
       select count(*) from bg_article_info where CG_ID LIKE #{Param1}
     </select>
-    <update id="updateByExampleSelective" parameterType="map">
+  <select id="getHotBlogs" resultType="cbuc.blog.bean.ArticleInfo">
+    SELECT * FROM
+	bg_article_info
+    ORDER BY
+	(
+		ACCESS_COUNT * 3  + Like_COUNT * 1 + COMMENT_COUNT * 1
+	)  DESC
+    LIMIT 3;
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
     update bg_article_info
     <set>
       <if test="record.id != null">

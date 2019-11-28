@@ -34,4 +34,6 @@ public interface CommentMapper {
     Integer queryNowday();
 
     Integer queryTotal();
+
+    int doLike(Integer count, String id);
 }

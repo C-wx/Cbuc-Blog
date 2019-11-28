@@ -307,7 +307,7 @@ public class BaseController {
                               String title) {
         try {
             PageHelper.startPage(pn, size, sort + " " + order);     //pn:页码  10：页大小
-            List<ArticleInfo> articleInfos = articleInfoService.queryList(title);
+            List<ArticleInfo> articleInfos = articleInfoService.queryList(title,null,null);
             PageInfo pageInfo = new PageInfo(articleInfos, 5);
             return new LayuiTable<>(pageInfo.getTotal(), pageInfo.getList());
         } catch (Exception e) {

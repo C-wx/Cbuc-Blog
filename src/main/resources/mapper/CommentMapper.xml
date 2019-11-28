@@ -329,4 +329,8 @@
       DEF3 = #{def3,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+  <update id="doLike">
+    update bg_comment set like_count = like_count + #{param1}
+    where id = #{param2}
+  </update>
 </mapper>

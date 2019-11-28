@@ -46,8 +46,8 @@
         <li class="layui-nav-item"><a href="/">首页</a></li>
         <li class="layui-nav-item"><a href="/blog" class="active">博客</a></li>
         <li class="layui-nav-item"><a href="/contact">留言</a></li>
-        <li class="layui-nav-item"><a href="album.ftl">Blink</a></li>
-        <li class="layui-nav-item"><a href="about.ftl">关于</a></li>
+        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a></li>
+        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a></li>
     </ul>
     <p class="access-count"><span class="text">访问量:&nbsp;</span><span
             class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
@@ -66,7 +66,7 @@
                 </header>
                 <form action="#" class="search-form">
                     <div class="form-group">
-                        <input type="search" placeholder="What are you looking for?">
+                        <input type="search" id="keyword" placeholder="What are you looking for?">
                         <button type="submit" class="submit">
                             <i class="fa fa-search"></i>
                         </button>
@@ -78,41 +78,7 @@
                 <header>
                     <h3 class="h6">Latest Posts</h3>
                 </header>
-                <div class="blog-posts">
-                    <a href="#">
-                        <div class="item d-flex align-items-center">
-                            <div class="image"><img src="img/user.svg" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                                <div class="d-flex align-items-center">
-                                    <div class="views"><i class="fa fa-eye"></i> 500</div>
-                                    <div class="comments"><i class="fa fa-comments-o"></i>12</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="item d-flex align-items-center">
-                            <div class="image"><img src="img/user.svg" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                                <div class="d-flex align-items-center">
-                                    <div class="views"><i class="fa fa-eye"></i> 500</div>
-                                    <div class="comments"><i class="fa fa-comments-o"></i>12</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="item d-flex align-items-center">
-                            <div class="image"><img src="img/user.svg" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                                <div class="d-flex align-items-center">
-                                    <div class="views"><i class="fa fa-eye"></i> 500</div>
-                                    <div class="comments"><i class="fa fa-comments-o"></i>12</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <div class="blog-posts"></div>
             </div>
             <!-- 标签栏-->
             <div class="widget categories">

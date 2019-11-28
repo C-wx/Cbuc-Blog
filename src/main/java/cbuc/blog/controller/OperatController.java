@@ -87,10 +87,12 @@ public class OperatController {
     @ResponseBody
     @RequestMapping("/getBlogs")
     public Object getBlogs(@RequestParam(value = "current", defaultValue = "1") Integer pn,
-                           @RequestParam(value = "size", defaultValue = "4") Integer size) {
+                           @RequestParam(value = "size", defaultValue = "4") Integer size,
+                           @RequestParam(value = "cgid", required = false) String id,
+                           @RequestParam(value = "keyword", required = false) String keyword) {
         try {
             PageHelper.startPage(pn, size);
-            List<ArticleInfo> articleInfoList = articleInfoService.queryList(null);
+            List<ArticleInfo> articleInfoList = articleInfoService.queryList(null, id, keyword);
             for (ArticleInfo articleInfo : articleInfoList) {
                 ArticleContent articleContent = articleContentService.queryDetail(articleInfo.getAcId());
                 articleInfo.setArticleContent(articleContent);
@@ -101,7 +103,7 @@ public class OperatController {
                         && createTime.split("-")[1].equals(nowTime.split("-")[1])
                         && (Integer.parseInt(createTime.split("-")[2]) + 2) >= Integer.parseInt(nowTime.split("-")[2])) {
                     articleInfo.setIsNew(true);
-                }else {
+                } else {
                     articleInfo.setIsNew(false);
                 }
             }
@@ -117,36 +119,37 @@ public class OperatController {
     @RequestMapping("/gotoArticle/{id}")
     public String gotoArticle(@PathVariable(value = "id") Long id, HttpSession session) {//todo 自定义异常页面, 抛出异常
         int res = articleInfoService.addAccessCount(id);
-        return "redirect:/details?id="+id;
+        return "redirect:/details?id=" + id;
     }
 
     @RequestMapping("/details")
-    public String toDetail(HttpSession session,Model model,Long id) {
+    public String toDetail(HttpSession session, Model model, Long id) {
         ArticleInfo articleInfo = articleInfoService.queryDeteil(id);
         String[] tags = articleInfo.getTag().split(",");
         ArticleContent articleContent = articleContentService.queryDetail(id);
         List<Comment> comments = commentService.queryDetailList(articleInfo.getId());
+        commentService.fillSecondComments(comments);
         articleInfo.setComments(comments);
-        model.addAttribute("articleInfo",articleInfo);
-        model.addAttribute("articleContent",articleContent);
-        model.addAttribute("tags",tags);
-        model.addAttribute("commentNum",comments.size());
+        model.addAttribute("articleInfo", articleInfo);
+        model.addAttribute("articleContent", articleContent);
+        model.addAttribute("tags", tags);
+        model.addAttribute("commentNum", comments.size());
         return "fore/details";
     }
 
     @ResponseBody
     @RequestMapping("/doLike")
-    public Object doLike(String type, Integer count,String id) {
+    public Object doLike(String type, Integer count, String id) {
         try {
             int res = 0;
             if ("1".equals(type)) {
-                res = articleInfoService.doLike(count,id);
+                res = articleInfoService.doLike(count, id);
             } else if ("2".equals(type)) {
-                res = commentService.doLike(count,id);
+                res = commentService.doLike(count, id);
             }
-            if (res>0) {
+            if (res > 0) {
                 return Result.success();
-            }else {
+            } else {
                 return Result.error("点赞功能异常");
             }
         } catch (Exception e) {
@@ -158,20 +161,33 @@ public class OperatController {
 
     @ResponseBody
     @RequestMapping("/addComment")
-    public Object addComment(Long aiId,String content,HttpServletRequest request) {
+    public Object addComment(Long pid, String content, String type, HttpServletRequest request) {
         try {
             String loginIp = IPutil.getIpAddress(request);
-            Comment comment = Comment.builder().loginIp(loginIp).parentId(aiId).content(content).type("1").createTime(new Date()).build();
+            Comment comment = Comment.builder().loginIp(loginIp).parentId(pid).content(content).type(type).createTime(new Date()).build();
             int res = commentService.doAdd(comment);
-            if (res>0) {
+            if (res > 0) {
                 return Result.success(comment);
-            }else {
+            } else {
                 return Result.error("发布评论异常");
             }
         } catch (Exception e) {
             e.printStackTrace();
             log.error("发布评论异常");
             return Result.error("发布评论异常");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/getHotBlogs")
+    public Object getHotBlogs() {
+        try {
+            List<ArticleInfo> articleinfos = articleInfoService.getHotBlogs();
+            return Result.success(articleinfos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("查询热文异常");
+            return Result.error("查询热文异常");
         }
     }
 }

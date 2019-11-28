@@ -49,6 +49,7 @@
         <!-- additivity表示是否追加,防止重复,因为root已经接收过一次了 -->
         <logger name="cbuc.blog.mapper" level="DEBUG" additivity="true">
             <appender-ref ref="db_log"/>
+            <appender-ref ref="console"/>
         </logger>
         <logger name="cbuc.blog.controller" level="DEBUG" additivity="false">
             <appender-ref ref="service_log"/>

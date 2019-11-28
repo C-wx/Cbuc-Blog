@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -38,5 +39,7 @@ public class Comment {
 
     /**--------非表字段------------*/
     private String detail;
+
+    private List<Comment> secondComments;
     /**---------------------------*/
 }

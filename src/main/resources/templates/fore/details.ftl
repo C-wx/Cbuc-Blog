@@ -151,10 +151,30 @@
                                     <p class="tit"><span class="name">${comment.loginIp}</span><span
                                             class="data">${comment.createTime?string('yyyy/MM/dd')}</span></p>
                                     <p class="ct">${comment.content}</p>
-                                    <div style="font-size: 23px;margin: 5px 0px 0px 865px">
-                                        <i class="fa fa-thumbs-o-up flag" style="margin-right: 10px;cursor: pointer"
-                                           onclick="addLike(${comment.id})" ></i>
-                                        <i class="fa fa-comment-o flag" style="cursor: pointer;"></i>
+                                    <div style="font-size: 23px;margin: 5px 0px 0px 862px">
+                                        <i class="fa fa-thumbs-o-up flag" style="margin-right: 18px;cursor: pointer"
+                                           onclick="addLike(${comment.id},this)"></i>
+                                        <i class="fa fa-comment-o flag" onclick="slideSec(${comment.id},this)" style="cursor: pointer;"></i>
+                                    </div>
+                                </div>
+                                <div class="secondary" cid="${comment.id}" style="display: none">
+                                    <#list comment.secondComments as secComment>
+                                        <div class="content">
+                                            <div class="img">
+                                                <img src=" /img/header.png" alt="">
+                                            </div>
+                                            <div class="text">
+                                                <p class="tit"><span class="name">${secComment.loginIp}</span><span
+                                                        class="data">${secComment.createTime?string('yyyy/MM/dd')}</span></p>
+                                                <p class="ct">${secComment.content}</p>
+                                            </div>
+                                        </div>
+                                    </#list>
+                                    <div style="padding: 20px" class="secTxt">
+                                        <textarea cid="${comment.id}" placeholder="对此评论有何见解" class="layui-textarea secCon"></textarea>
+                                        <div style="text-align: right;padding-top: 8px" >
+                                            <button class="layui-btn" onclick="addSec(${comment.id},this)">评论</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

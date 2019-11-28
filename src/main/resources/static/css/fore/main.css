@@ -157,6 +157,11 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .pop-img .pop-img-box img {display: block;width: 370px;height: 600px;}
 /**end*/
 
+/**二级评论*/
+.list-cont .cont .secondary{width: 850px;margin: 20px 0px 0px 70px;border: 1px #dcbaba solid;border-radius: 7px}
+.list-cont .cont .secondary .content{padding:30px; border-bottom: 1px dotted #e5e5e5;}
+.list-cont .cont .secondary .content:last-child{border-bottom: 0;}
+
 /*album*/
 .album-content .img-info{margin-top: 66px; overflow: hidden; font-size: 16px; margin-bottom: 126px;}
 .album-content .img-info img{float: left; padding-right: 60px;}

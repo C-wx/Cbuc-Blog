@@ -24,7 +24,5 @@ public class CbucApplicationTests {
      */
     @Test
     public void clearLog() {
-        logService.clean();
-        viewService.clean();
     }
 }

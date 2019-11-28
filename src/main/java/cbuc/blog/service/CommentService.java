@@ -74,6 +74,15 @@ public class CommentService {
     }
 
     public int doLike(Integer count, String id) {
-        return 0;
+        return commentMapper.doLike(count,id);
+    }
+
+    public void fillSecondComments(List<Comment> comments) {
+        for (Comment comment : comments) {
+            CommentExample commentExample = new CommentExample();
+            commentExample.createCriteria().andParentIdEqualTo(comment.getId());
+            List<Comment> secComments = commentMapper.selectByExample(commentExample);
+            comment.setSecondComments(secComments);
+        }
     }
 }

@@ -35,11 +35,18 @@ public class ArticleInfoService {
         return articleInfoMapper.updateByExampleSelective(articleInfo, articleInfoExample);
     }
 
-    public List<ArticleInfo> queryList(String title) {
+    public List<ArticleInfo> queryList(String title,String cgid,String keyword) {
         ArticleInfoExample example = new ArticleInfoExample();
         ArticleInfoExample.Criteria criteria = example.createCriteria().andStatusNotEqualTo(StatusEnum.D.getStatus());
         if (StringUtils.isNotBlank(title)) {
             criteria.andTitleLike("%" + title + "%");
+        }
+        if (StringUtils.isNotBlank(cgid)) {
+            criteria.andCgIdLike("%"+cgid+"%");
+        }
+        if (StringUtils.isNotBlank(keyword)&&!keyword.equals("undefined")) {
+            criteria.andTitleLike("%" + keyword + "%");
+            example.or().andTagLike("%" + keyword + "%");
         }
         example.setOrderByClause("isTop desc, id desc");
         return articleInfoMapper.selectByExample(example);
@@ -120,4 +127,9 @@ public class ArticleInfoService {
     public int addAccessCount(Long id) {
         return articleInfoMapper.addAccessCount(id);
     }
+
+    public List<ArticleInfo> getHotBlogs() {
+        return articleInfoMapper.getHotBlogs();
+    }
+
 }
