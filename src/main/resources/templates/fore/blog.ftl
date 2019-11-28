@@ -106,7 +106,7 @@
 </div>
 <script type="text/javascript">
     layui.config({
-        base: '/static/js/fore/'
+        base: 'static/js/fore/'
     }).use(['element', 'laypage', 'jquery', 'menu', 'mm'], function () {
         menu = layui.menu;
         menu.init();
