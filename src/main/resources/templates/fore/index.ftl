@@ -3,9 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Document</title>
+    <title>CbucBlog</title>
     <!--jquery-->
     <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="/js/fore/menu.js"></script>
     <!-- layui -->
     <script src="/plugins/layui/layui.all.js" type="application/javascript"></script>
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
@@ -68,10 +69,7 @@
     <#include "../footer.ftl">
 </div>
 <script type="text/javascript">
-    layui.config({
-        base: 'static/js/fore/'
-    }).use(['element', 'laypage', 'jquery', 'menu', 'mm'], function () {
-       menu = layui.menu;
+    $(function () {
         menu.init();
     })
 </script>

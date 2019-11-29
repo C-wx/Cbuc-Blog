@@ -10,6 +10,7 @@
     <script src="${base}/js/jquery-1.11.2.min.js"></script>
     <script src="${base}/js/base.js"></script>
     <script src="${base}/js/fore/blogDetail.js"></script>
+    <script src="${base}/js/fore/menu.js"></script>
     <script src="${base}/plugins/editormd/editormd.js"></script>
     <script src="${base}/plugins/editormd/lib/marked.min.js"></script>
     <script src="${base}/plugins/editormd/lib/prettify.min.js"></script>
@@ -105,7 +106,7 @@
                             <div id="pop_img" class="pop-modal">
                                 <div class="pop-img">
                                     <div class="pop-img-box">
-                                        <img src="/static/img/alipay2wei.jpg">
+                                        <img src="/img/alipay2wei.jpg">
                                     </div>
                                 </div>
                             </div>
@@ -187,10 +188,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    layui.config({
-        base: 'static/js/fore/'
-    }).use(['element', 'laypage', 'jquery', 'menu', 'mm'], function () {
-        menu = layui.menu;
+    $(function () {
         menu.init();
     })
 </script>

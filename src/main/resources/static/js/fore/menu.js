@@ -1,5 +1,3 @@
-layui.define(['mm', 'jquery'], function (exports) {
-    var $ = layui.$, mm = layui.mm;
     var menu = {
         init: function () {
             $('.menu').on('click', function () {
@@ -57,8 +55,6 @@ layui.define(['mm', 'jquery'], function (exports) {
             })
         }
     };
-    exports('menu', menu)
-});
 function getCurDate() {
     var d = new Date();
     var week;
@@ -102,33 +98,25 @@ function add_zero(temp) {
         return temp;
     }
 }
-
 setInterval('getCurDate()', 100);
-showweixin = function () {
-    layer.open({
-        type: 1
-        , offset: 'auto'
-        , id: 'layerDemo'
-        , content: '<div style="padding: 20px;">' + "17689400062" + '</div>'
-        , anim: 5
-    })
-};
-$(".fa-weixin").hover(function () {
-    openMsg("WX: 17689400062", ".fa-weixin");
-}, function () {
-    layer.close(mes);
-});
-$(".fa-qq").hover(function () {
-    openMsg("QQ: 1404668149", ".fa-qq");
-}, function () {
-    layer.close(mes);
-});
-$(".fa-github").hover(function () {
-    openMsg("GitHub: https://github.com/C-wx", ".fa-github");
-}, function () {
-    layer.close(mes);
-});
 
+$(function () {
+    $(".fa-weixin").hover(function () {
+        openMsg("WX: 17689400062", ".fa-weixin");
+    }, function () {
+        layer.close(mes);
+    });
+    $(".fa-qq").hover(function () {
+        openMsg("QQ: 1404668149", ".fa-qq");
+    }, function () {
+        layer.close(mes);
+    });
+    $(".fa-github").hover(function () {
+        openMsg("GitHub: https://github.com/C-wx", ".fa-github");
+    }, function () {
+        layer.close(mes);
+    });
+});
 function openMsg(msg, target) {
     mes = layer.tips('<span style="font-size: 14px">' + msg + '</span>', target, {tips: [1, '#C2BE9E'], time: 30000});
 }

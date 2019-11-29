@@ -152,7 +152,7 @@
 </div>
 <script>
     layui.config({
-        base: '/static/plugins/layuiadmin/' //静态资源所在路径
+        base: '/plugins/layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
         , formSelects: 'formSelects-v4'

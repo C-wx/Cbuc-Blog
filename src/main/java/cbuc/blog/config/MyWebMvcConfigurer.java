@@ -40,6 +40,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**"). addResourceLocations("classpath:/static/");
         String uploadPath = "file:D://Cbuc-Blog/upload/";
         registry.addResourceHandler("/upfiles/**").addResourceLocations(uploadPath);
     }
