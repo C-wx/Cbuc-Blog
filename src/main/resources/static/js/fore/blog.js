@@ -45,7 +45,8 @@ function getBlogs(pn,cgid,keyword) {
                 $(".pagination-template").append("<li class=\"page-item\"><a onclick='getBlogs(1,"+ cgid + ",\""+keyword+ "\")' class=\"page-link\"> <i class=\"fa fa-angle-left\"></i><i class=\"fa fa-angle-left\"></i></a></li>");
             }
             result.data.list.forEach((data) => {
-                var img = data.articleContent.image == "" ? '/img/wy_img5.jpg' : data.articleContent.image;
+                // var img = data.articleContent.image == "" ? '/img/wy_img5.jpg' : data.articleContent.image;
+                var img = "/img/wy_img5.jpg";
                 var html =
                     "<div class=\"item\">\n" +
                     "     <div class=\"container-fluid\">\n" +
@@ -108,7 +109,7 @@ getHotBlogs = () => {
             var data = result.data;
             data.forEach(function (data) {
                 var hotBlogHtml =
-                    "<a href=\"#\">\n" +
+                    "<a href=\"/gotoArticle/"+data.id+"\">\n" +
                     "   <div class=\"item d-flex align-items-center\">\n" +
                     "       <div class=\"image\"><img src=\"img/github.jpg\" alt=\"...\" class=\"img-fluid\"></div>\n" +
                     "       <div class=\"title\"><strong>" + data.title + "</strong>\n" +

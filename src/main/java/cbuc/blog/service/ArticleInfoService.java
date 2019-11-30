@@ -132,4 +132,7 @@ public class ArticleInfoService {
         return articleInfoMapper.getHotBlogs();
     }
 
+    public int addCommentCount(Long pid) {
+        return articleInfoMapper.addCommentCount(pid);
+    }
 }

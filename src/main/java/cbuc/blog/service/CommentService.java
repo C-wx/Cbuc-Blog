@@ -80,7 +80,7 @@ public class CommentService {
     public void fillSecondComments(List<Comment> comments) {
         for (Comment comment : comments) {
             CommentExample commentExample = new CommentExample();
-            commentExample.createCriteria().andParentIdEqualTo(comment.getId());
+            commentExample.createCriteria().andParentIdEqualTo(comment.getId()).andTypeEqualTo("2");
             List<Comment> secComments = commentMapper.selectByExample(commentExample);
             comment.setSecondComments(secComments);
         }

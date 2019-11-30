@@ -230,7 +230,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cbuc.blog.bean.ArticleInfoExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="cbuc.blog.bean.ArticleInfoExample" resultType="java.lang.Long">
     select count(*) from bg_article_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -424,6 +424,10 @@
   </update>
   <update id="addAccessCount">
     update bg_article_info set access_count = access_count + 1
+    where id = #{param1}
+  </update>
+  <update id="addCommentCount">
+    update bg_article_info set comment_count = comment_count + 1
     where id = #{param1}
   </update>
 </mapper>

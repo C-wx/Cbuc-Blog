@@ -39,4 +39,6 @@ public interface ArticleInfoMapper {
     int addAccessCount(Long id);
 
     List<ArticleInfo> getHotBlogs();
+
+    int addCommentCount(Long pid);
 }

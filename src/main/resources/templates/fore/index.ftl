@@ -37,6 +37,7 @@
         <a href="/blog">博客</a>
         <a href="/contact">留言</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a onclick="/bulletin">公告</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
@@ -71,6 +72,25 @@
 <script type="text/javascript">
     $(function () {
         menu.init();
+        layer.open({
+            type: 1
+            , title: false //不显示标题栏
+            , closeBtn: false
+            , area: '300px;'
+            , shade: 0.8
+            , id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            , btn: ['立即前往', '我知道了']
+            , btnAlign: 'c'
+            , moveType: 1 //拖拽模式，0或者1
+            , content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 800;text-align: center">承接一切网站类毕设项目<br><br>点击下方按钮进入了解&nbsp;&nbsp;&nbsp;<i class="fa fa-hand-o-down" style="font-size: 20px"></i></div>'
+            , success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.find('.layui-layer-btn0').attr({
+                    href: '/gotoArticle/35'
+                    , target: '_blank'
+                });
+            }
+        });
     })
 </script>
 </body>
