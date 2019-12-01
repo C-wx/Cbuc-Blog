@@ -67,7 +67,7 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .connect i:hover, .connect i:focus, .connect i:active {transform: translateY(-5px);cursor: pointer}
 .connect i:hover:before, .connect i:focus:before, .connect i:active:before {opacity: 1; transform: translateY(5px);}
 
-/*whisper*/
+/*Blinks*/
 .whisper-content{padding:40px 0 100px 0;height: 795px; width: 100%; }
 .whisper-content .item-box{background: #f9f9f9; margin-bottom: 20px;}
 .whisper-content .cont{max-width: 800px; margin:0 auto;}
@@ -78,30 +78,29 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .whisper-content .cont .whisper-list .whisper-title span.hour{margin-right: 20px;}
 .whisper-content .whisper-list .text-cont{line-height: 24px; margin-bottom: 28px;}
 .whisper-content .whisper-list .op-list{margin-top: 30px; overflow: hidden;}
-.whisper-content .whisper-list .op-list .like{ -webkit-user-select: none;
--moz-user-focus: none;
--moz-user-select: none;}
-.tlinks {
-  text-indent: -9999px;
-  height: 0;
-  line-height: 0;
-  font-size: 0;
-  overflow: hidden;
-}
+.whisper-content .whisper-list .op-list .like{ -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none;}
+.tlinks {text-indent: -9999px;height: 0;line-height: 0;font-size: 0;overflow: hidden;}
 .whisper-content .whisper-list .op-list .like.active{color: #ff7f21;}
 .whisper-content .whisper-list .op-list p{float: left; cursor: pointer; color: #999999;}
-.whisper-content .whisper-list .op-list p.off{float: right; -webkit-user-select: none;
--moz-user-focus: none;
--moz-user-select: none;}
+.whisper-content .whisper-list .op-list p.off{float: right; -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none;}
 .whisper-content .whisper-list .op-list p.off span{margin-right: 5px;}
 .whisper-content .whisper-list .op-list p.like{margin-right: 50px;}
 .whisper-content .whisper-list .img-box{overflow: hidden;}
 .whisper-content .whisper-list .img-box img{float: left; margin: 0px 18px 18px 0;}
 .whisper-content .whisper-list .img-box img:last-child{margin-right: 0;}
-/*end-whisper*/
-
+/*end-Blinks*/
 
 /*contact*/
+.leacots-content .review-version{padding:0; border-top: 0;}
+.leacots-content .review-version .form .layui-form-item{clear: both;}
+.leacots-content .item-box{background: transparent;}
+.leacots-content .review-version .form{margin: 70px 0;}
+.leacots-content .review-version .form textarea{border-color: #402760;}
+.leacots-content .review-version .form .layui-input-block{margin-left: 0;}
+.leacots-content .review-version .banner-img{float: none;  width: 100%;}
+.leacots-content .review-version .volume{color: #3f2469;}
+.leacots-content .review-version .volume span{padding-left: 30px; color: #f37d25;}
+.leacots-content .review-version .list-cont .cont{max-width: 100%;}
 #contactForm>.stereo-btn{padding: 10px 20px;outline: none;border: none;border-radius: 10px;background-image: linear-gradient(#305381, #102347);box-shadow: 0 6px 0 rgba(0, 4, 20, 0.52);cursor: pointer;text-shadow: 0 5px 5px #ccc;font-size: 25px;color: #fff;transition: all 300ms;}
 #contactForm>.stereo-btn:active { box-shadow: 0 3px 0 rgba(0, 4, 20, 0.54); transform: translate3d(0, 5px, 0);}
 .title .contactSpan{margin: 0 0 20px 0; color: #C2BE9E; letter-spacing:3px;font-weight: 400; font-size: 40px;}
@@ -112,9 +111,7 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .form-control::-webkit-input-placeholder {color: #2c3e50;}
 /*end-contact*/
 
-
-
-/*details*/
+/*Blog_Details*/
 .details-content .article-cont img{float: none; width: 100%;}
 .details-content .article-cont .title{text-align: center; margin-bottom: 0;}
 .details-content .article-cont .title h3{font-size: 24px; margin-bottom: 36px;}
@@ -126,20 +123,6 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .details-content .article-cont .btn-box{text-align: center; margin-top: 50px;}
 /*end-details*/
 
-/*leacots*/
-.leacots-content .review-version{padding:0; border-top: 0;}
-.leacots-content .review-version .form .layui-form-item{clear: both;}
-.leacots-content .item-box{background: transparent;}
-.leacots-content .review-version .form{margin: 70px 0;}
-.leacots-content .review-version .form textarea{border-color: #402760;}
-.leacots-content .review-version .form .layui-input-block{margin-left: 0;}
-.leacots-content .review-version .banner-img{float: none;  width: 100%;}
-.leacots-content .review-version .volume{color: #3f2469;}
-.leacots-content .review-version .volume span{padding-left: 30px; color: #f37d25;}
-.leacots-content .review-version .list-cont .cont{max-width: 100%;}
-/*end-leacots*/
-
-/**like*/
 /*文章点赞*/
 .heart {background: url(/img/web_heart_animation.png);background-position: left;background-repeat: no-repeat;height: 100px;width: 100px;cursor: pointer;position: absolute;left:524px;top:-32px;background-size:2900%;}
 .heart:hover, .heart:focus{background-position: right;}
@@ -157,12 +140,12 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .pop-img .pop-img-box img {display: block;width: 370px;height: 600px;}
 /**end*/
 
-/**二级评论*/
+/**文章二级评论*/
 .list-cont .cont .secondary{width: 850px;margin: 20px 0px 0px 70px;border: 1px #dcbaba solid;border-radius: 7px}
 .list-cont .cont .secondary .content{padding:30px; border-bottom: 1px dotted #e5e5e5;}
 .list-cont .cont .secondary .content:last-child{border-bottom: 0;}
 
-/*album*/
+/*Photo*/
 .album-content .img-info{margin-top: 66px; overflow: hidden; font-size: 16px; margin-bottom: 126px;}
 .album-content .img-info img{float: left; padding-right: 60px;}
 .album-content .img-info .title{line-height: 30px; margin-top: 124px; padding-left: 20px;}
@@ -177,8 +160,33 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .album-content .img-list .cont-text{padding-left: 10px;}
 .album-content .img-list .cont-text .data{line-height: 55px; color: #ff7f21;}
 .album-content .img-list .cont-text .briefly{line-height: 24px; margin-top: 16px;}
-/*end-album*/
+/*end-photo*/
 
+/**Bulletin*/
+#Bulletin{
+  width: 700px;
+  height: 756px;
+  position: relative;
+  left: -160px;
+  overflow: hidden;
+}
+#Bulletin .BulletinTitle{
+  font-size: 35px;
+  font-weight: 800;
+  color: #3f2863;
+  padding:10px 0px 30px;
+  font-family: 楷体;
+}
+#Bulletin blockquote{
+  margin-bottom: 20px;
+}
+#Bulletin .layui-elem-quote{
+  border-left: 5px solid #C2BE9E;
+  font-size: 18px;
+  font-family: -webkit-pictograph;
+
+}
+/**End-Bulletin*/
 
 /*about*/
 .about-content{background: #faf8fb;}

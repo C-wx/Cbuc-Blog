@@ -48,6 +48,9 @@ public class OperatController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private BulletinService bulletinService;
+
     @ApiOperation("留言")
     @ResponseBody
     @PostMapping("/contact")
@@ -189,6 +192,19 @@ public class OperatController {
             e.printStackTrace();
             log.error("查询热文异常");
             return Result.error("查询热文异常");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/getBulletin")
+    public Object getBulletin() {
+        try {
+            List<Bulletin> bulletins =bulletinService.queryTableList();
+            return Result.success(bulletins);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取公告异常");
+            return Result.error("获取公告异常");
         }
     }
 }

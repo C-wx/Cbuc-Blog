@@ -44,14 +44,16 @@
         <a href="/blog" class="active">博客</a>
         <a href="/contact">留言</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a href="/bulletin">公告</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
         <li class="layui-nav-item"><a href="/">首页</a></li>
         <li class="layui-nav-item"><a href="/blog" class="active">博客</a></li>
         <li class="layui-nav-item"><a href="/contact">留言</a></li>
-        <li class="layui-nav-item"><a href="album.ftl">Blink</a></li>
-        <li class="layui-nav-item"><a href="about.ftl">关于</a></li>
+        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a></li>
+        <li class="layui-nav-item"><a<a href="/bulletin">公告</a></li>
+        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a></li>
     </ul>
     <p class="access-count"><span class="text">访问量:&nbsp;</span><span
             class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>

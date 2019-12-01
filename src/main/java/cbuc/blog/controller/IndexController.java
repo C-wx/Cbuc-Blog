@@ -41,7 +41,12 @@ public class IndexController {
     }
 
     @GetMapping("/toblog")
-    public String toblog() {
+    public String toBlog() {
         return "blog";
+    }
+
+    @GetMapping("/bulletin")
+    public String toBulletin() {
+        return "fore/bulletin";
     }
 }
