@@ -37,7 +37,7 @@
         <a href="/">首页</a>
         <a href="/blog">博客</a>
         <a href="/contact">留言</a>
-        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a href="/blinks">Blink</a>
         <a onclick="/bulletin" class="active">公告</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
@@ -45,7 +45,7 @@
         <li class="layui-nav-item"><a href="/">首页</a></li>
         <li class="layui-nav-item"><a href="/blog">博客</a></li>
         <li class="layui-nav-item"><a href="/contact" class="active">留言</a></li>
-        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a></li>
+        <li class="layui-nav-item"><a href="/blinks">Blink</a></li>
         <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a></li>
     </ul>
     <p class="access-count"><span class="text">访问量:</span><span class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>

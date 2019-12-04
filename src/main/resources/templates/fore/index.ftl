@@ -36,7 +36,7 @@
         <a href="/" class="active">首页</a>
         <a href="/blog">博客</a>
         <a href="/contact">留言</a>
-        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a href="/blinks">Blink</a>
         <a href="/bulletin">公告</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
@@ -75,6 +75,7 @@
         menu.init();
         layer.open({
             type: 1
+            , anim:4
             , title: false //不显示标题栏
             , closeBtn: false
             , area: '300px;'

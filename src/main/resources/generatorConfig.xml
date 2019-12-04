@@ -77,13 +77,21 @@
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
 -->
-         <table tableName="bg_article_info" domainObjectName="ArticleInfo" enableCountByExample="true"
+         <!--<table tableName="bg_article_info" domainObjectName="ArticleInfo" enableCountByExample="true"
                 enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                 selectByExampleQueryId="true">
              <property name="useActualColumnNames" value="false"/>
              <property name="my.isgen.usekeys" value="true"/>
              <generatedKey column="id" sqlStatement="JDBC"/>
          </table>
+-->
+        <table tableName="bg_user" domainObjectName="User" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <property name="my.isgen.usekeys" value="true"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
       <!--
         <table tableName="bg_comment" domainObjectName="Comment" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"

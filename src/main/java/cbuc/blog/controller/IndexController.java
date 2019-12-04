@@ -49,4 +49,9 @@ public class IndexController {
     public String toBulletin() {
         return "fore/bulletin";
     }
+
+    @GetMapping("/blinks")
+    public String toBlinks() {
+        return "fore/blinks";
+    }
 }

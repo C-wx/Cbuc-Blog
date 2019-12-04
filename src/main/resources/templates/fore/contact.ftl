@@ -38,7 +38,7 @@
         <a href="/">首页</a>
         <a href="/blog">博客</a>
         <a href="/contact" class="active">留言</a>
-        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a href="/blinks">Blink</a>
         <a href="/bulletin">公告</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
@@ -46,8 +46,8 @@
         <li class="layui-nav-item"><a href="/">首页</a></li>
         <li class="layui-nav-item"><a href="/blog">博客</a></li>
         <li class="layui-nav-item"><a href="/contact" class="active">留言</a></li>
-        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a></li>
-        <li class="layui-nav-item"><a<a href="/bulletin">公告</a></li>
+        <li class="layui-nav-item"><a href="/blinks">Blink</a></li>
+        <li class="layui-nav-item"><a href="/bulletin">公告</a></li>
         <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a></li>
     </ul>
     <p class="access-count"><span class="text">访问量:</span><span class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
@@ -58,7 +58,7 @@
 <div class="banner">
     <div class="cont w1000">
         <div class="title">
-            <span class="contactSpan">LEAVE A MESSAGE</>
+            <div class="contactSpan layui-anim layui-anim-scaleSpring">LEAVE A MESSAGE</div>
             <hr>
             <form name="sentMessage" id="contactForm" novalidate>
                 <div class="form-group">
@@ -73,7 +73,7 @@
                                     <textarea name="message" id="message" class="form-control" rows="4"
                                               placeholder="Message" required ></textarea>
                 </div>
-                <button type="button" class="stereo-btn" id="submit">Submit</button>
+                <button type="button" class="stereo-btn layui-anim layui-anim-up" id="submit">Submit</button>
             </form>
         </div>
         <img src="/img/slider-image-1.png">

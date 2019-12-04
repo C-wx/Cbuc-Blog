@@ -40,7 +40,7 @@
         <a href="/">首页</a>
         <a href="/blog" class="active">博客</a>
         <a href="/contact">留言</a>
-        <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a>
+        <a href="/blinks">Blink</a>
         <a href="/bulletin">公告</a>
         <a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
     </div>
@@ -48,7 +48,7 @@
         <li class="layui-nav-item"><a href="/">首页</a></li>
         <li class="layui-nav-item"><a href="/blog" class="active">博客</a></li>
         <li class="layui-nav-item"><a href="/contact">留言</a></li>
-        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">Blink</a></li>
+        <li class="layui-nav-item"><a href="/blinks">Blink</a></li>
         <li class="layui-nav-item"><a href="/bulletin">公告</a></li>
         <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a></li>
     </ul>
