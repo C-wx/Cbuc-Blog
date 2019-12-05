@@ -84,6 +84,14 @@ var Base = {
             layer.close(errorPrompt);
         }
     }
+    ,verifyNull: function (value,target) {
+        if (!value) {
+            Base.openError("不是正确的邮箱地址",target);
+            return false;
+        }else{
+            return true;
+        }
+    }
 
 };
 Date.prototype.format = function (format) {

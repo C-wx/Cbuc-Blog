@@ -66,7 +66,6 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        menu.init();
         Base.ajax("getBulletin",null,function (result) {
             if (result.code == Base.status.success) {
                 var data = result.data;

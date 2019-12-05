@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Document</title>
+    <title>Blinks</title>
     <!--jquery-->
     <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="/js/base.js"></script>
     <script src="/js/fore/menu.js"></script>
+    <script src="/js/fore/blinks.js"></script>
     <!-- layui -->
     <script src="/plugins/layui/layui.all.js" type="application/javascript"></script>
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
     <!--主css-->
@@ -200,87 +203,134 @@
                 </div>
             </div>
         </div>
-        <div id="demo" style="text-align: center;"></div>
     </div>
 </div>
 <div id="popUp" style="display: none">
     <div class="login-container">
         <div class="login-title">登录</div>
         <p class="login-tip">没有账号？ 请点击<span class="login-tip-click">注册</span></p>
-        <div class="login-input-group">
+        <form id="login-form">
             <div>
-                <div class="login-input-row">
-                    <div class="login-input-box">
-                        <input placeholder="请输入手机号" class="login-input login-input-phone">
-                        <i class="input-error-tip" style="display: none;">* </i></div>
-                </div>
-                <div class="login-input-row">
-                    <div class="login-input-box"><input placeholder="请输入6位验证码"
-                                                        class="login-input login-input-captcha"><i
-                            class="input-error-tip" style="display: none;">* </i></div>
-                    <button class="hx-button login-input login-button hx-btn-default"><!----><span>发送验证码</span></button>
-                    <div id="geetest-box-login"><!----></div>
-                </div>
+                <input placeholder="输入用户名" class="login-input" name="username" onfocus="inputOnfocus(this)"
+                       onblur="inputOnblur(this)">
             </div>
-            <div class="login-input-row clearfix"><span class="login-tip-click fr">账号密码登录</span></div>
-        </div>
+            <br><br>
+            <div>
+                <input placeholder="输入密码" class="login-input" name="password" onfocus="inputOnfocus(this)"
+                       onblur="inputOnblur(this)">
+            </div>
+            <div class="login-forget">忘记密码</div>
+            <div style="clear: both;"/>
+            <div>
+                <button class="login-button">登录</button>
+            </div>
+            <div class="login-others">使用其他方式登录</div>
+            <hr>
+            <div class="other-icon" style="margin:22px 0px 16px 108px">
+                <i class="fa fa-qq"></i>
+                <i class="fa fa-github"></i>
+            </div>
+            <div class="protocol">
+                登陆即代表您已同意
+                <a href="javascript:;" class="protocol-tip">Cbuc博客用户注册协议与隐私政策</a>
+            </div>
+        </form>
     </div>
 </div>
-<#--<div class="footer-wrap">
-    <#include "../footer.ftl">
-</div>-->
-<script type="text/javascript">
-    $(function () {
-        menu.init();
-        menu.off();
-        $(".definite").click(function () {
-            var idx = layer.open({
-                type: 1
-                , title: false
-                , zIndex: layer.zIndex
-                , content: $("#popUp").html()
-                , anim: 3
-            });
-            layer.style(idx, {
-                "width": '380px'
-                , "height": '476px'
-                , "top": '200px'
-                , "left": '750px'
-                , "border-radius": '10px'
-                , "background": '#effdff'
-            });
-            return false;
-        });
-
+<div class="register-container" style="display: none">
+    <div class="login-title">注册</div>
+    <p class="login-tip" style="margin-bottom: 30px">已有账号，请点击<span class="register-tip-click">登录</span></p>
+    <form class="layui-form" id="register-form">
+        <div>
+            <input placeholder="输入用户名" class="login-input" id="registerName" name="username" onfocus="inputOnfocus(this)"
+                   onblur="inputOnblur(this)">
+        </div>
+        <br>
+        <div>
+            <input placeholder="输入手机号" class="login-input" id="registerPhone" name="phone" onfocus="inputOnfocus(this)"
+                   onblur="inputOnblur(this)">
+        </div>
+        <br>
+        <div>
+            <input placeholder="输入密码" class="login-input" id="registerPwd" name="password" onfocus="inputOnfocus(this)"
+                   onblur="inputOnblur(this)">
+        </div>
+        <br>
+        <div class="layui-form-item" style="margin-bottom: 10px">
+            <div class="layui-inline">
+                <label class="layui-form-label">密保：</label>
+                <div class="layui-input-inline">
+                    <select name="question" id="registerQuestion">
+                        <option value="">请选择问题</option>
+                        <optgroup label="城市记忆">
+                            <option value="你的出生城市">你的出生城市</option>
+                        </optgroup>
+                        <optgroup label="学生时代">
+                            <option value="你的工号">你的工号</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">答案：</label>
+                <div class="layui-input-inline">
+                    <input placeholder="输入答案" class="login-input" id="registerAnswer" style="width: 191px" name="answer"
+                           onfocus="inputOnfocus(this)" onblur="inputOnblur(this)">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="login-button" onclick="register()" type="button" style="margin-top: 0px">注册</button>
+        </div>
+    </form>
+</div>
+<div class="forget-container" style="display: none">
+    <div class="login-title">忘记密码</div>
+    <p class="login-tip">找回密码， 请点击<span class="register-tip-click">登录</span></p>
+    <form class="layui-form">
+        <div>
+            <input placeholder="输入手机号/用户名" class="login-input" name="username" onfocus="inputOnfocus(this)"
+                   onblur="inputOnblur(this)">
+        </div>
+        <br>
+        <div>
+            <input placeholder="输入密码" class="login-input" name="password" onfocus="inputOnfocus(this)"
+                   onblur="inputOnblur(this)">
+        </div>
+        <br>
+        <div class="layui-form-item" style="margin-bottom: 10px">
+            <div class="layui-inline">
+                <label class="layui-form-label">密保：</label>
+                <div class="layui-input-inline">
+                    <select name="question">
+                        <option value="">请选择问题</option>
+                        <optgroup label="城市记忆">
+                            <option value="你的出生城市">你的出生城市</option>
+                        </optgroup>
+                        <optgroup label="学生时代">
+                            <option value="你的工号">你的工号</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">答案：</label>
+                <div class="layui-input-inline">
+                    <input placeholder="输入答案" class="login-input" style="width: 191px" name="answer"
+                           onfocus="inputOnfocus(this)" onblur="inputOnblur(this)">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="login-button" style="margin-top: 0pxw">保存</button>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form
+        form.render();
     })
 </script>
-<style>
-    .login-container {
-        padding: 30px;
-    }
-
-    .login-title {
-        color: #27282d;
-        font-size: 22px;
-        height: 30px;
-        line-height: 30px;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .login-tip {
-        font-size: 12px;
-        color: #27282d;
-        margin-bottom: 50px;
-    }
-
-    .login-tip-click {
-        color: #27282d;
-        font-size: 12px;
-        font-weight: 700;
-        cursor: pointer;
-        padding-left: 4px;
-    }
-</style>
-</body>
 </html>

@@ -5,8 +5,9 @@
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
-    <result column="GENDER" jdbcType="VARCHAR" property="gender" />
-    <result column="SECRET" jdbcType="VARCHAR" property="secret" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="QUESTION" jdbcType="VARCHAR" property="question" />
+    <result column="ANSWER" jdbcType="VARCHAR" property="answer" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="DEF1" jdbcType="VARCHAR" property="def1" />
@@ -72,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, USER_NAME, PASSWORD, GENDER, SECRET, CREATE_TIME, UPDATE_TIME, DEF1, DEF2, DEF3
+    ID, USER_NAME, PASSWORD, PHONE, QUESTION, ANSWER, CREATE_TIME, UPDATE_TIME, DEF1, 
+    DEF2, DEF3
   </sql>
   <select id="selectByExample" parameterType="cbuc.blog.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -106,12 +108,14 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.User" useGeneratedKeys="true">
-    insert into bg_user (USER_NAME, PASSWORD, GENDER, 
-      SECRET, CREATE_TIME, UPDATE_TIME, 
-      DEF1, DEF2, DEF3)
-    values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{secret,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
+    insert into bg_user (USER_NAME, PASSWORD, PHONE, 
+      QUESTION, ANSWER, CREATE_TIME, 
+      UPDATE_TIME, DEF1, DEF2, 
+      DEF3)
+    values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, 
+      #{def3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.User" useGeneratedKeys="true">
     insert into bg_user
@@ -122,11 +126,14 @@
       <if test="password != null">
         PASSWORD,
       </if>
-      <if test="gender != null">
-        GENDER,
+      <if test="phone != null">
+        PHONE,
       </if>
-      <if test="secret != null">
-        SECRET,
+      <if test="question != null">
+        QUESTION,
+      </if>
+      <if test="answer != null">
+        ANSWER,
       </if>
       <if test="createTime != null">
         CREATE_TIME,
@@ -151,11 +158,14 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null">
-        #{gender,jdbcType=VARCHAR},
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="secret != null">
-        #{secret,jdbcType=VARCHAR},
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -192,11 +202,14 @@
       <if test="record.password != null">
         PASSWORD = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.gender != null">
-        GENDER = #{record.gender,jdbcType=VARCHAR},
+      <if test="record.phone != null">
+        PHONE = #{record.phone,jdbcType=VARCHAR},
       </if>
-      <if test="record.secret != null">
-        SECRET = #{record.secret,jdbcType=VARCHAR},
+      <if test="record.question != null">
+        QUESTION = #{record.question,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null">
+        ANSWER = #{record.answer,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -223,8 +236,9 @@
     set ID = #{record.id,jdbcType=BIGINT},
       USER_NAME = #{record.userName,jdbcType=VARCHAR},
       PASSWORD = #{record.password,jdbcType=VARCHAR},
-      GENDER = #{record.gender,jdbcType=VARCHAR},
-      SECRET = #{record.secret,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      QUESTION = #{record.question,jdbcType=VARCHAR},
+      ANSWER = #{record.answer,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       DEF1 = #{record.def1,jdbcType=VARCHAR},
@@ -243,11 +257,14 @@
       <if test="password != null">
         PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null">
-        GENDER = #{gender,jdbcType=VARCHAR},
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="secret != null">
-        SECRET = #{secret,jdbcType=VARCHAR},
+      <if test="question != null">
+        QUESTION = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        ANSWER = #{answer,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
@@ -271,8 +288,9 @@
     update bg_user
     set USER_NAME = #{userName,jdbcType=VARCHAR},
       PASSWORD = #{password,jdbcType=VARCHAR},
-      GENDER = #{gender,jdbcType=VARCHAR},
-      SECRET = #{secret,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      QUESTION = #{question,jdbcType=VARCHAR},
+      ANSWER = #{answer,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       DEF1 = #{def1,jdbcType=VARCHAR},

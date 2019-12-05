@@ -90,6 +90,24 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .whisper-content .whisper-list .img-box img:last-child{margin-right: 0;}
 /*end-Blinks*/
 
+/**Blinks评论弹窗*/
+.login-container {padding: 30px;}
+.register-container {padding: 30px;}
+.forget-container {padding: 30px;}
+.login-title {color: #27282d;font-size: 22px;height: 30px;line-height: 30px;font-weight: 700;margin-bottom: 10px;}
+.login-tip {font-size: 12px;color: #27282d;margin-bottom: 50px;}
+.login-tip-click {color: #27282d;font-size: 12px;font-weight: 700;cursor: pointer;padding-left: 4px;}
+.register-tip-click {color: #27282d;font-size: 12px;font-weight: 700;cursor: pointer;padding-left: 4px;}
+.login-input {width: 320px;border: 1px solid #efefef;height: 36px;border-radius: 4px;color: #d1d1d1;background: none;padding-left: 16px;font-size: 12px;line-height: 24px;}
+.login-forget {float: right;cursor: pointer;color: #333333c4;margin-top: 17px;}
+.login-button {width: 100%;height: 40px;font-size: 16px;padding: 0;line-height: 40px;margin-top: 13px;background-color: #e6e7ea;border-radius: 8px;border: none;}
+.login-button:focus {outline: 0!important;}
+.login-others{position: relative;text-align: center;font-size: 12px;left: 93px;top: 22px;background-color: #fff;color: #999;width: 128px;height: 16px;}
+.other-icon i{color: #99999980;padding-right: 37px;font-size: 30px;}
+.protocol{text-align: center;font-size: 12px; color: #999;}
+.protocol a{color: #27282d;text-decoration: none;outline: none;margin-left: 4px}
+/**end-blnksPoP*/
+
 /*contact*/
 .leacots-content .review-version{padding:0; border-top: 0;}
 .leacots-content .review-version .form .layui-form-item{clear: both;}

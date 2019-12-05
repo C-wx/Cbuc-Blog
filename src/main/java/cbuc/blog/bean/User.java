@@ -9,9 +9,11 @@ public class User {
 
     private String password;
 
-    private String gender;
+    private String phone;
 
-    private String secret;
+    private String question;
+
+    private String answer;
 
     private Date createTime;
 
@@ -47,20 +49,28 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getGender() {
-        return gender;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getSecret() {
-        return secret;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setSecret(String secret) {
-        this.secret = secret == null ? null : secret.trim();
+    public void setQuestion(String question) {
+        this.question = question == null ? null : question.trim();
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer == null ? null : answer.trim();
     }
 
     public Date getCreateTime() {

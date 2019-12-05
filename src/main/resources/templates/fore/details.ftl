@@ -189,10 +189,5 @@
         <div id="demo" style="text-align: center;"></div>
     </div>
 </div>
-<script type="text/javascript">
-    $(function () {
-        menu.init();
-    })
-</script>
 </body>
 </html>

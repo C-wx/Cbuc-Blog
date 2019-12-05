@@ -228,8 +228,8 @@
 <script type="text/javascript">
     layui.config({
         base: '../res/js/util/'
-    }).use(['element', 'laypage', 'form', 'layer', 'menu'], function () {
-        element = layui.element, laypage = layui.laypage, form = layui.form, layer = layui.layer, menu = layui.menu;
+    }).use(['element', 'laypage', 'form', 'layer' ], function () {
+        element = layui.element, laypage = layui.laypage, form = layui.form, layer = layui.layer ;
         laypage.render({
             elem: 'demo'
             , count: 70 //数据总数，从服务端得到
@@ -241,7 +241,6 @@
                 console.log(pic, layero)
             }
         });
-        menu.init();
     })
 </script>
 </body>

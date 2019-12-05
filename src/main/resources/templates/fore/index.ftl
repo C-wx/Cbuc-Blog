@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>CbucBlog</title>
+    <title>Cbuc首页</title>
     <!--jquery-->
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="/js/fore/menu.js"></script>
@@ -72,7 +72,6 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        menu.init();
         layer.open({
             type: 1
             , anim:4

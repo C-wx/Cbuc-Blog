@@ -107,10 +107,5 @@
 <div class="footer-wrap">
     <#include "../footer.ftl">
 </div>
-<script type="text/javascript">
-    $(function () {
-        menu.init();
-    })
-</script>
 </body>
 </html>
