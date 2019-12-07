@@ -169,7 +169,7 @@ public class OperatController {
             String loginIp = IPutil.getIpAddress(request);
             Comment comment = Comment.builder().loginIp(loginIp).parentId(pid).content(content).type(type).createTime(new Date()).build();
             int res = commentService.doAdd(comment);
-            int rest = articleInfoService.addCommentCount(pid);
+            int rest = type.equals("1")?articleInfoService.addCommentCount(pid):commentService.addCommentCount(pid) ;
             if (res > 0 && rest > 0) {
                 return Result.success(comment);
             } else {

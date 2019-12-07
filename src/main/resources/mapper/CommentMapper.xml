@@ -333,4 +333,8 @@
     update bg_comment set like_count = like_count + #{param1}
     where id = #{param2}
   </update>
+  <update id="addCommentCount">
+    update bg_comment set comment_count = comment_count + 1
+    where id = #{param1}
+  </update>
 </mapper>

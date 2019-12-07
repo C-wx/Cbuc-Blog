@@ -58,7 +58,7 @@ $(() => {
                         "     </div>\n" +
                         "     <div class=\"secondary\" cid=\""+data.id+"\" style=\"display: none\">\n" +
                         "          <div style=\"padding: 20px\" class=\"secTxt\">\n" +
-                        "              <textarea placeholder=\"对此评论有何见解\" class=\"layui-textarea secCon\"></textarea>\n" +
+                        "              <textarea cid='"+data.id+"' placeholder=\"对此评论有何见解\" class=\"layui-textarea secCon\"></textarea>\n" +
                         "              <div style=\"text-align: right;padding-top: 8px\" >\n" +
                         "                  <button class=\"layui-btn\" onclick=\"addSec("+data.id+",this)\">评论</button>\n" +
                         "              </div>\n" +

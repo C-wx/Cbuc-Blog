@@ -85,4 +85,8 @@ public class CommentService {
             comment.setSecondComments(secComments);
         }
     }
+
+    public int addCommentCount(Long pid) {
+        return commentMapper.addCommentCount(pid);
+    }
 }

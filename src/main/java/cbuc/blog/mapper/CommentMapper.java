@@ -36,4 +36,6 @@ public interface CommentMapper {
     Integer queryTotal();
 
     int doLike(Integer count, String id);
+
+    int addCommentCount(Long pid);
 }
