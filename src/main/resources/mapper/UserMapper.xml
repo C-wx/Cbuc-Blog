@@ -8,6 +8,7 @@
     <result column="PHONE" jdbcType="VARCHAR" property="phone" />
     <result column="QUESTION" jdbcType="VARCHAR" property="question" />
     <result column="ANSWER" jdbcType="VARCHAR" property="answer" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="DEF1" jdbcType="VARCHAR" property="def1" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, USER_NAME, PASSWORD, PHONE, QUESTION, ANSWER, CREATE_TIME, UPDATE_TIME, DEF1, 
-    DEF2, DEF3
+    ID, USER_NAME, PASSWORD, PHONE, QUESTION, ANSWER, STATUS, CREATE_TIME, UPDATE_TIME, 
+    DEF1, DEF2, DEF3
   </sql>
   <select id="selectByExample" parameterType="cbuc.blog.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -109,13 +110,13 @@
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.User" useGeneratedKeys="true">
     insert into bg_user (USER_NAME, PASSWORD, PHONE, 
-      QUESTION, ANSWER, CREATE_TIME, 
-      UPDATE_TIME, DEF1, DEF2, 
-      DEF3)
+      QUESTION, ANSWER, STATUS, 
+      CREATE_TIME, UPDATE_TIME, DEF1, 
+      DEF2, DEF3)
     values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, 
-      #{def3,jdbcType=VARCHAR})
+      #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{def1,jdbcType=VARCHAR}, 
+      #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cbuc.blog.bean.User" useGeneratedKeys="true">
     insert into bg_user
@@ -134,6 +135,9 @@
       </if>
       <if test="answer != null">
         ANSWER,
+      </if>
+      <if test="status != null">
+        STATUS,
       </if>
       <if test="createTime != null">
         CREATE_TIME,
@@ -166,6 +170,9 @@
       </if>
       <if test="answer != null">
         #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -211,6 +218,9 @@
       <if test="record.answer != null">
         ANSWER = #{record.answer,jdbcType=VARCHAR},
       </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -239,6 +249,7 @@
       PHONE = #{record.phone,jdbcType=VARCHAR},
       QUESTION = #{record.question,jdbcType=VARCHAR},
       ANSWER = #{record.answer,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       DEF1 = #{record.def1,jdbcType=VARCHAR},
@@ -266,6 +277,9 @@
       <if test="answer != null">
         ANSWER = #{answer,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -291,6 +305,7 @@
       PHONE = #{phone,jdbcType=VARCHAR},
       QUESTION = #{question,jdbcType=VARCHAR},
       ANSWER = #{answer,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       DEF1 = #{def1,jdbcType=VARCHAR},

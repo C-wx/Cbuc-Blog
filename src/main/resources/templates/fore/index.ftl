@@ -50,7 +50,13 @@
     </ul>
     <p class="access-count"><span class="text">访问量:</span><span class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
     <p class="blog-count"><span class="text">博文量:</span><span class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
-    <p class="welcome-text"></p>
+    <#if Session["loginUser"]?exists>
+        <p class="welcome-user">
+            欢迎您: ${Session["loginUser"].userName}
+        </p>
+    <#else>
+        <p class="welcome-text"></p>
+    </#if>
 </div>
 
 <div class="banner">
@@ -63,9 +69,9 @@
     </div>
 </div>
 <div class="connect w1000">
-    <i class="fa fa-weixin"></i>
-    <i class="fa fa-qq"></i>
-    <i class="fa fa-github"></i>
+    <i class="fa fa-weixin weixin"></i>
+    <i class="fa fa-qq qq"></i>
+    <i class="fa fa-github github"></i>
 </div>
 <div class="footer-wrap">
     <#include "../footer.ftl">

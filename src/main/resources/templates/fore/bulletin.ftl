@@ -50,7 +50,13 @@
     </ul>
     <p class="access-count"><span class="text">访问量:</span><span class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
     <p class="blog-count"><span class="text">博文量:</span><span class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
-    <p class="welcome-text"></p>
+    <#if Session["loginUser"]?exists>
+        <p class="welcome-user">
+            欢迎您: ${Session["loginUser"].userName}
+        </p>
+    <#else>
+        <p class="welcome-text"></p>
+    </#if>
 </div>
 
 <div class="banner">

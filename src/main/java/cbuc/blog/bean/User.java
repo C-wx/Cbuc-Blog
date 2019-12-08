@@ -15,6 +15,8 @@ public class User {
 
     private String answer;
 
+    private String status;
+
     private Date createTime;
 
     private Date updateTime;
@@ -71,6 +73,14 @@ public class User {
 
     public void setAnswer(String answer) {
         this.answer = answer == null ? null : answer.trim();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 
     public Date getCreateTime() {

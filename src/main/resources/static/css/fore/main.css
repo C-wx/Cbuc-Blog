@@ -5,13 +5,14 @@ a:hover{text-decoration: none;}
 body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; overflow-x: hidden;}
 .w1000{max-width: 1000px!important; margin:0 auto;}
 .header{height: 120px; line-height: 120px; position: relative; font-size: 16px;}
-.header .logo,.header .welcome-text,.header .access-count,.header .blog-count,.header .nav,.banner img{position: absolute; top: 0;}
+.header .logo,.header .welcome-text,.header .welcome-user,.header .access-count,.header .blog-count,.header .nav,.banner img{position: absolute; top: 0;}
 .header .logo{left: 65px;}
 .header .logo span{display: none;}
 .header .nav{left: 250px;}
 .header .nav a{color: #3f2863; margin:0 40px;font-weight: 600;font-family: 'STXinwei';font-size: 18px}
 .header .nav a.active{color: #ff7f21;}
 .header .welcome-text{right: 50px;color: #95acc3;font-weight: 600;font-family: 'STXinwei';font-size: 17px}
+.header .welcome-user{right: 230px;color: #c39fb2;font-weight: 600;font-family: 'STXinwei';font-size: 17px}
 .header .access-count{right: 410px;color: #3f2863;font-weight: 500;font-family: 'STXinwei';font-size: 17px}
 .header .count{color: #C2BE9E;font-weight: 600;font-family: 'STXinwei';font-size: 18px}
 .header .blog-count{right: 540px;color: #3f2863;font-weight: 500;font-family: 'STXinwei';font-size: 17px}
@@ -21,7 +22,7 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .header .nav a:hover, .header .nav a:focus, .header .nav a:active {transform: translateY(-5px);}
 .header .nav a:hover:before, .header .nav a:focus:before, .header .nav a:active:before {opacity: 1; transform: translateY(5px);}
 
-.banner{height: 795px; width: 100%; }
+.banner{height: 789px; width: 100%; }
 .banner .cont{position: relative;}
 .banner .title{color: #fff; position: absolute; top: 152px; left: 0;}
 .banner .title h3{font-size: 80px; line-height: 88px;color: #C2BE9E}

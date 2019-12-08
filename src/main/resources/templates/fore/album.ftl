@@ -45,9 +45,13 @@
         <li class="layui-nav-item"><a href="album.ftl" class="active">相册</a></li>
         <li class="layui-nav-item"><a href="about.ftl">关于</a></li>
     </ul>
-    <p class="welcome-text">
-        欢迎来到<span class="name">小明</span>的博客~
-    </p>
+    <#if Session["loginUser"]?exists>
+        <p class="welcome-user">
+            欢迎您: ${Session["loginUser"].userName}
+        </p>
+    <#else>
+        <p class="welcome-text"></p>
+    </#if>
 </div>
 
 <div class="album-content w1000" id="layer-photos-demo" class="layer-photos-demo">

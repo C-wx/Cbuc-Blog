@@ -56,9 +56,14 @@
             class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
     <p class="blog-count"><span class="text">博文量:</span><span
             class="count"><#if Session["blogCount"]?exists> ${Session["blogCount"]}</#if></span></p>
-    <p class="welcome-text"></p>
+    <#if Session["loginUser"]?exists>
+        <p class="welcome-user">
+            欢迎您: ${Session["loginUser"].userName}
+        </p>
+    <#else>
+        <p class="welcome-text"></p>
+    </#if>
 </div>
-
 
 <div class="content whisper-content">
     <div class="cont">
@@ -211,18 +216,18 @@
         <p class="login-tip">没有账号？ 请点击<span class="login-tip-click">注册</span></p>
         <form id="login-form">
             <div>
-                <input placeholder="输入用户名" class="login-input" name="username" onfocus="inputOnfocus(this)"
+                <input placeholder="输入用户名" class="login-input" name="username" id="logName" onfocus="inputOnfocus(this)"
                        onblur="inputOnblur(this)">
             </div>
             <br><br>
             <div>
-                <input placeholder="输入密码" class="login-input" name="password" onfocus="inputOnfocus(this)"
+                <input placeholder="输入密码" class="login-input" name="password" id="logPwd" onfocus="inputOnfocus(this)"
                        onblur="inputOnblur(this)">
             </div>
             <div class="login-forget">忘记密码</div>
             <div style="clear: both;"/>
             <div>
-                <button class="login-button">登录</button>
+                <button class="login-button" type="button" onclick="doLogin()">登录</button>
             </div>
             <div class="login-others">使用其他方式登录</div>
             <hr>
@@ -242,7 +247,8 @@
     <p class="login-tip" style="margin-bottom: 30px">已有账号，请点击<span class="register-tip-click">登录</span></p>
     <form class="layui-form" id="register-form">
         <div>
-            <input placeholder="输入用户名" class="login-input" id="registerName" name="username" onfocus="inputOnfocus(this)"
+            <input placeholder="输入用户名" class="login-input" id="registerName" name="username"
+                   onfocus="inputOnfocus(this)"
                    onblur="inputOnblur(this)">
         </div>
         <br>
@@ -289,12 +295,12 @@
     <p class="login-tip">找回密码， 请点击<span class="register-tip-click">登录</span></p>
     <form class="layui-form">
         <div>
-            <input placeholder="输入手机号/用户名" class="login-input" name="username" onfocus="inputOnfocus(this)"
+            <input placeholder="输入手机号/用户名" class="login-input" name="username" id="savName" onfocus="inputOnfocus(this)"
                    onblur="inputOnblur(this)">
         </div>
         <br>
         <div>
-            <input placeholder="输入密码" class="login-input" name="password" onfocus="inputOnfocus(this)"
+            <input placeholder="输入密码" class="login-input" name="password" id="savPwd" onfocus="inputOnfocus(this)"
                    onblur="inputOnblur(this)">
         </div>
         <br>
@@ -302,7 +308,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">密保：</label>
                 <div class="layui-input-inline">
-                    <select name="question">
+                    <select name="question" id="savQuestion">
                         <option value="">请选择问题</option>
                         <optgroup label="城市记忆">
                             <option value="你的出生城市">你的出生城市</option>
@@ -316,13 +322,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">答案：</label>
                 <div class="layui-input-inline">
-                    <input placeholder="输入答案" class="login-input" style="width: 191px" name="answer"
+                    <input placeholder="输入答案" class="login-input" style="width: 191px" name="answer" id="savAnswer"
                            onfocus="inputOnfocus(this)" onblur="inputOnblur(this)">
                 </div>
             </div>
         </div>
         <div>
-            <button class="login-button" style="margin-top: 0pxw">保存</button>
+            <button class="login-button" type="button" style="margin-top: 0px" onclick="savePwd()">保存</button>
         </div>
     </form>
 </div>

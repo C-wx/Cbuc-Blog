@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Explain 操作控制器
@@ -50,6 +51,9 @@ public class OperatController {
 
     @Autowired
     private BulletinService bulletinService;
+
+    @Autowired
+    private UserService userService;
 
     @ApiOperation("留言")
     @ResponseBody
@@ -206,5 +210,46 @@ public class OperatController {
             log.error("获取公告异常");
             return Result.error("获取公告异常");
         }
+    }
+
+    @ResponseBody
+    @RequestMapping("/registerUser")
+    public Object registerUser(User user) {
+        try {
+            int res = userService.doAdd(user);
+            if (res>0) {
+                return Result.success();
+            }else {
+                return Result.error("注册用户异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("注册用户异常");
+            return Result.error("注册用户异常");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/doLogin")
+    public Object doLogin(User user,HttpSession session) {
+        try {
+            User loginUser = userService.getDetail(user);
+            if (!Objects.isNull(loginUser)) {
+                session.setAttribute("loginUser",loginUser);
+                return Result.success();
+            }else {
+                return Result.error("用户名或密码错误");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("用户名或密码错误");
+            return Result.error("用户名或密码错误");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping
+    public Object savePwd(User user) {
+        return Result.success();
     }
 }

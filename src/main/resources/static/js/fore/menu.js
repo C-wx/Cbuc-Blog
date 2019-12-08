@@ -98,17 +98,17 @@ function add_zero(temp) {
 setInterval('getCurDate()', 100);
 
 $(function () {
-    $(".fa-weixin").hover(function () {
+    $(".weixin").hover(function () {
         openMsg("WX: 17689400062", ".fa-weixin");
     }, function () {
         layer.close(mes);
     });
-    $(".fa-qq").hover(function () {
+    $(".qq").hover(function () {
         openMsg("QQ: 1404668149", ".fa-qq");
     }, function () {
         layer.close(mes);
     });
-    $(".fa-github").hover(function () {
+    $(".github").hover(function () {
         openMsg("GitHub: https://github.com/C-wx", ".fa-github");
     }, function () {
         layer.close(mes);

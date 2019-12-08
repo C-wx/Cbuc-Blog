@@ -86,9 +86,9 @@ var Base = {
     }
     ,verifyNull: function (value,target) {
         if (!value) {
-            Base.openError("不是正确的邮箱地址",target);
-            return false;
-        }else{
+            $(target).css("border","1px orange solid");
+            return false
+        }else {
             return true;
         }
     }
