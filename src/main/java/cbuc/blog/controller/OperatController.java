@@ -248,8 +248,27 @@ public class OperatController {
     }
 
     @ResponseBody
-    @RequestMapping
+    @RequestMapping("/savePwd")
     public Object savePwd(User user) {
-        return Result.success();
+        try {
+            int isExist = userService.getOneByName(user.getUserName());
+            if (isExist<1) {
+                return Result.error("该用户不存在,请检查用户名是否正确");
+            }
+            int isRight = userService.isRight(user);
+            if (isRight < 1) {
+                return Result.error("密码问题回答错误,请重新输入");
+            }
+            int isSuccess = userService.updatePwd(user);
+            if (isSuccess > 0) {
+                return Result.success();
+            }else {
+                return Result.error("修改密码异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("修改密码异常");
+            return Result.error("修改密码异常");
+        }
     }
 }

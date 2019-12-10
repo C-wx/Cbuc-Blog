@@ -48,9 +48,9 @@ function getBlogs(pn,cgid,keyword) {
                 // var img = data.articleContent.image == "" ? '/img/wy_img5.jpg' : data.articleContent.image;
                 var img = "/img/wy_img5.jpg";
                 var html =
-                    "<div class=\"item\">\n" +
+                    "<div class=\"item showShade\">\n" +
                     "     <div class=\"container-fluid\">\n" +
-                    "         <div class=\"row\">\n" +
+                    "         <div class=\"widget row \">\n" +
                     "             <div class=\" col-lg-5\">\n" +
                     "                 <div class=\"img\"><img src='" + img + "' alt=\"\"></div>\n" +
                     "             </div>\n" +

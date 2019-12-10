@@ -36,4 +36,25 @@ public class UserService {
         userExample.or(criteria);
         return userMapper.selectByExample(userExample).get(0);
     }
+
+    public int getOneByName(String userName) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserNameEqualTo(userName);
+        return userMapper.selectByExample(userExample).size();
+    }
+
+    public int isRight(User user) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria()
+                .andUserNameEqualTo(user.getUserName())
+                .andQuestionEqualTo(user.getQuestion())
+                .andAnswerEqualTo(user.getAnswer());
+        return userMapper.selectByExample(userExample).size();
+    }
+
+    public int updatePwd(User user) {
+        UserExample example = new UserExample();
+        example.createCriteria().andUserNameEqualTo(user.getUserName());
+        return userMapper.updateByExampleSelective(user, example);
+    }
 }

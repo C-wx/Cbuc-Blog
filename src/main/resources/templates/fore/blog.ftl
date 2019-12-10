@@ -69,7 +69,7 @@
         <div class="col-lg-1"></div>
         <aside class="col-lg-3">
             <!-- 搜索栏-->
-            <div class="widget search">
+            <div class="widget search shade">
                 <header>
                     <h3 class="h6">Search the blog</h3>
                 </header>
@@ -83,14 +83,14 @@
                 </form>
             </div>
             <!-- 最热博客 -->
-            <div class="widget latest-posts">
+            <div class="widget latest-posts shade">
                 <header>
                     <h3 class="h6">Latest Posts</h3>
                 </header>
                 <div class="blog-posts"></div>
             </div>
             <!-- 标签栏-->
-            <div class="widget categories">
+            <div class="widget categories shade">
                 <header>
                     <h3 class="h6">Categories</h3>
                 </header>
@@ -106,7 +106,6 @@
                     </nav>
                 </div>
             </div>
-
         </main>
     </div>
 </div>

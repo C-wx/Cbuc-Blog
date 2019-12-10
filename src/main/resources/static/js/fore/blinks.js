@@ -111,7 +111,7 @@ doLogin=function () {
                     layer.closeAll();
                 }, 800);
             } else {
-                layer.msg("用户名或密码错误!", {icon: 5, anim: 6, time: 800});
+                layer.msg(result.msg, {icon: 5, anim: 6, time: 800});
             }
         })
 };
@@ -136,12 +136,14 @@ savePwd=function () {
         ,{"userName":savName,"password":savPwd,"question":savQuestion,"answer":savAnswer}
         ,function (result) {
             if (result.code == Base.status.success) {
-                layer.msg("登录成功!",{icon:6,anim:1,time:800});
+                layer.msg("修改成功!",{icon:6,anim:1,time:800});
+                $(".forget-container").fadeOut();
+                $(".register-container").fadeOut();
                 setTimeout(function () {
-                    layer.closeAll();
-                },800);
+                    $(".login-container").fadeIn();
+                }, 800);
             }else {
-                layer.msg("用户名或密码错误!",{icon:5,anim:6,time:800});
+                layer.msg(result.msg,{icon:5,anim:6,time:800});
             }
         })
 };
