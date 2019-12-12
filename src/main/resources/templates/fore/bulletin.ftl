@@ -80,7 +80,7 @@
                     var bulletinHtml =
                             "<blockquote class=\"layui-elem-quote\">\n" +
                             "<div>"+data.content+"</div><br>" +
-                            "<div style='margin-left: 550px'>---&nbsp;&nbsp;"+Base.formatDate(data.createTime,"yyyy-MM-dd")+"</div>"+
+                            "<div style='margin-left: 530px'>---&nbsp;&nbsp;"+Base.formatDate(data.createTime,"yyyy-MM-dd")+"</div>"+
                             "</blockquote>";
                     $(".BulletinTitle").after(bulletinHtml);
                 })

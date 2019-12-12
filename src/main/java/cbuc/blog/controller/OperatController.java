@@ -271,4 +271,21 @@ public class OperatController {
             return Result.error("修改密码异常");
         }
     }
+
+    @ResponseBody
+    @RequestMapping("/checkLogin")
+    public Object checkLogin(HttpSession session) {
+        try {
+            User user = (User) session.getAttribute("loginUser");
+            if (Objects.isNull(user)) {
+                return Result.error("用户未登录,请先登录");
+            }else{
+                return Result.success(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("查询用户异常");
+            return Result.error("查询用户异常");
+        }
+    }
 }

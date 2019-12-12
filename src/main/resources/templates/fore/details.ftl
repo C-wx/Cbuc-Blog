@@ -27,6 +27,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="/css/index/style.css" id="theme-stylesheet">
 </head>
 <body>
 <div class="header">
@@ -53,7 +54,8 @@
         <li class="layui-nav-item"><a href="/contact">留言</a></li>
         <li class="layui-nav-item"><a href="/blinks">Blink</a></li>
         <li class="layui-nav-item"><a<a href="/bulletin">公告</a></li>
-        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a></li>
+        <li class="layui-nav-item"><a onclick="layer.msg('暂未开发,敬请等待!');location.reload()" href="javascript:;">关于</a>
+        </li>
     </ul>
     <p class="access-count"><span class="text">访问量:&nbsp;</span><span
             class="count"><#if Session["accessCount"]?exists> ${Session["accessCount"]}</#if></span></p>
@@ -73,59 +75,61 @@
             <div class="item-box">
                 <div class="review-version">
                     <div class="form-box">
-                        <div class="article-cont">
-                            <a href="/blog" style="position: relative;top: 30px;"><i class="fa fa-arrow-left"
-                                                                                     style="font-size: 30px;"></i></a>
-                            <!--头部-->
-                            <div class="title">
-                                <h3>${articleInfo.title}</h3>
-                                <p class="cont-info">
-                                    <span class="data types"><i class="fa fa-user"></i>&nbsp;&nbsp;Cbuc</span>
-                                    <span class="data types"><i
-                                            class="fa fa-calendar"></i>&nbsp;&nbsp;${articleInfo.createTime?string('yyyy/MM/dd')}</span>
-                                    <span class="data types"><i
-                                            class="fa fa-eye"></i>&nbsp;&nbsp;${articleInfo.accessCount}</span>
+                        <div class="blogShade">
+                            <div class="article-cont" style="padding: 50px">
+                                <a href="/blog" style="position: relative;top: 30px;"><i class="fa fa-arrow-left"
+                                                                                         style="font-size: 30px;"></i></a>
+                                <!--头部-->
+                                <div class="title">
+                                    <h3>${articleInfo.title}</h3>
+                                    <p class="cont-info">
+                                        <span class="data types"><i class="fa fa-user"></i>&nbsp;&nbsp;Cbuc</span>
+                                        <span class="data types"><i
+                                                class="fa fa-calendar"></i>&nbsp;&nbsp;${articleInfo.createTime?string('yyyy/MM/dd')}</span>
+                                        <span class="data types"><i
+                                                class="fa fa-eye"></i>&nbsp;&nbsp;${articleInfo.accessCount}</span>
                                     <#list tags as tag>
                                          <span class="layui-badge layui-bg-cyan">${tag}&nbsp;&nbsp;
                                              <i class="fa fa-pencil" style="font-size:16px;color: #bcb69e;"></i></span>
                                     </#list>
 
-                                </p>
-                            </div>
-                            <br>
-                            <br>
-                            <!--内容-->
+                                    </p>
+                                </div>
+                                <br>
+                                <br>
+                                <!--内容-->
                             <#if articleInfo.editor == 'markdown'>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="blog-view">
                                     <textarea style="display:none;">${articleContent.content}</textarea>
                                 </div>
                             </#if>
                             <#if articleInfo.editor == 'html'>${articleContent.content}</#if>
-                            <script type="text/javascript">
-                                $(function () {
-                                    editormd.markdownToHTML("blog-view", {
-                                        htmlDecode: "style,script,iframe", //可以过滤标签解码
-                                        emoji: true,
-                                        taskList: true
-                                    })
-                                });
-                            </script>
-                            <!-- 图片弹窗 -->
-                            <div id="pop_img" class="pop-modal">
-                                <div class="pop-img">
-                                    <div class="pop-img-box">
-                                        <img src="/img/alipay2wei.jpg">
+                                <script type="text/javascript">
+                                    $(function () {
+                                        editormd.markdownToHTML("blog-view", {
+                                            htmlDecode: "style,script,iframe", //可以过滤标签解码
+                                            emoji: true,
+                                            taskList: true
+                                        })
+                                    });
+                                </script>
+                                <!-- 图片弹窗 -->
+                                <div id="pop_img" class="pop-modal">
+                                    <div class="pop-img">
+                                        <div class="pop-img-box">
+                                            <img src="/img/alipay2wei.jpg">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--底部-->
-                            <div class="btn-box">
-                                <i onclick="showPay()" class="fa fa-money"
-                                   style="font-size: 40px;cursor: pointer;color: #ffe184;"></i>
-                                </button>
-                                <div class="feed" id="feed1">
-                                    <div class="heart " id="like" rel="like" aiId="${articleInfo.id}"></div>
-                                    <div class="likeCount" id="likeCount">${articleInfo.likeCount}</div>
+                                <!--底部-->
+                                <div class="btn-box">
+                                    <i onclick="showPay()" class="fa fa-money"
+                                       style="font-size: 40px;cursor: pointer;color: #ffe184;"></i>
+                                    </button>
+                                    <div class="feed" id="feed1">
+                                        <div class="heart " id="like" rel="like" aiId="${articleInfo.id}"></div>
+                                        <div class="likeCount" id="likeCount">${articleInfo.likeCount}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +167,8 @@
                                     <div style="font-size: 23px;margin: 5px 0px 0px 862px">
                                         <i class="fa fa-thumbs-o-up flag" style="margin-right: 18px;cursor: pointer"
                                            onclick="addLike(${comment.id},this)"></i>
-                                        <i class="fa fa-comment-o flag" onclick="slideSec(${comment.id},this)" style="cursor: pointer;"></i>
+                                        <i class="fa fa-comment-o flag" onclick="slideSec(${comment.id},this)"
+                                           style="cursor: pointer;"></i>
                                     </div>
                                 </div>
                                 <div class="secondary" cid="${comment.id}" style="display: none">
@@ -174,14 +179,16 @@
                                             </div>
                                             <div class="text">
                                                 <p class="tit"><span class="name">${secComment.loginIp}</span><span
-                                                        class="data">${secComment.createTime?string('yyyy/MM/dd')}</span></p>
+                                                        class="data">${secComment.createTime?string('yyyy/MM/dd')}</span>
+                                                </p>
                                                 <p class="ct">${secComment.content}</p>
                                             </div>
                                         </div>
                                     </#list>
                                     <div style="padding: 20px" class="secTxt">
-                                        <textarea cid="${comment.id}" placeholder="对此评论有何见解" class="layui-textarea secCon"></textarea>
-                                        <div style="text-align: right;padding-top: 8px" >
+                                        <textarea cid="${comment.id}" placeholder="对此评论有何见解"
+                                                  class="layui-textarea secCon"></textarea>
+                                        <div style="text-align: right;padding-top: 8px">
                                             <button class="layui-btn" onclick="addSec(${comment.id},this)">评论</button>
                                         </div>
                                     </div>

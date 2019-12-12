@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<#assign base=request.contextPath />
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,18 +7,21 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Blinks</title>
     <!--jquery-->
-    <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="/js/base.js"></script>
-    <script src="/js/fore/menu.js"></script>
-    <script src="/js/fore/blinks.js"></script>
+    <script src="${base}/js/jquery-1.11.2.min.js"></script>
+    <script src="${base}/js/base.js"></script>
+    <script src="${base}/js/fore/menu.js"></script>
+    <script src="${base}/js/fore/blinks.js"></script>
     <!-- layui -->
-    <script src="/plugins/layui/layui.all.js" type="application/javascript"></script>
-    <link rel="stylesheet" href="/plugins/layui/css/layui.css">
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <script src="${base}/plugins/layui/layui.all.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="${base}/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="${base}/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${base}/vendor/bootstrap/css/bootstrap.min.css">
     <!--主css-->
-    <link rel="stylesheet" type="text/css" href="/css/fore/main.css">
+    <link rel="stylesheet" type="text/css" href="${base}/css/fore/main.css">
+    <!--WangEdit-->
+    <script src="${base}/plugins/wangEditor/wangEditor.js" type="application/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/plugins/wangEditor/wangEditor.css">
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -64,7 +68,15 @@
         <p class="welcome-text"></p>
     </#if>
 </div>
-
+<div id="addBlink" style="display: none;">
+    <div style="padding: 50px">
+        <h3>编辑</h3>
+        <div style="border: 1px darkcyan dashed"></div>
+        <div id="editor" style="margin: 50px 0 50px 0">
+            <p>请编写你的 <b>Blink</b></p>
+        </div>
+    </div>
+</div>
 <div class="content whisper-content">
     <div class="cont">
         <div class="whisper-list">
@@ -96,7 +108,7 @@
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block" style="text-align: right;">
-                                    <button class="layui-btn definite layui-anim layui-anim-up">確定</button>
+                                    <button class="layui-btn definite layui-anim layui-anim-up" type="button">確定</button>
                                 </div>
                             </div>
                         </form>
@@ -209,6 +221,9 @@
             </div>
         </div>
     </div>
+    <div class="addBlinks">
+        <i class="fa fa-pencil" style="font-size: 40px; color: #9e9880;margin:10px 0px 0px 15px;"></i>
+    </div>
 </div>
 <div id="popUp" style="display: none">
     <div class="login-container">
@@ -231,7 +246,7 @@
             </div>
             <div class="login-others">使用其他方式登录</div>
             <hr>
-            <div class="other-icon" style="margin:22px 0px 16px 108px">
+            <div class="other-icon" style="margin:22px 0px 13px 108px">
                 <i class="fa fa-qq"></i>
                 <i class="fa fa-github"></i>
             </div>
@@ -333,6 +348,41 @@
     </form>
 </div>
 </body>
+<script type="text/javascript">
+    layui.use(['layer','wangEditor'], function () {
+        var $ = layui.jquery,
+                layer = layui.layer,
+                wangEditor = layui.wangEditor;
+
+        var editor = new wangEditor('#editor');
+        editor.customConfig.uploadImgServer = "../api/upload.json";
+        editor.customConfig.uploadFileName = 'image';
+        editor.customConfig.pasteFilterStyle = false;
+        editor.customConfig.uploadImgMaxLength = 5;
+        editor.customConfig.uploadImgHooks = {
+            // 上传超时
+            timeout: function (xhr, editor) {
+                layer.msg('上传超时！')
+            },
+            // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+            customInsert: function (insertImg, result, editor) {
+                console.log(result);
+                if (result.code == 1) {
+                    var url = result.data.url;
+                    url.forEach(function (e) {
+                        insertImg(e);
+                    })
+                } else {
+                    layer.msg(result.msg);
+                }
+            }
+        };
+        editor.customConfig.customAlert = function (info) {
+            layer.msg(info);
+        };
+        editor.create();
+    });
+</script>
 <script>
     layui.use(['form'], function () {
         var form = layui.form

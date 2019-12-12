@@ -50,7 +50,7 @@ function getBlogs(pn,cgid,keyword) {
                 var html =
                     "<div class=\"item showShade\">\n" +
                     "     <div class=\"container-fluid\">\n" +
-                    "         <div class=\"widget row \">\n" +
+                    "         <div class=\" row \">\n" +
                     "             <div class=\" col-lg-5\">\n" +
                     "                 <div class=\"img\"><img src='" + img + "' alt=\"\"></div>\n" +
                     "             </div>\n" +

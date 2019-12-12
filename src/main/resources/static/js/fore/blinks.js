@@ -1,50 +1,93 @@
 $(function () {
-    $(".definite").click(function () {
-        $("#logName").val("");
-        $("#logPwd").val("");
-        $(".register-container").hide();
-        $(".login-container").show();
-        var idx = layer.open({
-            type: 1
-            , id: 1
-            , title: false
-            , zIndex: layer.zIndex
-            , content: $("#popUp")
-            , anim: 3
-        });
-        layer.style(idx, {
-            "width": '380px'
-            , "height": '476px'
-            , "top": '200px'
-            , "left": '750px'
-            , "border-radius": '10px'
-            , "background": '#fff'
-        });
-        $(".login-tip-click").click(function () {
-            $(".login-container").fadeOut();
-            $(".forget-container").fadeOut();
-            setTimeout(function () {
-                $(".register-container").fadeIn();
-            }, 400);
+    $(".addBlinks").bind('click',function () {
+        Base.ajax("/checkLogin",null,function (result) {
+            if (result.code == Base.status.success) {
 
-        });
-        $(".register-tip-click").click(function () {
-            $(".register-container").fadeOut();
-            $(".forget-container").fadeOut();
-            setTimeout(function () {
-                $(".login-container").fadeIn();
-            }, 400);
-        });
-        $(".login-forget").click(function () {
-            $(".login-container").fadeOut();
-            $(".register-container").fadeOut();
-            setTimeout(function () {
-                $(".forget-container").fadeIn();
-            }, 400);
-        });
-        return false;
+                var addBlink = layer.open({
+                    type: 1
+                    , id: 1
+                    , title: false
+                    , zIndex: layer.zIndex
+                    , content: $("#addBlink")
+                    , anim: 1
+                });
+                layer.style(addBlink, {
+                    "width": '938px'
+                    , "height": '528px'
+                    , "top": '200px'
+                    , "left": '450px'
+                    , "border-radius": '10px'
+                    , "background": '#fff'
+                });
+            }else{
+                layer.msg(result.msg,{icon:2,time:500});
+                setTimeout(()=>{
+                    showLoginModal();
+                },500);
+            }
+        })
+    });
+
+    $(".definite").click(function () {
+        Base.ajax("/checkLogin",null,function (result) {
+            if (result.code == Base.status.success) {
+
+            }else{
+                layer.msg(result.msg,{icon:2,time:500});
+                setTimeout(()=>{
+                    showLoginModal();
+                },500);
+            }
+        })
     });
 });
+
+//展示登录弹窗
+showLoginModal = ()=>{
+    $("#logName").val("");
+    $("#logPwd").val("");
+    $(".register-container").hide();
+    $(".login-container").show();
+    var idx = layer.open({
+        type: 1
+        , id: 1
+        , title: false
+        , zIndex: layer.zIndex
+        , content: $("#popUp")
+        , anim: 3
+    });
+    layer.style(idx, {
+        "width": '380px'
+        , "height": '476px'
+        , "top": '200px'
+        , "left": '750px'
+        , "border-radius": '10px'
+        , "background": '#fff'
+    });
+    $(".login-tip-click").click(function () {
+        $(".login-container").fadeOut();
+        $(".forget-container").fadeOut();
+        setTimeout(function () {
+            $(".register-container").fadeIn();
+        }, 400);
+
+    });
+    $(".register-tip-click").click(function () {
+        $(".register-container").fadeOut();
+        $(".forget-container").fadeOut();
+        setTimeout(function () {
+            $(".login-container").fadeIn();
+        }, 400);
+    });
+    $(".login-forget").click(function () {
+        $(".login-container").fadeOut();
+        $(".register-container").fadeOut();
+        setTimeout(function () {
+            $(".forget-container").fadeIn();
+        }, 400);
+    });
+};
+
 inputOnfocus = function (e) {
     $(e).css({"border": "1px black solid", "color": "black"});
 };
