@@ -19,9 +19,6 @@
     <link rel="stylesheet" href="${base}/vendor/bootstrap/css/bootstrap.min.css">
     <!--主css-->
     <link rel="stylesheet" type="text/css" href="${base}/css/fore/main.css">
-    <!--WangEdit-->
-    <script src="${base}/plugins/wangEditor/wangEditor.js" type="application/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="${base}/plugins/wangEditor/wangEditor.css">
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -68,12 +65,37 @@
         <p class="welcome-text"></p>
     </#if>
 </div>
+<style>
+    #textarea {
+        border-radius: 10px 10px 0px 0px;
+        background-color: rgba(241, 241, 241, .98);
+        width: 840px;
+        height: 180px;
+        padding: 10px;
+        resize: none;
+        border: none;
+    }
+    #addImg{
+        border-radius: 0px 0px 10px 10px;
+        background-color: rgba(241, 241, 241, .98);
+        width: 840px;
+        height: 180px;
+        padding: 10px;
+    }
+</style>
 <div id="addBlink" style="display: none;">
     <div style="padding: 50px">
-        <h3>编辑</h3>
+        <h3 style="font-family: 'kaiti'">内容编辑 <i class="fa fa-paint-brush"></i></h3>
         <div style="border: 1px darkcyan dashed"></div>
-        <div id="editor" style="margin: 50px 0 50px 0">
-            <p>请编写你的 <b>Blink</b></p>
+        <div id="editor" style="margin: 20px 0 50px 0;width: 840px;height: 100px">
+            <textarea id="textarea"></textarea>
+        </div>
+        <div class="layui-input-inline" id="addImg">
+            <div id="d_0" style="float:left;margin-left:10px;">
+                <i id="delImg" class="fa fa-minus-square-o" style="position: absolute;left: 232px; top: 2px;font-size: 20px"></i>
+                <input id="file_0" type="file" name="files" style="display:none;" onChange="replace_image(0)"/>
+                <img id="image_0" onclick="clickImage(0)" style="cursor:pointer;margin-left: 20px" src="/img/sy_img5.jpg" height="150px" width="200px"/>
+            </div>
         </div>
     </div>
 </div>
@@ -108,7 +130,8 @@
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block" style="text-align: right;">
-                                    <button class="layui-btn definite layui-anim layui-anim-up" type="button">確定</button>
+                                    <button class="layui-btn definite layui-anim layui-anim-up" type="button">確定
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -348,41 +371,6 @@
     </form>
 </div>
 </body>
-<script type="text/javascript">
-    layui.use(['layer','wangEditor'], function () {
-        var $ = layui.jquery,
-                layer = layui.layer,
-                wangEditor = layui.wangEditor;
-
-        var editor = new wangEditor('#editor');
-        editor.customConfig.uploadImgServer = "../api/upload.json";
-        editor.customConfig.uploadFileName = 'image';
-        editor.customConfig.pasteFilterStyle = false;
-        editor.customConfig.uploadImgMaxLength = 5;
-        editor.customConfig.uploadImgHooks = {
-            // 上传超时
-            timeout: function (xhr, editor) {
-                layer.msg('上传超时！')
-            },
-            // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
-            customInsert: function (insertImg, result, editor) {
-                console.log(result);
-                if (result.code == 1) {
-                    var url = result.data.url;
-                    url.forEach(function (e) {
-                        insertImg(e);
-                    })
-                } else {
-                    layer.msg(result.msg);
-                }
-            }
-        };
-        editor.customConfig.customAlert = function (info) {
-            layer.msg(info);
-        };
-        editor.create();
-    });
-</script>
 <script>
     layui.use(['form'], function () {
         var form = layui.form

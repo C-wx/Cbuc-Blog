@@ -13,7 +13,7 @@ $(function () {
                 });
                 layer.style(addBlink, {
                     "width": '938px'
-                    , "height": '528px'
+                    , "height": '500px'
                     , "top": '200px'
                     , "left": '450px'
                     , "border-radius": '10px'
@@ -190,3 +190,29 @@ savePwd=function () {
             }
         })
 };
+
+//上传图片
+function clickImage(index){
+    $("#file_"+index).click();
+}
+
+function replace_image(index){
+    $("#inputImg").hide();
+    // 获得图片对象
+    var blob_image = $("#file_"+index)[0].files[0];
+    var url = window.URL.createObjectURL(blob_image);
+    // 替换image
+    $("#image_"+index).attr("src",url);
+    var length = $(":file").length;
+    if((index+1)==length && length < 3){
+        // 用户选择的是最后一张图片
+        add_image(index);
+    }
+}
+function add_image(index){
+    var a = '<div id ="d_'+(index+1)+'" style="float:left;margin-left:70px;">';
+    var b = '<input id="file_'+(index+1)+'" type="file" name="files" style="display:none;" onChange="replace_image('+(index+1)+')"/>'
+    var c = '<img id="image_'+(index+1)+'" onclick="clickImage('+(index+1)+')" style="cursor:pointer;" src="/img/sy_img5.jpg" height="150px" width="200px"/>'
+    var d = '</div>';
+    $("#d_"+index).after(a+b+c+d);
+}
