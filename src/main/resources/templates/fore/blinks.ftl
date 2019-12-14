@@ -91,10 +91,18 @@
             <textarea id="textarea"></textarea>
         </div>
         <div class="layui-input-inline" id="addImg">
-            <div id="d_0" style="float:left;margin-left:10px;">
-                <i id="delImg" class="fa fa-minus-square-o" style="position: absolute;left: 232px; top: 2px;font-size: 20px"></i>
+            <#--<div id="d_0" style="float:left;margin-left:10px;">
                 <input id="file_0" type="file" name="files" style="display:none;" onChange="replace_image(0)"/>
                 <img id="image_0" onclick="clickImage(0)" style="cursor:pointer;margin-left: 20px" src="/img/sy_img5.jpg" height="150px" width="200px"/>
+                <i class="fa fa-trash-o"></i>
+            </div>-->
+            <div class="content-img">
+                <ul class="content-img-list">
+                    <!-- <li class="content-img-list-item"><img src="https://www.baidu.com/img/bd_logo1.png" alt=""><a class="delete-btn"><i class="ico-delete"></i></a></li> -->
+                </ul>
+                <div class="file">
+                    <i class="ico-plus"></i>上传图片，支持jpg/png<input type="file" name="file" accept="image/*" id="upload" style="opacity: 0" >
+                </div>
             </div>
         </div>
     </div>
