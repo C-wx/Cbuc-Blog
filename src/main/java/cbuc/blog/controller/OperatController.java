@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -287,5 +288,12 @@ public class OperatController {
             log.error("查询用户异常");
             return Result.error("查询用户异常");
         }
+    }
+
+    @ResponseBody
+    @RequestMapping("/publishBlinks")
+    public Object publishBlinks(@RequestParam("myFiles") MultipartFile[] myFiles,@RequestParam("content") String content) {
+        // 上传图片
+        return null;
     }
 }

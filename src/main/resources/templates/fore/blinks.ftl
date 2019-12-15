@@ -74,6 +74,8 @@
         padding: 10px;
         resize: none;
         border: none;
+        font-size: 20px;
+        font-family: '楷体';
     }
     #addImg{
         border-radius: 0px 0px 10px 10px;
@@ -82,29 +84,57 @@
         height: 180px;
         padding: 10px;
     }
+    .hide{
+        display: none;
+    }
+    .delete-btn{
+        position:relative;
+        top: -57px;
+        left: -41px;
+        z-index: 999;
+        font-size:25px;
+    }
+    .content-img-list-item{
+        float: left;
+        margin-right: 45px;
+    }
+    .content-img-list-item img {
+        width: 200px;
+        height: 150px;
+        margin-right: 20px;
+    }
+    .file{
+        height: 150px;
+        text-align: center;
+        font-size: 26px;
+    }
+    .max{
+        width: 100%;
+        height: auto;
+    }
 </style>
 <div id="addBlink" style="display: none;">
-    <div style="padding: 50px">
-        <h3 style="font-family: 'kaiti'">内容编辑 <i class="fa fa-paint-brush"></i></h3>
+    <div style="padding: 30px 50px 0px 50px">
+        <h2 style="font-family: 'kaiti'"><b>内容编辑 </b><i class="fa fa-paint-brush"></i></h2>
         <div style="border: 1px darkcyan dashed"></div>
-        <div id="editor" style="margin: 20px 0 50px 0;width: 840px;height: 100px">
-            <textarea id="textarea"></textarea>
-        </div>
-        <div class="layui-input-inline" id="addImg">
-            <#--<div id="d_0" style="float:left;margin-left:10px;">
-                <input id="file_0" type="file" name="files" style="display:none;" onChange="replace_image(0)"/>
-                <img id="image_0" onclick="clickImage(0)" style="cursor:pointer;margin-left: 20px" src="/img/sy_img5.jpg" height="150px" width="200px"/>
-                <i class="fa fa-trash-o"></i>
-            </div>-->
-            <div class="content-img">
-                <ul class="content-img-list">
-                    <!-- <li class="content-img-list-item"><img src="https://www.baidu.com/img/bd_logo1.png" alt=""><a class="delete-btn"><i class="ico-delete"></i></a></li> -->
-                </ul>
-                <div class="file">
-                    <i class="ico-plus"></i>上传图片，支持jpg/png<input type="file" name="file" accept="image/*" id="upload" style="opacity: 0" >
+        <form enctype="multipart/form-data" method="post" id="pubForm">
+            <div id="editor" style="margin: 20px 0 50px 0;width: 840px;height: 100px">
+                <textarea id="textarea"></textarea>
+            </div>
+            <div class="layui-input-inline" id="addImg">
+                <div class="content-img">
+                    <ul class="content-img-list"></ul>
+                    <div class="file" style="cursor:pointer;">
+                        <i class="fa fa-plus" style="line-height: 150px"></i>
+                        <span style="line-height: 150px" onclick="clickImage()">上传图片</span>
+                        <input type="file" name="files" accept="image/*" id="upload" style="display: none">
+                    </div>
                 </div>
             </div>
-        </div>
+            <div>
+                <button type="button" class="layui-btn layui-btn-warm" style="float: right;margin-top: 20px;" id="publish">发布</button>
+            </div>
+        </form>
     </div>
 </div>
 <div class="content whisper-content">
