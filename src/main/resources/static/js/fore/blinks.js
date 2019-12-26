@@ -1,31 +1,5 @@
 $(function () {
-    $(".addBlinks").bind('click', function () {
-        Base.ajax("/checkLogin", null, function (result) {
-            if (result.code == Base.status.success) {
-                var addBlink = layer.open({
-                    type: 1
-                    , id: 1
-                    , title: false
-                    , zIndex: layer.zIndex
-                    , content: $("#addBlink")
-                    , anim: 1
-                });
-                layer.style(addBlink, {
-                    "width": '938px'
-                    , "height": '500px'
-                    , "top": '200px'
-                    , "left": '450px'
-                    , "border-radius": '10px'
-                    , "background": '#fff'
-                });
-            } else {
-                layer.msg(result.msg, {icon: 2, time: 500});
-                setTimeout(() => {
-                    showLoginModal();
-                }, 500);
-            }
-        })
-    });
+
 
     $(".definite").click(function () {
         Base.ajax("/checkLogin", null, function (result) {
@@ -200,6 +174,36 @@ function clickImage() {
 
 $(function () {
     var imgName = [], imgSrc = [], imgFile = [];
+    $(".addBlinks").bind('click', function () {
+        Base.ajax("/checkLogin", null, function (result) {
+            if (result.code == Base.status.success) {
+                $("#pubForm")[0].reset();
+                $(".content-img-list").empty();
+                imgSrc.length = 0;
+                var addBlink = layer.open({
+                    type: 1
+                    , id: 1
+                    , title: false
+                    , zIndex: layer.zIndex
+                    , content: $("#addBlink")
+                    , anim: 1
+                });
+                layer.style(addBlink, {
+                    "width": '938px'
+                    , "height": '500px'
+                    , "top": '200px'
+                    , "left": '450px'
+                    , "border-radius": '10px'
+                    , "background": '#fff'
+                });
+            } else {
+                layer.msg(result.msg, {icon: 2, time: 500});
+                setTimeout(() => {
+                    showLoginModal();
+                }, 500);
+            }
+        })
+    });
     $("#upload").on('change', function (e) {
         var fileList = this.files;
         for (var i = 0; i < fileList.length; i++) {
@@ -263,7 +267,6 @@ $(function () {
             formFile.append('myFiles', file);
         });
         formFile.append("content", $("#textarea").val());
-        console.log(formFile.get("myFiles"));
         $.ajax({
                url: "/publishBlinks"
             , type: "POST"
@@ -272,7 +275,14 @@ $(function () {
             , contentType: false
             , dataType:'json'
             , success: function (result) {
-
+                if (result.code == Base.status.success) {
+                    layer.msg("发布成功!",{icon:6,time:1500});
+                    setTimeout(() => {
+                        layer.closeAll();
+                    }, 1500);
+                }else {
+                    layer.msg(result.msg);
+                }
             }
         })
     })

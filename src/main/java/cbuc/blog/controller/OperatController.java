@@ -5,6 +5,7 @@ import cbuc.blog.bean.*;
 import cbuc.blog.exception.MyException;
 import cbuc.blog.service.*;
 import cbuc.blog.utils.IPutil;
+import cbuc.blog.utils.UploadUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -55,6 +56,12 @@ public class OperatController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BlinkService blinkService;
+
+    @Autowired
+    private ImageService imageService;
 
     @ApiOperation("留言")
     @ResponseBody
@@ -292,8 +299,33 @@ public class OperatController {
 
     @ResponseBody
     @RequestMapping("/publishBlinks")
-    public Object publishBlinks(@RequestParam("myFiles") MultipartFile[] myFiles,@RequestParam("content") String content) {
-        // 上传图片
-        return null;
+    public Object publishBlinks(@RequestParam("myFiles") MultipartFile[] myFiles,@RequestParam("content") String content, HttpSession session) {
+        try {
+            // 上传图片
+            List<String> list_image = UploadUtil.upload_image(myFiles);
+            User user = (User) session.getAttribute("loginUser");
+            if (Objects.isNull(user)) {
+              return Result.error("用户未登录,请先登录");
+            }
+            Blinks blinks = Blinks.builder()
+                    .author(user.getId())
+                    .content(content).build();
+            int res = blinkService.doAdd(blinks);
+            list_image.forEach(s -> {
+                Image image = Image.builder()
+                        .parentId(blinks.getId())
+                        .url(s).build();
+                imageService.doAdd(image);
+            });
+            if (res > 0) {
+                return Result.success();
+            }else {
+                return Result.error("发布Blinks异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("发布Blinks异常");
+            return Result.error("发布Blinks异常");
+        }
     }
 }
