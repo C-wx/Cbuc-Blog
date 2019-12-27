@@ -93,13 +93,13 @@
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>-->
 
-        <table tableName="bg_blinks" domainObjectName="Blinks" enableCountByExample="true"
+<!--        <table tableName="bg_blinks" domainObjectName="Blink" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false"/>
             <property name="my.isgen.usekeys" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+        </table>-->
 
 
 <!--        <table tableName="bg_image" domainObjectName="Image" enableCountByExample="true"
@@ -110,7 +110,6 @@
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>-->
 
-      <!--
         <table tableName="bg_comment" domainObjectName="Comment" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
@@ -118,7 +117,6 @@
             <property name="my.isgen.usekeys" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
--->
         <!--
         <table tableName="bg_contact" domainObjectName="Contact" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"

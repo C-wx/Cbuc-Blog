@@ -1,10 +1,66 @@
 $(function () {
+    Base.ajax('/getBlinks', null, function (result) {
+        if (result.code == Base.status.success) {
+            $.each(result.data, function (index, res) {
+                var images = '<div id="layer-photos-demo" class="layer-photos-demo">';
+                res.images.forEach((data) => {
+                    images += '<img style="width:200px;height: 150px;margin-right: 30px" layer-pid layer-src="' + data.url + '" src="' + data.url + '">';
+                });
+                images += '</div>';
+                var blinkHtml =
+                    '<div class="item-box">\n' +
+                    '                <div class="item">\n' +
+                    '                    <div class="whisper-title">\n' +
+                    '                        <i class="layui-icon layui-icon-date"></i><span class="hour">' + Base.formatDate(res.createTime, "yyyy-MM-dd HH:mm:ss") + '</span>\n' +
+                    '                    </div>\n' +
+                    '                    <p class="text-cont">' + res.content + '</p>\n' +
+                    '                    <div class="img-box">\n' + images +
+                    '                    </div>\n' +
+                    '                    <div class="op-list" data-id="' + res.id + '">\n' +
+                    '                        <p class="like"><i class="layui-icon layui-icon-praise"></i><span>' + res.likeCount + '</span></p>\n' +
+                    '                        <p class="edit"><i class="layui-icon layui-icon-reply-fill"></i><span>' + res.commentCount + '</span></p>\n' +
+                    '                        <p class="off"><span>展开</span><i class="layui-icon layui-icon-down"></i></p>\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <div class="review-version layui-hide">\n' +
+                    '                    <div class="form">\n' +
+                    '                        <img src="img/header2.png">\n' +
+                    '                        <form class="layui-form" action="">\n' +
+                    '                            <div class="layui-form-item layui-form-text">\n' +
+                    '                                <div class="layui-input-block">\n' +
+                    '                                    <textarea name="desc" class="layui-textarea" id="text'+res.id+'"></textarea>\n' +
+                    '                                </div>\n' +
+                    '                            </div>\n' +
+                    '                            <div class="layui-form-item">\n' +
+                    '                                <div class="layui-input-block" style="text-align: right;">\n' +
+                    '                                    <button class="layui-btn definite layui-anim layui-anim-up" data-id="' + res.id + '" type="button">確定\n' +
+                    '                                    </button>\n' +
+                    '                                </div>\n' +
+                    '                            </div>\n' +
+                    '                        </form>\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '            </div>'
+                $(".whisper-list").append(blinkHtml);
+            })
 
-
-    $(".definite").click(function () {
-        Base.ajax("/checkLogin", null, function (result) {
+        }
+    })
+    $("body").on("click", ".layer-photos-demo img", function (e) {
+        layer.photos({
+            photos: {"data": [{"src": e.target.src}]}
+            , anim: 5
+        });
+    });
+})
+$(function () {
+    $("body").on("click", ".definite", function () {
+        Base.ajax("/checkLogin", null, (result) => {
             if (result.code == Base.status.success) {
-
+                var id = $(this).attr('data-id');
+                debugger
+                var text = $("#text"+id).val();
+                // todo 改了评论表
             } else {
                 layer.msg(result.msg, {icon: 2, time: 500});
                 setTimeout(() => {
@@ -233,6 +289,7 @@ $(function () {
             $(obj).html(oldBox + '<li class="content-img-list-item"><img src="' + imgSrc[a] + '"><a index="' + a + '" class="hide delete-btn"><i class="fa fa-trash-o\n"></i></a></li>');
         }
     }
+
     function getObjectURL(file) {
         var url = null;
         if (window.createObjectURL != undefined) { // basic
@@ -261,30 +318,30 @@ $(function () {
             $('.content-img .file').show();
         }
     });
-    $("#publish").bind('click',()=>{
+    $("#publish").bind('click', () => {
         var formFile = new FormData();
-        $.each(imgFile, function(i, file){
+        $.each(imgFile, function (i, file) {
             formFile.append('myFiles', file);
         });
         formFile.append("content", $("#textarea").val());
         $.ajax({
-               url: "/publishBlinks"
+            url: "/publishBlinks"
             , type: "POST"
             , data: formFile
             , processData: false
             , contentType: false
-            , dataType:'json'
+            , dataType: 'json'
             , success: function (result) {
                 if (result.code == Base.status.success) {
-                    layer.msg("发布成功!",{icon:6,time:1500});
+                    layer.msg("发布成功!", {icon: 6, time: 2000});
                     setTimeout(() => {
                         layer.closeAll();
-                    }, 1500);
-                }else {
+                        Base.loadPage();
+                    }, 2000);
+                } else {
                     layer.msg(result.msg);
                 }
             }
         })
     })
 });
-

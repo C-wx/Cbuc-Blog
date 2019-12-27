@@ -92,6 +92,9 @@ var Base = {
             return true;
         }
     }
+    ,loadPage: function () {
+        location.reload();
+    }
 
 };
 Date.prototype.format = function (format) {

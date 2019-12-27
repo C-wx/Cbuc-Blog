@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -161,6 +162,8 @@ public class OperatController {
                 res = articleInfoService.doLike(count, id);
             } else if ("2".equals(type)) {
                 res = commentService.doLike(count, id);
+            } else if ("3".equals(type)) {
+                res = blinkService.doLike(count,id);
             }
             if (res > 0) {
                 return Result.success();
@@ -307,9 +310,9 @@ public class OperatController {
             if (Objects.isNull(user)) {
               return Result.error("用户未登录,请先登录");
             }
-            Blinks blinks = Blinks.builder()
-                    .author(user.getId())
-                    .content(content).build();
+            Blink blinks = new Blink();
+            blinks.setAuthor(user.getId());
+            blinks.setContent(content);
             int res = blinkService.doAdd(blinks);
             list_image.forEach(s -> {
                 Image image = Image.builder()
@@ -328,4 +331,27 @@ public class OperatController {
             return Result.error("发布Blinks异常");
         }
     }
+
+    @ResponseBody
+    @RequestMapping("/getBlinks")
+    public Object getBlinks() {
+        try {
+            List<Blink> blinksList = blinkService.queryList();
+            if (CollectionUtils.isEmpty(blinksList)) {
+                return Result.error("获取Blinks失败");
+            }else {
+                blinksList.stream().forEach(item->{
+                    List<Image> images = imageService.queryList(item.getId());
+                    item.setImages(images);
+                });
+                return Result.success(blinksList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取Blinks异常");
+            return Result.error("获取Blinks异常");
+        }
+    }
+
+
 }

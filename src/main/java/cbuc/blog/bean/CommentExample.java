@@ -295,6 +295,76 @@ public class CommentExample {
             return (Criteria) this;
         }
 
+        public Criteria andOriginIsNull() {
+            addCriterion("ORIGIN is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginIsNotNull() {
+            addCriterion("ORIGIN is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginEqualTo(String value) {
+            addCriterion("ORIGIN =", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginNotEqualTo(String value) {
+            addCriterion("ORIGIN <>", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginGreaterThan(String value) {
+            addCriterion("ORIGIN >", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginGreaterThanOrEqualTo(String value) {
+            addCriterion("ORIGIN >=", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginLessThan(String value) {
+            addCriterion("ORIGIN <", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginLessThanOrEqualTo(String value) {
+            addCriterion("ORIGIN <=", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginLike(String value) {
+            addCriterion("ORIGIN like", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginNotLike(String value) {
+            addCriterion("ORIGIN not like", value, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginIn(List<String> values) {
+            addCriterion("ORIGIN in", values, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginNotIn(List<String> values) {
+            addCriterion("ORIGIN not in", values, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginBetween(String value1, String value2) {
+            addCriterion("ORIGIN between", value1, value2, "origin");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginNotBetween(String value1, String value2) {
+            addCriterion("ORIGIN not between", value1, value2, "origin");
+            return (Criteria) this;
+        }
+
         public Criteria andLoginIpIsNull() {
             addCriterion("LOGIN_IP is null");
             return (Criteria) this;
@@ -362,6 +432,66 @@ public class CommentExample {
 
         public Criteria andLoginIpNotBetween(String value1, String value2) {
             addCriterion("LOGIN_IP not between", value1, value2, "loginIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorIsNull() {
+            addCriterion("COMMENTOR is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorIsNotNull() {
+            addCriterion("COMMENTOR is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorEqualTo(Long value) {
+            addCriterion("COMMENTOR =", value, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorNotEqualTo(Long value) {
+            addCriterion("COMMENTOR <>", value, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorGreaterThan(Long value) {
+            addCriterion("COMMENTOR >", value, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorGreaterThanOrEqualTo(Long value) {
+            addCriterion("COMMENTOR >=", value, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorLessThan(Long value) {
+            addCriterion("COMMENTOR <", value, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorLessThanOrEqualTo(Long value) {
+            addCriterion("COMMENTOR <=", value, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorIn(List<Long> values) {
+            addCriterion("COMMENTOR in", values, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorNotIn(List<Long> values) {
+            addCriterion("COMMENTOR not in", values, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorBetween(Long value1, Long value2) {
+            addCriterion("COMMENTOR between", value1, value2, "commentor");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentorNotBetween(Long value1, Long value2) {
+            addCriterion("COMMENTOR not between", value1, value2, "commentor");
             return (Criteria) this;
         }
 

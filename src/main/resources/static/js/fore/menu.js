@@ -17,23 +17,36 @@ $(function () {
     };
     var count = $('.list-cont .cont').length;
     $('.volume span').text(count);
-    $('.op-list .like').on('click', function () {
+    $("body").on("click", ".op-list .like", function () {
+        const parentId = $(this).parent().attr('data-id');
         var oSpan = $(this).children('span');
         var num = parseInt($(oSpan).text());
         var off = $(this).attr('off');
         if (off) {
-            $(this).removeClass('active');
-            off = true;
-            $(oSpan).text(num - 1);
-            $(this).attr('off', '')
+            Base.ajax('/doLike', {"type": 3, "count": num - 1, "id": parentId}, (result) => {
+                if (result.code == Base.status.success) {
+                    $(this).removeClass('active');
+                    off = true;
+                    $(oSpan).text(num - 1);
+                    $(this).attr('off', '');
+                }else{
+                    layer.msg(result.msg);
+                }
+            })
         } else {
-            $(this).addClass('active');
-            off = false;
-            $(oSpan).text(num + 1);
-            $(this).attr('off', 'true')
+            Base.ajax('/doLike', {"type": 3, "count": num + 1, "id": parentId}, (result) => {
+                if (result.code == Base.status.success) {
+                    $(this).addClass('active');
+                    off = false;
+                    $(oSpan).text(num + 1);
+                    $(this).attr('off', 'true');
+                }else{
+                    layer.msg(result.msg);
+                }
+            })
         }
     });
-    $('.off').on('click', function () {
+    $("body").on("click", ".off", function () {
         var off = $(this).attr('off');
         var chi = $(this).children('i');
         var text = $(this).children('span');
@@ -51,6 +64,7 @@ $(function () {
         }
     })
 });
+
 function getCurDate() {
     var d = new Date();
     var week;
