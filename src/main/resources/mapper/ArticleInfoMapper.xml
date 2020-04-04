@@ -248,7 +248,7 @@
       AND t1.CREATE_TIME <![CDATA[<=]]> #{endTime}
       )
       GROUP BY
-      DATE_FORMAT(t1.create_time, '%Y-%m-%d')
+      DATE_FORMAT(t1.create_time, '%Y-%m-%d'),DATE_FORMAT(create_time, '%m-%d')
     </select>
     <select id="queryArticleNum" resultType="java.lang.Integer">
       select count(*) from bg_article_info where CG_ID LIKE #{Param1}
